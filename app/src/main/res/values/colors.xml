@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#9d1818</color>
+    <color name="colorPrimaryDark">#830f0f</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="base_red_color">#9d1818</color>
+    <color name="black">#000000</color>
+    <color name="home_item_color">#172680</color>
+    <color name="transparent">#60000000</color>
+    <color name="list_tiem_bg">#EEEEEE</color>
+    <color name="white">#fff</color>
+    <color name="content_color">#111a50</color>
+    <color name="color_9d">#9d1010</color>
+    <color name="doc_color">#9d1818</color>
+    <color name="white_color">#ffffff</color>
+    <color name="location_color">#bbbbbb</color>
+    <color name="color_666">#666666</color>
+    <color name="color_999">#999999</color>
+    <color name="color_1111">#eeeeee</color>
+    <color name="color_111">#111111</color>
+    <color name="service_list_item_color">#111a50</color>
+    <color name="bg_color">#f2f2f2</color>
+</resources>

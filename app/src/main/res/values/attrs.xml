@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="buttonExtendM">
+        <attr name="backColor" format="color"/>
+        <attr name="backColorPress" format="color"/>
+        <attr name="nfuTextColor" format="color"/>
+        <attr name="textColorPress" format="color"/>
+        <attr name="iconDrawable" format="reference"/>
+        <attr name="iconDrawablePress" format="reference" />
+        <attr name="text" format="string"/>
+        <attr name="nfuTextSize" format="dimension"/>
+        <attr name="spacing" format="dimension" />
+        <attr name="imgHeight" format="dimension" />
+        <attr name="imgWidth" format="dimension" />
+        <attr name="drec">
+            <enum name="iconLeft" value="0" />
+            <enum name="iconRight" value="1" />
+            <enum name="iconUp" value="2" />
+            <enum name="iconBottom" value="3" />
+        </attr>
+        <attr name="buttonType">
+            <enum name="normal" value="0" />
+            <enum name="check" value="1" />
+        </attr>
+        <attr name="scType">
+            <enum name="CENTER" value="0" />
+            <enum name="CENTER_CROP" value="1" />
+            <enum name="CENTER_INSIDE" value="2" />
+            <enum name="FIT_CENTER" value="3" />
+            <enum name="FIT_END" value="4" />
+            <enum name="FIT_START" value="5" />
+            <enum name="FIT_XY" value="6" />
+            <enum name="MATRIX" value="7" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="PointPagerIndicator">
+        <!--for tab-->
+        <attr name="select_point_size" format="dimension|reference" />
+        <attr name="unselect_point_size" format="dimension|reference" />
+        <attr name="select_point_color" format="color|reference" />
+        <attr name="unselect_point_color" format="color|reference" />
+        <attr name="point_spacing" format="dimension|reference" />
+    </declare-styleable>
+    <declare-styleable name="PagerIndicator">
+        <!--for tab-->
+        <attr name="unselect_tab_text_color" format="color|reference" />
+        <attr name="select_tab_text_color" format="color|reference" />
+        <attr name="underline_height" format="dimension|reference" />
+        <attr name="underline_padding" format="dimension|reference" />
+        <attr name="underline_color" format="color|reference" />
+        <attr name="tab_padding" format="dimension|reference" />
+        <attr name="should_tab_expand" format="boolean" />
+        <attr name="tab_text_size" format="dimension|reference"/>
+    </declare-styleable>
+    <declare-styleable name="ConsultItemView">
+        <attr name="textContent" format="string" />
+        <attr name="imageBg" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="round" format="dimension" />
+    </declare-styleable>
+</resources>
