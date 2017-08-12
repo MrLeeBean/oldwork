@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -48,7 +49,7 @@ import okhttp3.Call;
  * Created by Administrator on 2017/8/11.
  */
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends Fragment {
     @BindView(R.id.home_fragment_viewpager)
     ViewPager mTrunPicViewPager;
 
@@ -134,7 +135,7 @@ public class HomeFragment extends BaseFragment {
     }
     RequestOptions options = new RequestOptions()
             .centerCrop().placeholder(R.drawable.def_turn);
-    @Override
+
     protected void loadData() {
         ApiManager.getInstance().getTurnPic("1008", new StringCallback() {
             @Override
@@ -239,7 +240,7 @@ public class HomeFragment extends BaseFragment {
         fragmentTransaction.commit();
     }
 
-    @Override
+
     protected void initView() {
          newsRecyclerView = new XRecyclerView(getContext());
         // dateRecyclerView.setLayoutParams();

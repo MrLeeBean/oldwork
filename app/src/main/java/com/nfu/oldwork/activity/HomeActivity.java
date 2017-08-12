@@ -124,7 +124,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 clearSelected();
-                btnCommunicate.setNfuSeleted(true);
+                btnMine.setNfuSeleted(true);
                 Fragment fragment = getVisibleFragment();
                 if (fragment==null||!(fragment instanceof MineFragment)){
                     setMineFragment();
@@ -162,7 +162,7 @@ public class HomeActivity extends AppCompatActivity {
   private void setMineFragment() {
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-      MineFragment mineFragment = new MineFragment();
+         MineFragment mineFragment = new MineFragment();
         fragmentTransaction.replace(R.id.activity_main_content_frameLayout, mineFragment);
         fragmentTransaction.commit();
     }
@@ -172,6 +172,7 @@ public class HomeActivity extends AppCompatActivity {
         btnHome.setNfuSeleted(false);
         btnStudy.setNfuSeleted(false);
         btnCommunicate.setNfuSeleted(false);
+        btnMine.setNfuSeleted(false);
 //        isClick = false;
     }
 
