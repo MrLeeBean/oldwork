@@ -17,4 +17,10 @@ public class MineFragment extends BaseFragment{
     protected void initView() {
 
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

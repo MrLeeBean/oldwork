@@ -60,7 +60,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-
     private void setHomeFragment() {
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();

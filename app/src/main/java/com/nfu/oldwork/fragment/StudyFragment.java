@@ -16,4 +16,10 @@ public class StudyFragment extends BaseFragment{
     protected void initView() {
 
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

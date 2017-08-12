@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_title_bar_height"
+        android:background="@color/base_red_color"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/activity_main_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/top_bar_home_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/consult_viewpager_heigth">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/home_fragment_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+        <com.nfu.oldwork.view.PointPagerIndicator
+            android:id="@+id/nfu_hot_list_ad_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:point_spacing="@dimen/magin_8"
+            app:select_point_color="@color/doc_color"
+            app:select_point_size="@dimen/consult_viewpager_point_width"
+            app:unselect_point_color="@color/white"
+            app:unselect_point_size="@dimen/consult_viewpager_point_width" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <com.nfu.oldwork.view.PagerIndicator
+            android:id="@+id/nfu_activity_search_layout_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/magin_48"
+            android:background="#fff"
+            app:select_tab_text_color="@color/base_red_color"
+            app:unselect_tab_text_color="@color/content_color"
+            app:should_tab_expand="true"
+            app:underline_color="@color/base_red_color"
+            app:underline_height="@dimen/padding_top_2"
+            app:tab_text_size="@dimen/text_size_18"
+            app:underline_padding="45dp"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/nfu_activity_search_layout_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/fragment_title_bar"/>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="@color/base_red_color"
+        android:layout_marginTop="@dimen/magin_10"
+        android:paddingLeft="@dimen/magin_15"
+        android:paddingRight="@dimen/magin_15"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_18"
+        android:text="养老产业"/>
+
+    <TextView
+        android:id="@+id/tv_creatdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/content_color"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_14"
+        android:layout_marginTop="@dimen/magin_10"
+        android:text="2017-04-19"/>
+    <LinearLayout
+        android:layout_marginLeft="@dimen/magin_15"
+        android:layout_marginRight="@dimen/magin_15"
+        android:layout_marginBottom="@dimen/magin_15"
+        android:layout_marginTop="@dimen/magin_20"
+        android:padding="@dimen/magin_5"
+        android:background="@drawable/nfu_news_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <WebView
+            android:id="@+id/wv_news_content"
+            android:scrollbars="vertical"
+            android:background="@color/white_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>

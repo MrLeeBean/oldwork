@@ -1,3 +1,55 @@
 <resources>
-    <string name="app_name">oldwork</string>
+    <string name="app_name">北京养老</string>
+    <string name="top_bar_home_title">北京老龄工作平台</string>
+    <string name="bottom_bar_home_str">首页</string>
+    <string name="bottom_bar_consult_str">咨询</string>
+    <string name="bottom_bar_service_str">服务</string>
+    <string name="home_fragment_policy_str">政策解读</string>
+    <string name="home_fragment_query_str">办理查询</string>
+    <string name="home_fragment_maintain_str">权益保护</string>
+    <string name="home_fragment_notice_str">通知公告</string>
+    <string name="home_fragment_oldservice_str">为老服务</string>
+    <string name="home_fragment_modify_call_msg">修改紧急呼救电话</string>
+    <string name="home_fragment_modify_call_msg_name">对方名字</string>
+    <string name="home_fragment_modify_call_msg_phone">联系电话</string>
+    <string name="home_fragment_modify_call_commit">确定</string>
+    <string name="home_fragment_modify_call_cacle">取消</string>
+    <string name="home_fragment_modify_call_title">确定拨打</string>
+
+
+
+
+    <string name="home_fragment_old_consult_str">养老资讯</string>
+    <string name="consult_fragment_top_title">资讯</string>
+    <string name="consult_item_qujidongtai">区级动态</string>
+    <string name="consult_item_zhengcejiedu">政策解读</string>
+    <string name="consult_item_meitibaodao">媒体报道</string>
+
+    <string name="top_bar_service_title">服务查询</string>
+    <string name="top_bar_location_title">北京市</string>
+    <string name="top_bar_content_title">请选择服务：</string>
+    <string name="query_btn">查询</string>
+
+    <string name="hotline_title">热线电话：</string>
+    <string name="hotline_center_title">常见问题</string>
+
+
+    <string name="back_str">返回</string>
+    <string name="feedback_str">请填写完，完整的信息！</string>
+    <string name="feedback_str_error">提交反馈失败！</string>
+    <string name="feedback_str_ok">提交反馈成功！</string>
+    <string name="submit_ok">提交成功！请等候工作人员联系。</string>
+    <string name="setting_str">设置</string>
+    <string name="update_str">版本升级</string>
+
+    <string name="demo_name_route">路径规划功能</string>
+    <string name="safeguard_phone_str">65859523</string>
+    <string name="oldservice_thrid_top_title">养老服务商</string>
+    <string name="oldservice_top_title">为老服务</string>
+    <string name="oldservice_second_top_title">社区养老服务场所</string>
+    <string name="oldservice_first_top_title">全市养老服务机构</string>
+
+    <string name="oldconsult_fragment_top_title">养老资讯</string>
+    <string name="oldservice_fragment__title">养老助残服务商"</string>
+    <string name="str_errorinfo">网络异常请稍候重试</string>
 </resources>

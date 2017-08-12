@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/titile_bar_height"
+    xmlns:nfu="http://schemas.android.com/apk/res-auto"
+    android:background="@color/base_red_color">
+    <!--<ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/fanhui"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_back"
+        android:textSize="18sp"
+        android:textColor="@color/white_color"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="2dp"
+        android:text="返回"/>-->
+    <com.nfu.oldwork.view.ButtonExtendM
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/magin_15"
+        android:gravity="center"
+        nfu:imgHeight = "@dimen/magin_20"
+        nfu:scType = "CENTER_INSIDE"
+        nfu:iconDrawable="@drawable/fanhui"
+        nfu:iconDrawablePress="@drawable/fanhui"
+        nfu:nfuTextColor = "@color/white_color"
+        nfu:textColorPress="@color/white_color"
+        nfu:nfuTextSize = "@dimen/text_size_18"
+        nfu:buttonType="normal"
+        nfu:spacing="@dimen/padding_top_2"
+        nfu:text="@string/back_str"
+        nfu:drec="iconLeft"
+        />
+    <TextView
+        android:id="@+id/top_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_18"
+        android:textColor="@color/white_color"
+        android:layout_centerInParent="true"
+        />
+
+    <com.nfu.oldwork.view.ButtonExtendM
+        android:id="@+id/fragment_service_location_ib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/magin_20"
+        android:visibility="gone"
+        android:gravity="center"
+        nfu:buttonType="normal"
+        nfu:drec="iconLeft"
+        nfu:iconDrawable="@drawable/service_top_bar_location_unselected"
+        nfu:imgHeight="20dp"
+        nfu:nfuTextColor="@color/white_color"
+        nfu:nfuTextSize="15sp"
+        nfu:scType="CENTER_INSIDE"
+        nfu:spacing="@dimen/padding_top_2"
+        nfu:text="@string/top_bar_location_title"
+        nfu:textColorPress="@color/location_color"
+        android:layout_marginEnd="@dimen/magin_15"
+        android:layout_alignTop="@+id/top_title"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
