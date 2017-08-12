@@ -99,7 +99,7 @@
             nfu:nfuTextSize="@dimen/text_size_12"
             nfu:scType="CENTER"
             nfu:spacing="@dimen/padding_top_2"
-            nfu:text="我"
+            nfu:text="我的"
             nfu:textColorPress="@color/base_red_color" />
         <!--<RelativeLayout
             android:layout_width="0dp"
