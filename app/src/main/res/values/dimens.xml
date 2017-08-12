@@ -79,7 +79,7 @@
     <dimen name="consult_item">74dp</dimen>
     <dimen name="consult_item_icon">38dp</dimen>
 
-    <!--首页-->
+    <!--home_icon-->
 
     <dimen name="home_title_bar_height">40dp</dimen>
     <dimen name="home_center_icon">61dp</dimen>

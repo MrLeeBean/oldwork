@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/list_tiem_bg"
+    android:layout_height="@dimen/magin_80">
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="79dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:layout_marginRight="@dimen/magin_15"
+            >
+            <ImageView
+                android:id="@+id/news_pic"
+                android:layout_width="@dimen/magin_60"
+                android:layout_height="@dimen/magin_60"
+                android:layout_centerVertical="true"
+                android:src="@drawable/def_turn"
+                android:scaleType="centerCrop"/>
+            <TextView
+                android:id="@+id/tv_title"
+                android:textSize="@dimen/text_size_18"
+                android:textColor="@color/base_red_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/news_pic"
+                android:layout_marginLeft="@dimen/magin_10"
+                android:layout_alignTop="@id/news_pic"
+                android:text="标题"/>
+            <ImageView
+                android:id="@+id/right_arrow"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/right_arrow"
+                android:scaleType="fitXY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/content_color"
+                android:textSize="@dimen/text_size_15"
+                android:layout_alignLeft="@id/tv_title"
+                android:layout_toLeftOf="@id/right_arrow"
+                android:layout_marginRight="@dimen/magin_10"
+                android:layout_below="@id/tv_title"
+                android:layout_marginTop="5dp"
+                android:text="机构为补充的多层次养老服务体系”的精神，落实2016年政府"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

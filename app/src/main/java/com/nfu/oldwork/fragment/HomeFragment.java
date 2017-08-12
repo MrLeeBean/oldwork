@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -22,10 +21,13 @@ import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.nfu.oldwork.R;
 import com.nfu.oldwork.adapter.HotAdPagerAdapter;
+import com.nfu.oldwork.adapter.HomeNewsListViewPagerAdapter;
+import com.nfu.oldwork.adapter.NewsListAdapter;
 import com.nfu.oldwork.config.NfuResource;
 import com.nfu.oldwork.manager.ApiManager;
 import com.nfu.oldwork.model.NewsListModel;
 import com.nfu.oldwork.model.NewsModel;
+import com.nfu.oldwork.model.NewsModels;
 import com.nfu.oldwork.model.TurnPicModel;
 import com.nfu.oldwork.utils.LogUtil;
 import com.nfu.oldwork.view.PagerIndicator;
@@ -53,22 +55,27 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.nfu_hot_list_ad_indicator)
     PointPagerIndicator pointPagerIndicator;
 
-    @BindView(R.id.nfu_activity_search_layout_tab)
+    @BindView(R.id.home_newslist_layout_tab)
     PagerIndicator mPagerIndicator;
-    @BindView(R.id.nfu_activity_search_layout_viewpager)
+    @BindView(R.id.home_newslist_viewpager)
     ViewPager mNewsViewPager;
-   /* private ServiceListAdapter policyListAdapter;
-    private ServiceListAdapter nearbylistAdapter;
+    private NewsListAdapter newsListAdapter;
+    private NewsListAdapter announcementlistAdapter;
 
-    private ServiceListAdapter alllistAdapter;
-    private XRecyclerView nearbyRecyclerView;
-    private XRecyclerView allRecyclerView;
-    private int nearby_currentPage = 0;
-    private int nearby_iRecordCount = 0;
-    private int all_currentPage = 0;
-    private int all_iRecordCount = 0;
+    private NewsListAdapter policylistAdapter;
+
+    private XRecyclerView newsRecyclerView;
+    private XRecyclerView policyrecyclerView;
+
+    private XRecyclerView announcementRecyclerView;
+
+
+    private int a_currentPage = 0;
+    private int a_iRecordCount = 0;
     private int p_currentPage = 0;
-    private int p_iRecordCount = 0;*/
+    private int p_iRecordCount = 0;
+    private int n_currentPage = 0;
+    private int n_iRecordCount = 0;
 
     private final static int REFRESH_TYPE = 1001;
     private final static int LOADMORE_TYPE = 1002;
@@ -193,6 +200,10 @@ public class HomeFragment extends BaseFragment {
                 }
             }
         });
+        getNewsList(0,0,REFRESH_TYPE);
+        getAnnouncementList(0,0,REFRESH_TYPE);
+        getPolicyList(0,0,REFRESH_TYPE);
+
 
     }
     private void gotoDetailFragment(String id){
@@ -221,69 +232,247 @@ public class HomeFragment extends BaseFragment {
         bundle.putString("title","媒体报道");
         bundle.putSerializable("news",newsModel);
         newsDetailFragment.setArguments(bundle);
+        fragmentTransaction.hide(this);
+        fragmentTransaction.add(R.id.activity_main_content_frameLayout , newsDetailFragment);
         fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.activity_main_content_frameLayout, newsDetailFragment);
+//        fragmentTransaction.replace(R.id.activity_main_content_frameLayout, newsDetailFragment);
         fragmentTransaction.commit();
     }
 
     @Override
     protected void initView() {
-    /*    nearbyRecyclerView = new XRecyclerView(getContext());
+         newsRecyclerView = new XRecyclerView(getContext());
         // dateRecyclerView.setLayoutParams();
-        nearbyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        nearbyRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        nearbyRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-        nearbylistAdapter = new ServiceListAdapter(getContext(), null, new ServiceListAdapter.IOnDetailListener() {
+         newsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+         newsRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+         newsRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+        newsListAdapter = new NewsListAdapter(getContext(), null,0, new NewsListAdapter.IOnDetailListener() {
             @Override
-            public void onDetailListener(ServiceModel model) {
-                //进入服务详情页面
-                gotoServiceDetailFragment(model);
+            public void onDetailListener(NewsModel model) {
+                gotoDetailFragment(model.getId());
+            }
+
+        });
+         newsRecyclerView.setAdapter(newsListAdapter);
+
+         newsRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+             @Override
+             public void onRefresh() {
+                 LogUtil.i("news_recyclerview--->onRefresh");
+                 getNewsList(0, 0, REFRESH_TYPE);
+
+             }
+
+             @Override
+             public void onLoadMore() {
+                 LogUtil.i("news_recyclerview--->onLoadMore");
+                 getNewsList(n_currentPage, n_iRecordCount, LOADMORE_TYPE);
+             }
+        });
+        announcementRecyclerView = new XRecyclerView(getContext());
+        // dateRecyclerView.setLayoutParams();
+        announcementRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        announcementRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+        announcementRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        announcementlistAdapter = new NewsListAdapter(getContext(), null, 1,new NewsListAdapter.IOnDetailListener() {
+            @Override
+            public void onDetailListener(NewsModel model) {
+                gotoDetailFragment(model.getId());
             }
         });
-        nearbyRecyclerView.setAdapter(nearbylistAdapter);
+        announcementRecyclerView.setAdapter(announcementlistAdapter);
 
-        nearbyRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+        announcementRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                LogUtil.i("nearbyRecyclerView--->onRefresh");
-                geNearbylList(0, 0, REFRESH_TYPE);
+                LogUtil.i("announcementRecyclerView--->onRefresh");
+                getAnnouncementList(0, 0, REFRESH_TYPE);
+
+
             }
 
             @Override
             public void onLoadMore() {
-                LogUtil.i("nearbyRecyclerView--->onLoadMore");
-                geNearbylList(nearby_currentPage, nearby_iRecordCount, LOADMORE_TYPE);
+                LogUtil.i("announcementRecyclerView--->onLoadMore");
+                getAnnouncementList(a_currentPage, a_iRecordCount, LOADMORE_TYPE);
             }
         });
-        allRecyclerView = new XRecyclerView(getContext());
+
+
+        policyrecyclerView = new XRecyclerView(getContext());
         // dateRecyclerView.setLayoutParams();
-        allRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        allRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-        allRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        alllistAdapter = new ServiceListAdapter(getContext(), null, new ServiceListAdapter.IOnDetailListener() {
+        policyrecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        policyrecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+        policyrecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        policylistAdapter = new NewsListAdapter(getContext(), null, 2, new NewsListAdapter.IOnDetailListener() {
             @Override
-            public void onDetailListener(ServiceModel model) {
-                //进入服务详情页面
-                gotoServiceDetailFragment(model);
+            public void onDetailListener(NewsModel model) {
+                gotoDetailFragment(model.getId());
+            }
+            }
+        );
+        policyrecyclerView.setAdapter(policylistAdapter);
+
+        policyrecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+             @Override
+             public void onRefresh() {
+                 LogUtil.i("news_recyclerview--->onRefresh");
+                 getPolicyList(0, 0, REFRESH_TYPE);
+
+
+             }
+
+             @Override
+             public void onLoadMore() {
+                 LogUtil.i("news_recyclerview--->onLoadMore");
+                 getPolicyList(n_currentPage, n_iRecordCount, LOADMORE_TYPE);
+             }
+        });
+
+
+
+        ArrayList<View> views = new ArrayList<>();
+        views.add( newsRecyclerView);
+        views.add( announcementRecyclerView);
+        views.add( policyrecyclerView);
+        HomeNewsListViewPagerAdapter viewPagerAdapter = new HomeNewsListViewPagerAdapter(views, new String[]{"新闻", "通知","政策"});
+        mNewsViewPager.setAdapter(viewPagerAdapter);
+        mPagerIndicator.setViewPager(mNewsViewPager, 0);
+
+    }
+
+
+    private void getNewsList(int currentPage, int iRecordCount, final int type) {
+        ApiManager.getInstance().getAllNewsList(PAGESIZE, currentPage, iRecordCount, "createdate", "desc", new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->onError::" + e);
+                if (type == REFRESH_TYPE) {
+                    newsRecyclerView.refreshComplete();
+                } else {
+                    newsRecyclerView.loadMoreComplete();
+
+                }
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->onResponse::" + response);
+                NewsListModel newsListModel = new Gson().fromJson(response, NewsListModel.class);
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->newsListModel::" + newsListModel);
+                NewsModels newsModels = new Gson().fromJson(newsListModel.getStrResult(), NewsModels.class);
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->NewsModels::" + newsModels);
+                if (type == REFRESH_TYPE) {
+                    if (newsListModel != null&&newsModels!=null) {
+                        n_currentPage = newsModels.getCurrentPage();
+                        n_currentPage++;
+                        n_iRecordCount = newsModels.getRecordCount();
+                    }
+                    newsListAdapter.setNewsData(newsModels.getData());
+                    newsRecyclerView.refreshComplete();
+                } else {
+
+                    if (newsListModel != null) {
+                        if (n_currentPage <= newsModels.getCurrentPage()) {
+                            n_currentPage = newsModels.getCurrentPage();
+                            n_currentPage++;
+                            n_iRecordCount = newsModels.getRecordCount();
+                            newsListAdapter.addNewsData(newsModels.getData());
+                        }
+                        newsRecyclerView.loadMoreComplete();
+                    }
+                }
+
             }
         });
-        allRecyclerView.setAdapter(alllistAdapter);
-
-        allRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+    }
+    private void getAnnouncementList(int currentPage, int iRecordCount, final int type) {
+        ApiManager.getInstance().getNewsList("1001",PAGESIZE, currentPage, iRecordCount, "createdate", "desc", new StringCallback() {
             @Override
-            public void onRefresh() {
-                LogUtil.i("allRecyclerView--->onRefresh");
-                getAllList(0, 0, REFRESH_TYPE);
+            public void onError(Call call, Exception e, int id) {
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->onError::" + e);
+                if (type == REFRESH_TYPE) {
+                    announcementRecyclerView.refreshComplete();
+                } else {
+                    announcementRecyclerView.loadMoreComplete();
+
+                }
             }
 
             @Override
-            public void onLoadMore() {
-                LogUtil.i("allRecyclerView--->onLoadMore");
-                getAllList(all_currentPage, all_iRecordCount, LOADMORE_TYPE);
+            public void onResponse(String response, int id) {
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->onResponse::" + response);
+                NewsListModel newsListModel = new Gson().fromJson(response, NewsListModel.class);
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->newsListModel::" + newsListModel);
+                NewsModels newsModels = new Gson().fromJson(newsListModel.getStrResult(), NewsModels.class);
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->NewsModels::" + newsModels);
+                if (type == REFRESH_TYPE) {
+                    if (newsListModel != null&&newsModels!=null) {
+                        a_currentPage = newsModels.getCurrentPage();
+                        a_currentPage++;
+                        a_iRecordCount = newsModels.getRecordCount();
+                    }
+                    announcementlistAdapter.setNewsData(newsModels.getData());
+                    announcementRecyclerView.refreshComplete();
+                } else {
+
+                    if (newsListModel != null) {
+                        if (a_currentPage <= newsModels.getCurrentPage()) {
+                            a_currentPage = newsModels.getCurrentPage();
+                            a_currentPage++;
+                            a_iRecordCount = newsModels.getRecordCount();
+                            announcementlistAdapter.addNewsData(newsModels.getData());
+                        }
+                        announcementRecyclerView.loadMoreComplete();
+                    }
+                }
+
             }
         });
-*/
+    }
+    private void getPolicyList(int currentPage, int iRecordCount, final int type) {
+        ApiManager.getInstance().getNewsList("1002",PAGESIZE, currentPage, iRecordCount, "createdate", "desc", new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->onError::" + e);
+                if (type == REFRESH_TYPE) {
+                    policyrecyclerView.refreshComplete();
+                } else {
+                    policyrecyclerView.loadMoreComplete();
 
+                }
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->onResponse::" + response);
+                NewsListModel newsListModel = new Gson().fromJson(response, NewsListModel.class);
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->newsListModel::" + newsListModel);
+                NewsModels newsModels = new Gson().fromJson(newsListModel.getStrResult(), NewsModels.class);
+                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->NewsModels::" + newsModels);
+                if (type == REFRESH_TYPE) {
+                    if (newsListModel != null&&newsModels!=null) {
+                        p_currentPage = newsModels.getCurrentPage();
+                        p_currentPage++;
+                        p_iRecordCount = newsModels.getRecordCount();
+                    }
+                    policylistAdapter.setNewsData(newsModels.getData());
+                    policyrecyclerView.refreshComplete();
+                } else {
+
+                    if (newsListModel != null) {
+                        if (p_currentPage <= newsModels.getCurrentPage()) {
+                            p_currentPage = newsModels.getCurrentPage();
+                            p_currentPage++;
+                            p_iRecordCount = newsModels.getRecordCount();
+                            policylistAdapter.addNewsData(newsModels.getData());
+                        }
+                        policyrecyclerView.loadMoreComplete();
+                    }
+                }
+
+            }
+        });
     }
     public void startAdTimer() {
         if (mTimerTask == null) {
@@ -313,5 +502,6 @@ public class HomeFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        stopAdTimer();
     }
 }
