@@ -190,7 +190,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/magin_30"
                 android:layout_toLeftOf="@id/right_arrow3"
-                android:text="设置"
+                android:text="版本升级"
                 android:textColor="@color/color_666"
                 android:textSize="@dimen/text_size_15" />
         </RelativeLayout>
@@ -238,7 +238,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/magin_30"
                 android:layout_toLeftOf="@id/right_arrow4"
-                android:text="设置"
+                android:text="个人详情"
                 android:textColor="@color/color_666"
                 android:textSize="@dimen/text_size_15" />
         </RelativeLayout>
