@@ -81,7 +81,7 @@ public class HomeFragment extends BaseFragment {
     private final static int LOADMORE_TYPE = 1002;
     private final static int LEFT_TYPE = 2001;
     private final static int RIGHT_TYPE = 2002;
-    private static final int PAGESIZE = 7;
+    private static final int PAGESIZE = 10;
     Unbinder unbinder;
     private Timer mTimer;
     private TimerTask mTimerTask;
