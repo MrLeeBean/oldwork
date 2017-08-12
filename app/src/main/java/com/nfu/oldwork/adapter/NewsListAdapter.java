@@ -62,13 +62,13 @@ public class NewsListAdapter extends RecyclerView.Adapter {
         holder1.content.setText(content);*/
 
         String title = newsModel.getTitle();
-        if (title.length()>12){
-            title = title.substring(0,12) + "...";
+        if (title.length()>10){
+            title = title.substring(0,10) + "...";
         }
 
         holder1.title.setText(title);
 
-
+        holder1.time.setText( newsModel.getCreatedate());
     }
 
     @Override
@@ -81,7 +81,7 @@ public class NewsListAdapter extends RecyclerView.Adapter {
     }
 
     private class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView title;
+        TextView title,time;
         ImageView arrow,iconType;
         TextView content;
         CardView card_view;
@@ -89,6 +89,7 @@ public class NewsListAdapter extends RecyclerView.Adapter {
         public MyViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.tv_title);
+            time = (TextView) itemView.findViewById(R.id.tv_time);
             iconType = (ImageView) itemView.findViewById(R.id.icon_type);
             if(mIconType ==0){
                 iconType.setBackgroundResource(R.drawable.news_icon1);
@@ -96,6 +97,8 @@ public class NewsListAdapter extends RecyclerView.Adapter {
                 iconType.setBackgroundResource(R.drawable.advice_icon);
             }else if(mIconType ==2){
                 iconType.setBackgroundResource(R.drawable.policy_icon);
+            }else{
+                iconType.setVisibility(View.GONE);
             }
 
             arrow = (ImageView) itemView.findViewById(R.id.right_arrow);

@@ -90,7 +90,7 @@ public class StudyFragment extends BaseFragment{
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         newsRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         newsRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-        newsListAdapter = new NewsListAdapter(getContext(), null,0, new NewsListAdapter.IOnDetailListener() {
+        newsListAdapter = new NewsListAdapter(getContext(), null,-1, new NewsListAdapter.IOnDetailListener() {
             @Override
             public void onDetailListener(NewsModel model) {
                 gotoDetailFragment(model.getId());
@@ -118,7 +118,7 @@ public class StudyFragment extends BaseFragment{
         announcementRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         announcementRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         announcementRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        announcementlistAdapter = new NewsListAdapter(getContext(), null, 1,new NewsListAdapter.IOnDetailListener() {
+        announcementlistAdapter = new NewsListAdapter(getContext(), null, -1,new NewsListAdapter.IOnDetailListener() {
             @Override
             public void onDetailListener(NewsModel model) {
                 gotoDetailFragment(model.getId());
@@ -148,7 +148,7 @@ public class StudyFragment extends BaseFragment{
         policyrecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         policyrecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         policyrecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        policylistAdapter = new NewsListAdapter(getContext(), null, 2, new NewsListAdapter.IOnDetailListener() {
+        policylistAdapter = new NewsListAdapter(getContext(), null, -1, new NewsListAdapter.IOnDetailListener() {
             @Override
             public void onDetailListener(NewsModel model) {
                 gotoDetailFragment(model.getId());
@@ -176,10 +176,10 @@ public class StudyFragment extends BaseFragment{
 
 
         ArrayList<View> views = new ArrayList<>();
-        views.add( newsRecyclerView);
+        views.add(policyrecyclerView );
+        views.add(newsRecyclerView );
         views.add( announcementRecyclerView);
-        views.add( policyrecyclerView);
-        HomeNewsListViewPagerAdapter viewPagerAdapter = new HomeNewsListViewPagerAdapter(views, new String[]{"新闻", "通知","政策"});
+        HomeNewsListViewPagerAdapter viewPagerAdapter = new HomeNewsListViewPagerAdapter(views, new String[]{"政策及解读", "数据资料","通知公告"});
         mNewsViewPager.setAdapter(viewPagerAdapter);
         mPagerIndicator.setViewPager(mNewsViewPager, 0);
     }
