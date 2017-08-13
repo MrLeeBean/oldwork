@@ -54,4 +54,21 @@
     <string name="oldconsult_fragment_top_title">养老资讯</string>
     <string name="oldservice_fragment__title">养老助残服务商"</string>
     <string name="str_errorinfo">网络异常请稍候重试</string>
+
+    <string-array name="comtype_arr">
+        <item>日常生活</item>
+        <item>手机电脑</item>
+        <item>休闲爱好</item>
+        <item>健康医疗</item>
+        <item>社会民生</item>
+        <item>商业理财</item>
+    </string-array>
+    <integer-array name="comtype_arr_id">
+        <item>8007</item>
+        <item>8008</item>
+        <item>8009</item>
+        <item>8010</item>
+        <item>8011</item>
+        <item>8012</item>
+    </integer-array>
 </resources>

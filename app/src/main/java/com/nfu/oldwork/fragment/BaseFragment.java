@@ -26,4 +26,10 @@ public abstract class BaseFragment extends Fragment {
         unbinder = ButterKnife.bind(this, rootView);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
+
 }

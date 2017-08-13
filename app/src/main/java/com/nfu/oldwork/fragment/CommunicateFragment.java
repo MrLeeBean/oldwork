@@ -7,9 +7,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.Spinner;
 
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.nfu.oldwork.R;
+import com.nfu.oldwork.utils.LogUtil;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -17,12 +23,20 @@ import butterknife.ButterKnife;
  */
 
 public class CommunicateFragment extends BaseFragment{
+    @BindView(R.id.iv_publish)
+    ImageView iv_publish;
+    @BindView(R.id.sp_conditon)
+    Spinner sp_condition;
+    @BindView(R.id.communicationList)
+    XRecyclerView communicationlist;
+
+    int index = 0;
+    private int[] arrIds = new int[]{8007,8008,8009,8010,8011,8012};
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.e("HomeFragment", "HomeFragment **** onCreateView...");
-        View rootView = inflater.inflate(R.layout.communicate_fragment, container, false);
-        unbinder = ButterKnife.bind(this, rootView);
+        Log.e("HomeFragment", "CommunicateFragment **** onCreateView...");
+        bindView(inflater,R.layout.communicate_fragment,container);
         initView();
         loadData();
         return rootView;
@@ -34,12 +48,18 @@ public class CommunicateFragment extends BaseFragment{
 
     @Override
     protected void initView() {
+        sp_condition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                index = position;
+                LogUtil.i("CommunicateFragment--->setOnItemSelectedListener--->index"+index);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 }
