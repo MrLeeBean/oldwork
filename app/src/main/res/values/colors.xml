@@ -20,4 +20,6 @@
     <color name="color_111">#111111</color>
     <color name="service_list_item_color">#111a50</color>
     <color name="bg_color">#f2f2f2</color>
+    <color name="textChecked">#172680</color>
+    <color name="textUnChecked">#464646</color>
 </resources>

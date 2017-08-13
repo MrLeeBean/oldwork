@@ -37,7 +37,7 @@
             android:src="@drawable/tu" />
 
         <TextView
-            android:id="@+id/current_version"
+            android:id="@+id/login_tv"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/civ_logo"

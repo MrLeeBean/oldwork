@@ -26,6 +26,8 @@ public class MineFragment extends BaseFragment{
     CardView card_view2;
     @BindView(R.id.card_view3)
     CardView card_view3;
+    @BindView(R.id.login_tv)
+    TextView loginTv;
 
     @Nullable
     @Override
@@ -56,6 +58,13 @@ public class MineFragment extends BaseFragment{
             public void onClick(View v) {
                 UpdateFragment updateFragment = new UpdateFragment();
                 gotoFragment(updateFragment);
+            }
+        });
+        loginTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginFragment loginFragment = new LoginFragment();
+                gotoFragment(loginFragment);
             }
         });
 
