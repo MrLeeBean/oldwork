@@ -2,6 +2,7 @@
     <string name="app_name">工作平台</string>
     <string name="top_bar_home_title">北京老龄工作平台</string>
     <string name="top_bar_study_title">政策和文件</string>
+    <string name="top_bar_commu_title">交流列表</string>
     <string name="top_bar_mine_title">个人</string>
     <string name="bottom_bar_home_str">首页</string>
     <string name="bottom_bar_consult_str">咨询</string>

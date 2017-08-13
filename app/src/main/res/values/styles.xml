@@ -14,4 +14,7 @@
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowIsFloating">true</item>
     </style>
+    <style name="NfuTheme" parent="AppTheme">
+        <item name="actionSheetStyle">@style/ActionSheetStyleiOS7</item>
+    </style>
 </resources>

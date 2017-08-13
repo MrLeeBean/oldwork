@@ -25,7 +25,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".NfuApplication"
-        android:theme="@style/AppTheme">
+        android:theme="@style/NfuTheme">
 
         <activity android:name=".activity.HomeActivity"
             android:screenOrientation="portrait"

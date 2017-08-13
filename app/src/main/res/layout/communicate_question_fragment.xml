@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:nfu="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_999"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_title_bar_height"
+        android:background="@color/base_red_color"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/tv_cacel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="取消"
+            android:clickable="true"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18" />
+        <TextView
+            android:id="@+id/activity_main_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="提问"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18" />
+        <TextView
+            android:id="@+id/tv_release"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:text="发布"
+            android:layout_marginRight="@dimen/magin_15"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18" />
+    </RelativeLayout>
+
+
+    <Spinner
+        android:id="@+id/sp_conditon"
+        android:layout_width="match_parent"
+        android:background="@color/white_color"
+        android:layout_height="40dp"
+        android:paddingLeft="@dimen/magin_15"
+        android:paddingRight="@dimen/magin_15"
+        android:entries="@array/comtype_arr"/>
+    <RelativeLayout
+        android:id="@+id/fl_content"
+        android:layout_marginTop="@dimen/magin_5"
+        android:background="@color/white_color"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/et_question"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="@dimen/magin_10"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:layout_marginRight="@dimen/magin_15"
+            android:gravity="start"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/color_666"
+            android:padding="5dp"
+            android:background="@drawable/nfu_news_bg"/>
+        <FrameLayout
+            android:id="@+id/fl_img1"
+            android:layout_below="@id/et_question"
+            android:layout_marginTop="@dimen/magin_5"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:layout_width="160dp"
+            android:layout_height="100dp">
+            <ImageView
+                android:id="@+id/iv_upload_im1"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <com.nfu.oldwork.view.ButtonExtendM
+                android:id="@+id/btn_upload1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                nfu:buttonType="check"
+                nfu:drec="iconUp"
+                nfu:iconDrawable="@drawable/btn_auth_upload"
+                nfu:nfuTextColor="@color/color_666"
+                nfu:nfuTextSize="15.8sp"
+                nfu:scType="CENTER"
+                nfu:spacing="15.5dp"
+                nfu:text="添加照片" />
+
+        </FrameLayout>
+    </RelativeLayout>
+
+</LinearLayout>
