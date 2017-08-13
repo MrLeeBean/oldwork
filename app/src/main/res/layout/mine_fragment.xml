@@ -64,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/magin_40"
             android:paddingLeft="@dimen/magin_15"
+            android:layout_gravity="center_vertical"
             android:paddingRight="@dimen/magin_15">
 
             <ImageView
@@ -111,6 +112,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/magin_40"
+            android:layout_gravity="center_vertical"
             android:paddingLeft="@dimen/magin_15"
             android:paddingRight="@dimen/magin_15">
 
@@ -157,7 +159,7 @@
         android:foreground="?android:attr/selectableItemBackground">
 
         <RelativeLayout
-
+            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/magin_40"
             android:paddingLeft="@dimen/magin_15"
@@ -209,6 +211,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/magin_40"
             android:paddingLeft="@dimen/magin_15"
+            android:layout_gravity="center_vertical"
             android:paddingRight="@dimen/magin_15">
 
             <ImageView

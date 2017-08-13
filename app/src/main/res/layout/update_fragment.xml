@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_color"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/fragment_title_bar" />
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.nfu.oldwork.view.CircleImageView
+            android:id="@+id/civ_logo"
+            android:layout_width="@dimen/update_logo_icon"
+            android:layout_height="@dimen/update_logo_icon"
+            android:layout_marginTop="@dimen/magin_10"
+            android:layout_marginBottom="@dimen/magin_30"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/tu" />
+        <TextView
+            android:id="@+id/current_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/civ_logo"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_size_18"
+            android:textColor="@color/home_item_color"
+            android:text="当前版本：V1.0"/>
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/current_version"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/magin_20"
+            android:layout_marginBottom="@dimen/magin_30"
+            android:textSize="@dimen/text_size_18"
+            android:textColor="@color/home_item_color"
+            android:text="发布日期：2017年8月1日"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/check_update_btn"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/magin_30"
+        android:background="@color/base_red_color"
+        android:text="检测更新"
+        android:textColor="@color/white" />
+
+</LinearLayout>
