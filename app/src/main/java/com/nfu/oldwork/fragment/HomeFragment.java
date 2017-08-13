@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.nfu.oldwork.R;
@@ -403,29 +404,33 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(String response, int id) {
                 LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->onResponse::" + response);
-                NewsListModel newsListModel = new Gson().fromJson(response, NewsListModel.class);
-                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->newsListModel::" + newsListModel);
-                NewsModels newsModels = new Gson().fromJson(newsListModel.getStrResult(), NewsModels.class);
-                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->NewsModels::" + newsModels);
-                if (type == REFRESH_TYPE) {
-                    if (newsListModel != null&&newsModels!=null) {
-                        a_currentPage = newsModels.getCurrentPage();
-                        a_currentPage++;
-                        a_iRecordCount = newsModels.getRecordCount();
-                    }
-                    announcementlistAdapter.setNewsData(newsModels.getData());
-                    announcementRecyclerView.refreshComplete();
-                } else {
-
-                    if (newsListModel != null) {
-                        if (a_currentPage <= newsModels.getCurrentPage()) {
+                try {
+                    NewsListModel newsListModel = new Gson().fromJson(response, NewsListModel.class);
+                    LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->newsListModel::" + newsListModel);
+                    NewsModels newsModels = new Gson().fromJson(newsListModel.getStrResult(), NewsModels.class);
+                    LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->NewsModels::" + newsModels);
+                    if (type == REFRESH_TYPE) {
+                        if (newsListModel != null&&newsModels!=null) {
                             a_currentPage = newsModels.getCurrentPage();
                             a_currentPage++;
                             a_iRecordCount = newsModels.getRecordCount();
-                            announcementlistAdapter.addNewsData(newsModels.getData());
                         }
-                        announcementRecyclerView.loadMoreComplete();
+                        announcementlistAdapter.setNewsData(newsModels.getData());
+                        announcementRecyclerView.refreshComplete();
+                    } else {
+
+                        if (newsListModel != null) {
+                            if (a_currentPage <= newsModels.getCurrentPage()) {
+                                a_currentPage = newsModels.getCurrentPage();
+                                a_currentPage++;
+                                a_iRecordCount = newsModels.getRecordCount();
+                                announcementlistAdapter.addNewsData(newsModels.getData());
+                            }
+                            announcementRecyclerView.loadMoreComplete();
+                        }
                     }
+                } catch (JsonSyntaxException e) {
+                    LogUtil.i("AnnouncementFragment--->getNormalList--->"+e);
                 }
 
             }

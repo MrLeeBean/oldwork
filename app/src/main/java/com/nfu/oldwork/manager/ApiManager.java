@@ -174,4 +174,10 @@ public class ApiManager {
 
         NetUtil.doPost(url,params,callback);
     }
+
+    public void getCommunicationList(String jsonStr,StringCallback callback){
+        String url = ConnectUrl.GetCommunicationList;
+        LogUtil.i("ApiManager--->getCommunicationList--->url::"+url + ",jsonStr::"+jsonStr);
+        NetUtil.doPost(url,jsonStr,callback);
+    }
 }
