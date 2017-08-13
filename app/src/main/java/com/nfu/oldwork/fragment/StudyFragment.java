@@ -65,7 +65,6 @@ public class StudyFragment extends BaseFragment{
     private final static int LEFT_TYPE = 2001;
     private final static int RIGHT_TYPE = 2002;
     private static final int PAGESIZE = 10;
-    Unbinder unbinder;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

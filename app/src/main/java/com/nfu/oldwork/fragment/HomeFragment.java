@@ -50,7 +50,7 @@ import okhttp3.Call;
  * Created by Administrator on 2017/8/11.
  */
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
     @BindView(R.id.home_fragment_viewpager)
     ViewPager mTrunPicViewPager;
 
@@ -84,7 +84,6 @@ public class HomeFragment extends Fragment {
     private final static int LEFT_TYPE = 2001;
     private final static int RIGHT_TYPE = 2002;
     private static final int PAGESIZE = 10;
-    Unbinder unbinder;
     private Timer mTimer;
     private TimerTask mTimerTask;
 
