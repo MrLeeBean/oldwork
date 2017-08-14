@@ -30,6 +30,9 @@ public class CommunicationListAdapter extends RecyclerView.Adapter {
     private List<CommunicationInfo> newsModelList;
     private IOnDetailListener iOnDetailListener;
 
+    private int ACTION_ITEM_TYPE = 1;
+    private int HOUSE_ITEM_TYPE = 2;
+
     public CommunicationListAdapter(Context mContext,IOnDetailListener iOnDetailListener) {
         this.mContext = mContext;
         this.iOnDetailListener = iOnDetailListener;
@@ -37,9 +40,16 @@ public class CommunicationListAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.communication_item,parent,false);
+        if (viewType == ACTION_ITEM_TYPE){
+            View view = LayoutInflater.from(mContext).inflate(R.layout.nodata_view,parent,false);
 
-        return new MyViewHolder(view);
+            return new NodataViewHolder(view);
+        }else {
+            View view = LayoutInflater.from(mContext).inflate(R.layout.communication_item,parent,false);
+
+            return new MyViewHolder(view);
+        }
+
     }
 
     RequestOptions options = new RequestOptions().override(DensityUtil.dip2px(mContext,60),DensityUtil.dip2px(mContext,60)).error(R.drawable.tu)
@@ -47,29 +57,38 @@ public class CommunicationListAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        CommunicationInfo newsModel = newsModelList.get(position);
-        MyViewHolder holder1 = (MyViewHolder) holder;
-        if (!NfuResource.getInstance().isUseDefPic()){
-            Glide.with(mContext).load(newsModel.getPicurl()).apply(options).into(holder1.iv_head);
-        }else {
-            Glide.with(mContext).load(R.drawable.tu).apply(options).into(holder1.iv_head);
+        if (holder instanceof MyViewHolder){
+            CommunicationInfo newsModel = newsModelList.get(position);
+            MyViewHolder holder1 = (MyViewHolder) holder;
+            if (!NfuResource.getInstance().isUseDefPic()){
+                Glide.with(mContext).load(newsModel.getPicurl()).apply(options).into(holder1.iv_head);
+            }else {
+                Glide.with(mContext).load(R.drawable.tu).apply(options).into(holder1.iv_head);
+            }
+            holder1.title.setText(newsModel.getTitle());
+            holder1.name.setText(newsModel.getReleasePeople());
+            holder1.tv_eye.setText(newsModel.getViewCount());
+            holder1.tv_reply.setText(newsModel.getRespondCount());
+            holder1.tv_time.setText(newsModel.getCreatedate());
         }
-        holder1.title.setText(newsModel.getTitle());
-        holder1.name.setText(newsModel.getReleasePeople());
-        holder1.tv_eye.setText(newsModel.getViewCount());
-        holder1.tv_reply.setText(newsModel.getRespondCount());
-        holder1.tv_time.setText(newsModel.getCreatedate());
+
     }
 
     @Override
     public int getItemCount() {
-        if (newsModelList == null){
-            return 0;
+        if (newsModelList == null||newsModelList.size()<=0){
+            return 1;
         }
         return newsModelList.size();
 
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (newsModelList==null||newsModelList.size()<=0)
+            return ACTION_ITEM_TYPE;
+        return HOUSE_ITEM_TYPE;
+    }
 
     private class MyViewHolder extends RecyclerView.ViewHolder{
         TextView title,name,tv_eye,tv_reply,tv_time;
@@ -95,6 +114,15 @@ public class CommunicationListAdapter extends RecyclerView.Adapter {
                     }
                 }
             });
+        }
+    }
+
+    private class NodataViewHolder extends RecyclerView.ViewHolder{
+
+
+        public NodataViewHolder(View itemView) {
+            super(itemView);
+
         }
     }
 
