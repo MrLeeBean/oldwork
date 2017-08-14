@@ -1,13 +1,16 @@
 package com.nfu.oldwork.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +33,7 @@ import com.nfu.oldwork.model.NewsList;
 import com.nfu.oldwork.model.NewsListModel;
 import com.nfu.oldwork.model.NewsModel;
 import com.nfu.oldwork.utils.LogUtil;
+import com.nfu.oldwork.view.ActionSheetWindow;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.List;
@@ -50,6 +54,8 @@ public class CommunicateFragment extends BaseFragment{
     Spinner sp_condition;
     @BindView(R.id.communicationList)
     XRecyclerView communicationlist;
+    @BindView(R.id.iv_nodata)
+    ImageView iv_nodata;
 
     private int pageSize = 10;
     private int c_currentPage = 0;
@@ -57,6 +63,7 @@ public class CommunicateFragment extends BaseFragment{
     private final static int REFRESH_TYPE = 1001;
     private final static int LOADMORE_TYPE = 1002;
     private CommunicationListAdapter communicationListAdapter;
+    private ActionSheetWindow commitWindow;
 
     int index = 0;
     private int[] arrIds = new int[]{8007,8008,8009,8010,8011,8012};
@@ -71,7 +78,7 @@ public class CommunicateFragment extends BaseFragment{
     }
     @Override
     protected void loadData() {
-        getNormalList(0,0,REFRESH_TYPE);
+        //getNormalList(0,0,REFRESH_TYPE);
     }
 
     @Override
@@ -94,6 +101,8 @@ public class CommunicateFragment extends BaseFragment{
             @Override
             public void onClick(View v) {
                 showInform();
+                /*CommQuestionFragment commQuestionFragment = new CommQuestionFragment();
+                gotoDetailFragment(commQuestionFragment);*/
             }
         });
 
@@ -126,24 +135,28 @@ public class CommunicateFragment extends BaseFragment{
     }
 
     private String[] informs = new String[]{"我要提问"};
+    private int gotoIndex = -1;
     private void showInform(){
-        ActionSheet.createBuilder(getContext(),getFragmentManager())
-                .setCancelButtonTitle("取消")
-                .setOtherButtonTitles(informs)
-                .setCancelableOnTouchOutside(true)
-                .setListener(new ActionSheet.ActionSheetListener() {
-                    @Override
-                    public void onDismiss(ActionSheet actionSheet, boolean isCancel) {
-
-                    }
-
-                    @Override
-                    public void onOtherButtonClick(ActionSheet actionSheet, int index) {
-                        LogUtil.i("CommunicateFragment--->showInform--->index::"+index);
-                        CommQuestionFragment commQuestionFragment = new CommQuestionFragment();
-                        gotoDetailFragment(commQuestionFragment);
-                    }
-                }).show();
+       if (commitWindow==null){
+           commitWindow = new ActionSheetWindow(getContext(), new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   // 隐藏弹出窗口
+                   commitWindow.dismiss();
+                   switch (v.getId()) {
+                       case R.id.takePhotoBtn://
+                           CommQuestionFragment questionFragment = new CommQuestionFragment();
+                           gotoDetailFragment(questionFragment);
+                           break;
+                       case R.id.cancelBtn:// 取消
+                           break;
+                       default:
+                           break;
+                   }
+               }
+           }).setText("我要提问");
+       }
+       commitWindow.showAtLocation(rootView, Gravity.BOTTOM| Gravity.CENTER_HORIZONTAL, 0, 0);
     }
 
     private void getNormalList(final int currentPage, int iRecordCount, final int type) {
@@ -178,6 +191,7 @@ public class CommunicateFragment extends BaseFragment{
                     List<CommunicationInfo> commList = communicationList.getData();
                     if (commList!=null&&commList.size()>0){
                         communicationlist.setVisibility(View.VISIBLE);
+                        iv_nodata.setVisibility(View.INVISIBLE);
                         c_currentPage = communicationList.getCurrentPage();
                         c_currentPage++;
                         c_recordCount = communicationList.getRecordCount();
@@ -185,6 +199,7 @@ public class CommunicateFragment extends BaseFragment{
 
                     }else {
                         communicationlist.setVisibility(View.INVISIBLE);
+                        iv_nodata.setVisibility(View.VISIBLE);
                     }
                 }else {
                     communicationlist.loadMoreComplete();
@@ -205,12 +220,12 @@ public class CommunicateFragment extends BaseFragment{
     }
 
     private void gotoDetailFragment(Fragment fragment){
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = CommunicateFragment.this.getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        //fragmentTransaction.hide(this);
-       // fragmentTransaction.add(R.id.activity_main_content_frameLayout , fragment);
+        //fragmentTransaction.hide(CommunicateFragment.this);
+        fragmentTransaction.replace(R.id.activity_main_content_frameLayout , fragment);
         fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.activity_main_content_frameLayout, fragment);
+       // fragmentTransaction.replace(R.id.activity_main_content_frameLayout, fragment);
 
         fragmentTransaction.commit();
     }

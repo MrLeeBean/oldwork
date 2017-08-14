@@ -39,6 +39,7 @@
 
     <string name="back_str">返回</string>
     <string name="feedback_str">请填写完，完整的信息！</string>
+    <string name="question_str_error">提交问题失败！</string>
     <string name="feedback_str_error">提交反馈失败！</string>
     <string name="feedback_str_ok">提交反馈成功！</string>
     <string name="submit_ok">提交成功！请等候工作人员联系。</string>

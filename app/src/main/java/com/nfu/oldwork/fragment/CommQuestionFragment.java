@@ -1,9 +1,14 @@
 package com.nfu.oldwork.fragment;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
+import android.text.TextUtils;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,24 +17,27 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baoyz.actionsheet.ActionSheet;
 import com.google.gson.Gson;
-import com.jcodecraeer.xrecyclerview.ProgressStyle;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.nfu.oldwork.R;
-import com.nfu.oldwork.adapter.CommunicationListAdapter;
+import com.nfu.oldwork.activity.HomeActivity;
 import com.nfu.oldwork.config.ApiConfig;
 import com.nfu.oldwork.manager.ApiManager;
-import com.nfu.oldwork.model.CommunicationInfo;
-import com.nfu.oldwork.model.CommunicationList;
-import com.nfu.oldwork.model.CommunicationModel;
-import com.nfu.oldwork.model.NewsListModel;
+import com.nfu.oldwork.model.QuestionModel;
+import com.nfu.oldwork.utils.ImageUtils;
 import com.nfu.oldwork.utils.LogUtil;
+import com.nfu.oldwork.utils.ToastUtil;
 import com.nfu.oldwork.view.ButtonExtendM;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import okhttp3.Call;
@@ -38,7 +46,7 @@ import okhttp3.Call;
  * Created by Administrator on 2017/8/11.
  */
 
-public class CommQuestionFragment extends BaseFragment{
+public class CommQuestionFragment extends BaseFragment {
 
     @BindView(R.id.sp_conditon)
     Spinner sp_condition;
@@ -52,30 +60,50 @@ public class CommQuestionFragment extends BaseFragment{
     TextView tv_cancel;
     @BindView(R.id.tv_release)
     TextView tv_release;
+    /**
+     * 选择图片的返回码
+     */
+    private final static int SELECT_IMAGE_RESULT_CODE1 = 200;
+    private final static int SELECT_IMAGE_RESULT_CODE2 = 300;
+    private final static int SELECT_IMAGE_RESULT_CODE3 = 400;
+    private int curretnRequestCode = SELECT_IMAGE_RESULT_CODE1;
+    /**
+     * 当前选择的图片的路径
+     */
+    public String imagePath;
+    private String path1 = null;
+    private String path2 = null;
+    private String path3 = null;
 
 
     int index = 0;
-    private int[] arrIds = new int[]{8007,8008,8009,8010,8011,8012};
+    private int[] arrIds = null;
+    private String[] titles = null;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         LogUtil.i("CommQuestionFragment **** onCreateView...");
-        bindView(inflater,R.layout.communicate_question_fragment,container);
+        bindView(inflater, R.layout.communicate_question_fragment, container);
         initView();
         loadData();
         return rootView;
     }
+
     @Override
     protected void loadData() {
+        arrIds = getResources().getIntArray(R.array.comtype_arr_id);
+        titles = getResources().getStringArray(R.array.comtype_arr);
     }
 
     @Override
     protected void initView() {
+        ((HomeActivity) getActivity()).setOnFragmentResult(onFragmentResult);
         sp_condition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 index = position;
-                LogUtil.i("CommunicateFragment--->setOnItemSelectedListener--->index"+index);
+                LogUtil.i("CommunicateFragment--->setOnItemSelectedListener--->index" + index);
             }
 
             @Override
@@ -94,7 +122,7 @@ public class CommQuestionFragment extends BaseFragment{
         btn_upload1.setOnClickListener(new ButtonExtendM.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showInform();
             }
         });
 
@@ -102,14 +130,50 @@ public class CommQuestionFragment extends BaseFragment{
             @Override
             public void onClick(View v) {
 
+
+                if (TextUtils.isEmpty(ed_question.getText())) {
+                    ToastUtil.showShortToast(getContext(), R.string.feedback_str);
+                } else {
+                    tv_release.setClickable(false);
+                    tv_release.setText("发布中...");
+                    QuestionModel questionModel = new QuestionModel();
+                    questionModel.setSignKey(ApiConfig.signKey);
+                    questionModel.setId(0);
+                    questionModel.setTitle(titles[index]);
+                    questionModel.setReleasePeople("张三" + ((int) (Math.random() * 10)));
+                    questionModel.setContent(ed_question.getText().toString());
+                    questionModel.setCommunicationType(arrIds[index]);
+                    questionModel.setOperType(1);
+                    questionModel.setStrBase64(getImageCode(path1));
+                    String str = new Gson().toJson(questionModel);
+                    ApiManager.getInstance().postCommQuestion(str, new StringCallback() {
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+                            LogUtil.i("CommQuestionFragment--->postOpinionFeedBack--->onError--->" + e);
+                            ToastUtil.showShortToast(getContext(), R.string.question_str_error);
+                            tv_release.setText("发布");
+                            tv_release.setClickable(true);
+                        }
+
+                        @Override
+                        public void onResponse(String response, int id) {
+                            LogUtil.i("CommQuestionFragment--->postOpinionFeedBack--->onResponse--->" + response);
+                            //ToastUtil.showShortToast(getContext(),R.string.feedback_str_ok);
+                            tv_release.setClickable(true);
+                            tv_release.setText("发布");
+                            getFragmentManager().popBackStack();
+                        }
+                    });
+                }
             }
         });
 
     }
 
-    private String[] informs = new String[]{"我要提问"};
-    private void showInform(){
-        ActionSheet.createBuilder(getContext(),getFragmentManager())
+    private String[] informs = new String[]{"拍照", "从相册选择"};
+
+    private void showInform() {
+        ActionSheet.createBuilder(getContext(), getFragmentManager())
                 .setCancelButtonTitle("取消")
                 .setOtherButtonTitles(informs)
                 .setCancelableOnTouchOutside(true)
@@ -121,12 +185,96 @@ public class CommQuestionFragment extends BaseFragment{
 
                     @Override
                     public void onOtherButtonClick(ActionSheet actionSheet, int index) {
-                        LogUtil.i("CommunicateFragment--->showInform--->index::"+index);
+                        LogUtil.i("CommunicateFragment--->showInform--->index::" + index);
+                        if (index == 0) {
+                            takePhoto();
+                        } else if (index == 1) {
+                            pickPhoto();
+                        }
 
                     }
                 }).show();
     }
 
+    private void takePhoto() {
+        // 执行拍照前，应该先判断SD卡是否存在
+        String SDState = Environment.getExternalStorageState();
+        if (SDState.equals(Environment.MEDIA_MOUNTED)) {
+            /**
+             * 通过指定图片存储路径，解决部分机型onActivityResult回调 data返回为null的情况
+             */
+            //获取与应用相关联的路径
+            String imageFilePath = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
+            //根据当前时间生成图片的名称
+            String timestamp = "/" + formatter.format(new Date()) + ".jpg";
+            File imageFile = new File(imageFilePath, timestamp);// 通过路径创建保存文件
+            imagePath = imageFile.getAbsolutePath();
+            Uri imageFileUri = Uri.fromFile(imageFile);// 获取文件的Uri
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);// 告诉相机拍摄完毕输出图片到指定的Uri
+            getActivity().startActivityForResult(intent, curretnRequestCode);
+        } else {
+            Toast.makeText(getContext(), "内存卡不存在！", Toast.LENGTH_LONG).show();
+        }
+    }
 
+
+    /***
+     * 从相册中取图片
+     */
+    private void pickPhoto() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        //intent.setType("image/*");
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                "image/*");
+        getActivity().startActivityForResult(intent, curretnRequestCode);
+    }
+
+    private HomeActivity.OnFragmentResult onFragmentResult = new HomeActivity.OnFragmentResult() {
+        @Override
+        public void onResult(String mImagePath, int requestCode) {
+            if (!TextUtils.isEmpty(mImagePath)) {
+                imagePath = mImagePath;
+            }
+            //获取图片缩略图，避免OOM
+            Bitmap bitmap = ImageUtils.getImageThumbnail(imagePath, ImageUtils.getWidth(getContext()) / 3 - 5, ImageUtils.getWidth(getContext()) / 3 - 5);
+            path1 = imagePath;
+            iv_upload.setImageBitmap(bitmap);
+            /*switch (requestCode){
+                case SELECT_IMAGE_RESULT_CODE1:
+                    imgUpload1.setImageBitmap(bitmap);
+                    path1 = imagePath;
+                    break;
+                case SELECT_IMAGE_RESULT_CODE2:
+                    imgUpload2.setImageBitmap(bitmap);
+                    path2 = imagePath;
+                    break;
+                case SELECT_IMAGE_RESULT_CODE3:
+                    imgUpload3.setImageBitmap(bitmap);
+                    path3 = imagePath;
+                    break;
+            }*/
+        }
+
+    };
+
+    private String getImageCode(String path) {
+        String code = "";
+        if (!TextUtils.isEmpty(path)) {
+            byte[] data = null;
+            try {
+                InputStream in = new FileInputStream(path);
+                data = new byte[in.available()];
+                in.read(data);
+                in.close();
+                code = Base64.encodeToString(data, Base64.DEFAULT);
+            } catch (Exception e) {
+                LogUtil.i("SafeguardDetailFragment--->getImageCode--->" + e);
+            }
+        }
+
+        return code;
+    }
 
 }

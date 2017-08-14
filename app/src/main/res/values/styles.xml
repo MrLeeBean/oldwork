@@ -17,4 +17,9 @@
     <style name="NfuTheme" parent="AppTheme">
         <item name="actionSheetStyle">@style/ActionSheetStyleiOS7</item>
     </style>
+
+    <style name="contactMsgAnim">
+        <item name="android:windowEnterAnimation">@anim/popupview_enter</item>
+        <item name="android:windowExitAnimation">@anim/popupview_exit</item>
+    </style>
 </resources>

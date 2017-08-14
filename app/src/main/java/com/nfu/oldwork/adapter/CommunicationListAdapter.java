@@ -16,9 +16,10 @@ import com.nfu.oldwork.config.NfuResource;
 import com.nfu.oldwork.model.CommunicationInfo;
 import com.nfu.oldwork.model.NewsModel;
 import com.nfu.oldwork.utils.DensityUtil;
-import com.nfu.oldwork.view.CircleImageView;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Administrator on 2017-7-26.
@@ -41,7 +42,7 @@ public class CommunicationListAdapter extends RecyclerView.Adapter {
         return new MyViewHolder(view);
     }
 
-    RequestOptions options = new RequestOptions().override(DensityUtil.dip2px(mContext,50),DensityUtil.dip2px(mContext,50)).error(R.drawable.tu)
+    RequestOptions options = new RequestOptions().override(DensityUtil.dip2px(mContext,60),DensityUtil.dip2px(mContext,60)).error(R.drawable.tu)
             .centerCrop().placeholder(R.drawable.tu);
 
     @Override
