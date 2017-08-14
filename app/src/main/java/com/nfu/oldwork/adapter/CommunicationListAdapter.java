@@ -58,6 +58,7 @@ public class CommunicationListAdapter extends RecyclerView.Adapter {
         holder1.name.setText(newsModel.getReleasePeople());
         holder1.tv_eye.setText(newsModel.getViewCount());
         holder1.tv_reply.setText(newsModel.getRespondCount());
+        holder1.tv_time.setText(newsModel.getCreatedate());
     }
 
     @Override
@@ -71,7 +72,7 @@ public class CommunicationListAdapter extends RecyclerView.Adapter {
 
 
     private class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView title,name,tv_eye,tv_reply;
+        TextView title,name,tv_eye,tv_reply,tv_time;
         CircleImageView iv_head;
         CardView card_view;
 
@@ -82,7 +83,7 @@ public class CommunicationListAdapter extends RecyclerView.Adapter {
             tv_eye = (TextView) itemView.findViewById(R.id.tv_eye);
             tv_reply = (TextView) itemView.findViewById(R.id.tv_reply);
             iv_head = (CircleImageView) itemView.findViewById(R.id.iv_head);
-
+            tv_time = (TextView) itemView.findViewById(R.id.tv_time);
 
             card_view = (CardView) itemView.findViewById(R.id.card_view);
 
