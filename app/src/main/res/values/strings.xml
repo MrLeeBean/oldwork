@@ -4,6 +4,8 @@
     <string name="top_bar_study_title">政策和文件</string>
     <string name="top_bar_commu_title">交流列表</string>
     <string name="top_bar_mine_title">个人</string>
+    <string name="top_bar_person_title">个人详情</string>
+    <string name="top_bar_personInfo_title">个人资料</string>
     <string name="bottom_bar_home_str">首页</string>
     <string name="bottom_bar_consult_str">咨询</string>
     <string name="bottom_bar_service_str">服务</string>

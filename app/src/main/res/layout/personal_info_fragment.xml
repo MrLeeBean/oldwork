@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/fragment_title_bar" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/magin_40"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:layout_marginTop="@dimen/magin_5"
+            android:gravity="center_vertical"
+            android:text="姓名"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_18" />
+
+        <LinearLayout
+            android:id="@+id/nfu_activity_search_layout_ll"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/magin_40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/magin_30"
+            android:layout_marginRight="@dimen/magin_15"
+            android:layout_marginTop="@dimen/magin_10"
+            android:layout_toRightOf="@+id/name_tv"
+            android:background="@drawable/nfu_personinfo_bg"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/nfu_activity_search_layout_et"
+                android:layout_width="@dimen/policy_search_layout_et"
+                android:layout_height="@dimen/magin_35"
+                android:layout_marginLeft="@dimen/magin_10"
+                android:layout_marginRight="@dimen/magin_10"
+                android:layout_weight="0.24"
+                android:background="@color/white_color"
+                android:gravity="center_vertical"
+                android:hint="请输入姓名"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColor="@color/color_666"
+                android:textSize="@dimen/text_size_16" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/workaddr_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/magin_40"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:layout_marginTop="@dimen/magin_5"
+            android:gravity="center_vertical"
+            android:text="单位"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_18" />
+
+        <LinearLayout
+            android:id="@+id/workaddr_ll"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/magin_40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/magin_30"
+            android:layout_marginRight="@dimen/magin_15"
+            android:layout_marginTop="@dimen/magin_10"
+            android:layout_toRightOf="@+id/workaddr_tv"
+            android:background="@drawable/nfu_personinfo_bg"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/workaddr_et"
+                android:layout_width="@dimen/policy_search_layout_et"
+                android:layout_height="@dimen/magin_35"
+                android:layout_marginLeft="@dimen/magin_10"
+                android:layout_marginRight="@dimen/magin_10"
+                android:layout_weight="0.24"
+                android:background="@color/white_color"
+                android:gravity="center_vertical"
+                android:hint="请输入单位名称"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColor="@color/color_666"
+                android:textSize="@dimen/text_size_16" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/worktype_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/magin_40"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:layout_marginTop="@dimen/magin_5"
+            android:gravity="center_vertical"
+            android:text="岗位"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_18" />
+
+        <LinearLayout
+            android:id="@+id/worktype_ll"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/magin_40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/magin_30"
+            android:layout_marginRight="@dimen/magin_15"
+            android:layout_marginTop="@dimen/magin_10"
+            android:layout_toRightOf="@+id/worktype_tv"
+            android:background="@drawable/nfu_personinfo_bg"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/worktype_et"
+                android:layout_width="@dimen/policy_search_layout_et"
+                android:layout_height="@dimen/magin_35"
+                android:layout_marginLeft="@dimen/magin_10"
+                android:layout_marginRight="@dimen/magin_10"
+                android:layout_weight="0.24"
+                android:background="@color/white_color"
+                android:gravity="center_vertical"
+                android:hint="请输入岗位名称"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColor="@color/color_666"
+                android:textSize="@dimen/text_size_16" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/identity_card_tv"
+            android:layout_width="@dimen/magin_40"
+            android:layout_height="@dimen/magin_40"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:layout_marginTop="@dimen/magin_5"
+            android:gravity="center_vertical"
+            android:text="身份证号"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_18" />
+
+        <LinearLayout
+            android:id="@+id/identity_card_ll"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/magin_40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/magin_30"
+            android:layout_marginRight="@dimen/magin_15"
+            android:layout_marginTop="@dimen/magin_10"
+            android:layout_toRightOf="@+id/identity_card_tv"
+            android:background="@drawable/nfu_personinfo_bg"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/identity_card_et"
+                android:layout_width="@dimen/policy_search_layout_et"
+                android:layout_height="@dimen/magin_35"
+                android:layout_marginLeft="@dimen/magin_10"
+                android:layout_marginRight="@dimen/magin_10"
+                android:layout_weight="0.24"
+                android:background="@color/white_color"
+                android:gravity="center_vertical"
+                android:hint="请输入身份证号"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColor="@color/color_666"
+                android:textSize="@dimen/text_size_16" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/gender_tv"
+            android:layout_width="@dimen/magin_40"
+            android:layout_height="@dimen/magin_40"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:layout_marginTop="@dimen/magin_5"
+            android:gravity="center_vertical"
+            android:text="性别"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_18" />
+
+        <com.nfu.oldwork.view.PullDownMenu
+            android:id="@+id/pullOrientation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/magin_40"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/gender_tv"
+            android:layout_marginLeft="@dimen/magin_30"
+            android:layout_marginRight="@dimen/magin_15"
+            android:layout_marginTop="@dimen/magin_10"
+            android:background="@color/base_red_color"
+      />
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/commit_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/magin_15"
+        android:layout_marginRight="@dimen/magin_15"
+        android:layout_marginTop="@dimen/magin_32"
+        android:clickable="true"
+        app:cardBackgroundColor="@color/base_red_color"
+        app:cardCornerRadius="@dimen/magin_5"
+        app:contentPaddingLeft="@dimen/magin_15"
+        app:contentPaddingTop="@dimen/padding_top_2">
+        <TextView
+            android:id="@+id/nfu_activity_query_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/magin_125"
+            android:layout_marginTop="@dimen/magin_5"
+            android:text="保存"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_20" />
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

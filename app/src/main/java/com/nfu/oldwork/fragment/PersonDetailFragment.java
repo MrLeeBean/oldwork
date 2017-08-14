@@ -17,25 +17,20 @@ import com.nfu.oldwork.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.nfu.oldwork.R.id.card_view2;
+
 /**
  * Created by Administrator on 2017/8/11.
  */
 
-public class MineFragment extends BaseFragment{
-    @BindView(R.id.card_view2)
-    CardView card_view2;
-    @BindView(R.id.card_view3)
-    CardView card_view3;
-    @BindView(R.id.card_view4)
-    CardView card_view4;
-    @BindView(R.id.login_tv)
-    TextView loginTv;
-
+public class PersonDetailFragment extends BaseFragment{
+    @BindView(R.id.card_view1)
+    CardView card_view1;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.e("HomeFragment", "HomeFragment **** onCreateView...");
-        View rootView = inflater.inflate(R.layout.mine_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.persondetail_fragment, container, false);
         unbinder = ButterKnife.bind(this, rootView);
         initView();
         loadData();
@@ -48,35 +43,13 @@ public class MineFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        card_view2.setOnClickListener(new View.OnClickListener() {
+        card_view1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SettingFragment settingFragment = new SettingFragment();
-                gotoFragment(settingFragment);
+                PersonalInfoFragment personalInfoFragment = new PersonalInfoFragment();
+                gotoFragment(personalInfoFragment);
             }
         });
-        card_view3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UpdateFragment updateFragment = new UpdateFragment();
-                gotoFragment(updateFragment);
-            }
-        });
-        card_view4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PersonDetailFragment personDetailFragment = new PersonDetailFragment();
-                gotoFragment(personDetailFragment);
-            }
-        });
-        loginTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginFragment loginFragment = new LoginFragment();
-                gotoFragment(loginFragment);
-            }
-        });
-
     }
     private void gotoFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();

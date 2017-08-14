@@ -123,7 +123,7 @@
              android:id="@+id/nfu_activity_query_btn"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:layout_marginLeft="@dimen/magin_110"
+             android:layout_marginLeft="@dimen/magin_125"
              android:layout_marginTop="@dimen/magin_5"
              android:text="@string/home_fragment_modify_call_commit"
              android:textColor="@color/white"
