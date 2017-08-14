@@ -186,4 +186,14 @@ public class ApiManager {
         LogUtil.i("ApiManager--->postCommQuestion--->url::"+url + ",jsonStr::"+jsonStr);
         NetUtil.doPost(url,jsonStr,callback);
     }
+    public void postCheckLogin(String jsonStr,StringCallback callback){
+        String url = ConnectUrl.GetLoginAppUser;
+        LogUtil.i("ApiManager--->postCommQuestion--->url::"+url + ",jsonStr::"+jsonStr);
+        NetUtil.doPost(url,jsonStr,callback);
+    }
+    public void postUpdatePwd(String jsonStr,StringCallback callback){
+        String url = ConnectUrl.GetUpdateAppUserPassword;
+        LogUtil.i("ApiManager--->postCommQuestion--->url::"+url + ",jsonStr::"+jsonStr);
+        NetUtil.doPost(url,jsonStr,callback);
+    }
 }

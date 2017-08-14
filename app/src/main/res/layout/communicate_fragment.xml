@@ -36,11 +36,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white_color">
+
         <Spinner
             android:id="@+id/sp_conditon"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:entries="@array/comtype_arr"/>
+            android:entries="@array/comtype_arr" />
     </LinearLayout>
     <FrameLayout
         android:id="@+id/fl_content"

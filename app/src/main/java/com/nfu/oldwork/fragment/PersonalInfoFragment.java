@@ -9,16 +9,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.nfu.oldwork.R;
+import com.nfu.oldwork.view.ButtonExtendM;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2017/8/11.
  */
 
-public class PersonalInfoFragment extends BaseFragment{
+public class PersonalInfoFragment extends BaseFragment {
+    @BindView(R.id.btn_back)
+    ButtonExtendM btnBack;
+    @BindView(R.id.top_title)
+    TextView tv_title;
 
     @Nullable
     @Override
@@ -30,6 +37,7 @@ public class PersonalInfoFragment extends BaseFragment{
         loadData();
         return rootView;
     }
+
     @Override
     protected void loadData() {
 
@@ -38,16 +46,27 @@ public class PersonalInfoFragment extends BaseFragment{
     @Override
     protected void initView() {
 
+        tv_title.setText(R.string.bottom_bar_person_str);
+
+        btnBack.setOnClickListener(new ButtonExtendM.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
+
     }
+
     private void gotoFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.hide(this);
-        fragmentTransaction.add(R.id.activity_main_content_frameLayout , fragment);
+        fragmentTransaction.add(R.id.activity_main_content_frameLayout, fragment);
 //        fragmentTransaction.replace(R.id.activity_main_content_frameLayout, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

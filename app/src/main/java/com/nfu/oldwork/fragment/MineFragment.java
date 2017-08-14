@@ -72,7 +72,7 @@ public class MineFragment extends BaseFragment{
         loginTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginFragment loginFragment = new LoginFragment();
+                NormaLoginFragment loginFragment = new NormaLoginFragment();
                 gotoFragment(loginFragment);
             }
         });

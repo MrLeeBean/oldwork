@@ -24,6 +24,7 @@
             android:layout_marginTop="@dimen/magin_5"
             android:gravity="center_vertical"
             android:text="姓名"
+
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_18" />
 
@@ -208,7 +209,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_18" />
 
-        <com.nfu.oldwork.view.PullDownMenu
+    <!--    <com.nfu.oldwork.view.PullDownMenu
             android:id="@+id/pullOrientation"
             android:layout_width="match_parent"
             android:layout_height="@dimen/magin_40"
@@ -218,7 +219,27 @@
             android:layout_marginRight="@dimen/magin_15"
             android:layout_marginTop="@dimen/magin_10"
             android:background="@color/base_red_color"
-      />
+      />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/magin_40"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/gender_tv"
+            android:layout_marginLeft="@dimen/magin_30"
+            android:layout_marginRight="@dimen/magin_15"
+            android:layout_marginTop="@dimen/magin_10"
+            android:background="@color/white"
+            >
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/magin_40"
+                android:paddingLeft="@dimen/magin_15"
+                android:textColor="@color/white"
+                android:id="@+id/spinner2"
+                android:entries="@array/spingarr"
+                />
+        </LinearLayout>
+
     </RelativeLayout>
 
 

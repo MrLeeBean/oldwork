@@ -68,7 +68,7 @@ public class LoginFragment extends BaseFragment {
         mFragments=new ArrayList<>();
         for (int i = 0; i <mTitles.size() ; i++) {
             if(i==0){
-                mFragments.add(new NormaLoginlFragment());
+                mFragments.add(new NormaLoginFragment());
             }else if(i==1){
                 mFragments.add(new QuickLoginFragment());
             }
