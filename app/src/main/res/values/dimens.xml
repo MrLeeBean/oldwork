@@ -10,6 +10,7 @@
     <dimen name="magin_25">25dp</dimen>
     <dimen name="magin_30">30dp</dimen>
     <dimen name="magin_32">32.5dp</dimen>
+    <dimen name="magin_35">35dp</dimen>
     <dimen name="magin_40">40dp</dimen>
     <dimen name="magin_42">42.5dp</dimen>
     <dimen name="magin_48">48dp</dimen>
@@ -18,7 +19,7 @@
     <dimen name="magin_65">65dp</dimen>
     <dimen name="magin_80">80dp</dimen>
     <dimen name="magin_100">100dp</dimen>
-    <dimen name="magin_110">110dp</dimen>
+    <dimen name="magin_125">125dp</dimen>
     <dimen name="padding_top_2">2dp</dimen>
     <dimen name="titile_bar_height">40dp</dimen>
 
