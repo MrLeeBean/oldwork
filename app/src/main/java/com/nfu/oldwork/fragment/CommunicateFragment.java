@@ -54,8 +54,8 @@ public class CommunicateFragment extends BaseFragment{
     Spinner sp_condition;
     @BindView(R.id.communicationList)
     XRecyclerView communicationlist;
-    @BindView(R.id.iv_nodata)
-    ImageView iv_nodata;
+    //@BindView(R.id.iv_nodata)
+    //ImageView iv_nodata;
 
     private int pageSize = 10;
     private int c_currentPage = 0;
@@ -190,17 +190,15 @@ public class CommunicateFragment extends BaseFragment{
                     communicationlist.refreshComplete();
                     List<CommunicationInfo> commList = communicationList.getData();
                     if (commList!=null&&commList.size()>0){
-                        communicationlist.setVisibility(View.VISIBLE);
-                        iv_nodata.setVisibility(View.INVISIBLE);
+                       // communicationlist.setVisibility(View.VISIBLE);
+                       // iv_nodata.setVisibility(View.INVISIBLE);
                         c_currentPage = communicationList.getCurrentPage();
                         c_currentPage++;
                         c_recordCount = communicationList.getRecordCount();
-                        communicationListAdapter.setNewsData(commList);
 
-                    }else {
-                        communicationlist.setVisibility(View.INVISIBLE);
-                        iv_nodata.setVisibility(View.VISIBLE);
+
                     }
+                    communicationListAdapter.setNewsData(commList);
                 }else {
                     communicationlist.loadMoreComplete();
                     List<CommunicationInfo> commList = communicationList.getData();

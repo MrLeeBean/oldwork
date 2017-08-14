@@ -47,13 +47,13 @@
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageView
+       <!-- <ImageView
             android:id="@+id/iv_nodata"
             android:src="@drawable/nodata"
             android:visibility="invisible"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" />-->
         <com.jcodecraeer.xrecyclerview.XRecyclerView
             android:id="@+id/communicationList"
             android:background="@color/white_color"
