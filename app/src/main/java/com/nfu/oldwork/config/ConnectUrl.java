@@ -32,5 +32,6 @@ public interface ConnectUrl {
     String getOlderBalance = "http://zhika.laoling.bjmzj.gov.cn:8080/healthy/externalApp/balance";  //获取余额
 
     String GetCommunicationList = baseUrl + "/bjllapp/appUserCommunication/appUserCommunicationAction.do?method=GetCommunicationList";  //获取交流详情
+    String postCommQuestion = baseUrl + "/bjllapp/appUserCommunication/appUserCommunicationAction.do?method=GetAppUserCommunication";  //提交问题
 
 }

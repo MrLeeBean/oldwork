@@ -1,6 +1,11 @@
 package com.nfu.oldwork.activity;
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +19,8 @@ import com.nfu.oldwork.fragment.CommunicateFragment;
 import com.nfu.oldwork.fragment.HomeFragment;
 import com.nfu.oldwork.fragment.MineFragment;
 import com.nfu.oldwork.fragment.StudyFragment;
+import com.nfu.oldwork.utils.ImageUtils;
+import com.nfu.oldwork.utils.LogUtil;
 import com.nfu.oldwork.view.ButtonExtendM;
 
 import java.util.List;
@@ -183,4 +190,93 @@ public class HomeActivity extends AppCompatActivity {
         super.onDestroy();
         unbinder.unbind();
     }
+
+    /**
+     * 选择图片的返回码
+     */
+    public final static int SELECT_IMAGE_RESULT_CODE1 = 200;
+    public final static int SELECT_IMAGE_RESULT_CODE2 = 300;
+    public final static int SELECT_IMAGE_RESULT_CODE3 = 400;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        LogUtil.i("MainActivity--->onActivityResult--->requestCode:"+requestCode+",resultCode:"+resultCode);
+        String imagePath = "";
+        if((requestCode == SELECT_IMAGE_RESULT_CODE1||requestCode == SELECT_IMAGE_RESULT_CODE2||
+                requestCode == SELECT_IMAGE_RESULT_CODE3) && resultCode== RESULT_OK){
+            if(data != null && data.getData() != null){//有数据返回直接使用返回的图片地址
+                Uri uri = data.getData();
+                if(uri.getScheme().equals("content")) {//判断uri地址是以什么开头的
+                    imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
+                }else{
+                    imagePath = ImageUtils.getFilePathByFileUri(this, getFileUri(uri));
+                }
+
+            }
+
+            if (mOnFragmentResult!=null){
+                mOnFragmentResult.onResult(imagePath,requestCode);
+            }
+
+        }
+    }
+
+    /**
+     * Fragment回调接口
+     */
+    public OnFragmentResult mOnFragmentResult;
+
+    public void setOnFragmentResult(OnFragmentResult onFragmentResult){
+        mOnFragmentResult = onFragmentResult;
+    }
+
+    /**
+     * 回调数据给Fragment的接口
+     */
+    public interface OnFragmentResult{
+        void onResult(String mImagePath,int requestCode);
+    }
+
+    public Uri getFileUri(Uri uri){
+        if (uri.getScheme().equals("file")) {
+            String path = uri.getEncodedPath();
+            LogUtil.i("path1 is " + path);
+            if (path != null) {
+                path = Uri.decode(path);
+                LogUtil.i("path2 is " + path);
+                ContentResolver cr = this.getContentResolver();
+                StringBuffer buff = new StringBuffer();
+                buff.append("(")
+                        .append(MediaStore.Images.ImageColumns.DATA)
+                        .append("=")
+                        .append("'" + path + "'")
+                        .append(")");
+                Cursor cur = cr.query(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        new String[] { MediaStore.Images.ImageColumns._ID },
+                        buff.toString(), null, null);
+                int index = 0;
+                for (cur.moveToFirst(); !cur.isAfterLast(); cur
+                        .moveToNext()) {
+                    index = cur.getColumnIndex(MediaStore.Images.ImageColumns._ID);
+                    // set _id value
+                    index = cur.getInt(index);
+                }
+                if (index == 0) {
+                    //do nothing
+                } else {
+                    Uri uri_temp = Uri
+                            .parse("content://media/external/images/media/"
+                                    + index);
+                    LogUtil.i("uri_temp is " + uri_temp);
+                    if (uri_temp != null) {
+                        uri = uri_temp;
+                    }
+                }
+            }
+        }
+        return uri;
+    }
+
 }

@@ -180,4 +180,10 @@ public class ApiManager {
         LogUtil.i("ApiManager--->getCommunicationList--->url::"+url + ",jsonStr::"+jsonStr);
         NetUtil.doPost(url,jsonStr,callback);
     }
+
+    public void postCommQuestion(String jsonStr,StringCallback callback){
+        String url = ConnectUrl.postCommQuestion;
+        LogUtil.i("ApiManager--->postCommQuestion--->url::"+url + ",jsonStr::"+jsonStr);
+        NetUtil.doPost(url,jsonStr,callback);
+    }
 }
