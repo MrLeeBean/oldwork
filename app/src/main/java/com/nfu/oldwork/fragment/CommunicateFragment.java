@@ -194,37 +194,41 @@ public class CommunicateFragment extends BaseFragment{
             @Override
             public void onResponse(String response, int id) {
                 LogUtil.i("CommunicateFragment--->getNormalList--->onResponse::" + response);
-                NewsListModel models = new Gson().fromJson(response,NewsListModel.class);
-                LogUtil.i("CommunicateFragment--->getNormalList--->NewsListModel::" + models);
-                CommunicationList communicationList = new Gson().fromJson(models.getStrResult(),CommunicationList.class);
-                LogUtil.i("CommunicateFragment--->getNormalList--->communicationList::" + communicationList);
-                if (REFRESH_TYPE==type){
-                    communicationlist.refreshComplete();
-                    List<CommunicationInfo> commList = communicationList.getData();
-                    if (commList!=null&&commList.size()>0){
-                       // communicationlist.setVisibility(View.VISIBLE);
-                       // iv_nodata.setVisibility(View.INVISIBLE);
-                        c_currentPage = communicationList.getCurrentPage();
-                        c_currentPage++;
-                        c_recordCount = communicationList.getRecordCount();
 
-
-                    }
-                    communicationListAdapter.setNewsData(commList);
-                }else {
-                    communicationlist.loadMoreComplete();
-                    List<CommunicationInfo> commList = communicationList.getData();
-                    if (commList!=null&&commList.size()>0){
-                        if (c_currentPage<=communicationList.getCurrentPage()){
+                if(getContext()!=null){
+                    NewsListModel models = new Gson().fromJson(response,NewsListModel.class);
+                    LogUtil.i("CommunicateFragment--->getNormalList--->NewsListModel::" + models);
+                    CommunicationList communicationList = new Gson().fromJson(models.getStrResult(),CommunicationList.class);
+                    LogUtil.i("CommunicateFragment--->getNormalList--->communicationList::" + communicationList);
+                    if (REFRESH_TYPE==type){
+                        communicationlist.refreshComplete();
+                        List<CommunicationInfo> commList = communicationList.getData();
+                        if (commList!=null&&commList.size()>0){
+                            // communicationlist.setVisibility(View.VISIBLE);
+                            // iv_nodata.setVisibility(View.INVISIBLE);
                             c_currentPage = communicationList.getCurrentPage();
                             c_currentPage++;
                             c_recordCount = communicationList.getRecordCount();
-                            communicationListAdapter.addNewsData(commList);
+
+
                         }
+                        communicationListAdapter.setNewsData(commList);
+                    }else {
+                        communicationlist.loadMoreComplete();
+                        List<CommunicationInfo> commList = communicationList.getData();
+                        if (commList!=null&&commList.size()>0){
+                            if (c_currentPage<=communicationList.getCurrentPage()){
+                                c_currentPage = communicationList.getCurrentPage();
+                                c_currentPage++;
+                                c_recordCount = communicationList.getRecordCount();
+                                communicationListAdapter.addNewsData(commList);
+                            }
 
 
+                        }
                     }
                 }
+
             }
         });
     }
