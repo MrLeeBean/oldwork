@@ -7,7 +7,8 @@
     <string name="top_bar_person_title">个人详情</string>
     <string name="top_bar_personInfo_title">个人资料</string>
     <string name="bottom_bar_home_str">首页</string>
-    <string name="bottom_bar_login_str">登录</string>
+    <string name="top_bar_changepwd_str">修改密码</string>
+    <string name="top_bar_login_str">登录</string>
     <string name="bottom_bar_person_str">个人资料</string>
 
     <string name="bottom_bar_consult_str">咨询</string>
@@ -46,6 +47,7 @@
     <string name="back_str">返回</string>
     <string name="feedback_str">请填写完，完整的信息！</string>
     <string name="question_str_error">提交问题失败！</string>
+    <string name="login_str_error">登录失败！</string>
     <string name="feedback_str_error">提交反馈失败！</string>
     <string name="feedback_str_ok">提交反馈成功！</string>
     <string name="submit_ok">提交成功！请等候工作人员联系。</string>

@@ -33,7 +33,9 @@ public interface ConnectUrl {
 
     String GetCommunicationList = baseUrl + "/bjllapp/appUserCommunication/appUserCommunicationAction.do?method=GetCommunicationList";  //获取交流详情
     String postCommQuestion = baseUrl + "/bjllapp/appUserCommunication/appUserCommunicationAction.do?method=GetAppUserCommunication";  //提交问题
-    String GetLoginAppUser = baseUrl + "\n" + "/bjllapp/bjllUserManage/bjllUserManageAction.do?method=GetLoginAppUser";  //登录
-    String GetUpdateAppUserPassword = baseUrl + "\n" + "/bjllapp/bjllUserManage/bjllUserManageAction.do?method=GetUpdateAppUserPassword";  //修改密码
+    String GetLoginAppUser = baseUrl + "/bjllapp/bjllUserManage/bjllUserManageAction.do?method=GetLoginAppUser";  //登录
+    String GetLoginAppYlUser = baseUrl + "/bjllapp/bjllUserManage/bjllUserManageAction.do?method=GetLoginAppYlUser";  //现有登录
+
+    String GetUpdateAppUserPassword = baseUrl + "/bjllapp/bjllUserManage/bjllUserManageAction.do?method=GetUpdateAppUserPassword";  //修改密码
 
 }

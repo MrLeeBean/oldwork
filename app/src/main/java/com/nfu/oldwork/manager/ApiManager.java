@@ -187,8 +187,8 @@ public class ApiManager {
         NetUtil.doPost(url,jsonStr,callback);
     }
     public void postCheckLogin(String jsonStr,StringCallback callback){
-        String url = ConnectUrl.GetLoginAppUser;
-        LogUtil.i("ApiManager--->postCommQuestion--->url::"+url + ",jsonStr::"+jsonStr);
+        String url = ConnectUrl.GetLoginAppYlUser;
+        LogUtil.i("ApiManager--->postCheckLogin--->url::"+url + ",jsonStr::"+jsonStr);
         NetUtil.doPost(url,jsonStr,callback);
     }
     public void postUpdatePwd(String jsonStr,StringCallback callback){

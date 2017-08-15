@@ -26,6 +26,8 @@ import static com.nfu.oldwork.R.id.card_view2;
 public class PersonDetailFragment extends BaseFragment{
     @BindView(R.id.card_view1)
     CardView card_view1;
+    @BindView(R.id.card_view3)
+    CardView card_view3;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,6 +50,13 @@ public class PersonDetailFragment extends BaseFragment{
             public void onClick(View v) {
                 PersonalInfoFragment personalInfoFragment = new PersonalInfoFragment();
                 gotoFragment(personalInfoFragment);
+            }
+        });
+        card_view3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangePwdFragment changePwdFragment = new ChangePwdFragment();
+                gotoFragment(changePwdFragment);
             }
         });
     }
