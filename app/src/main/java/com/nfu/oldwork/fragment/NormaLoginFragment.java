@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.nfu.oldwork.R;
 import com.nfu.oldwork.config.ApiConfig;
+import com.nfu.oldwork.config.NfuResource;
 import com.nfu.oldwork.manager.ApiManager;
 import com.nfu.oldwork.model.LoginInfo;
 import com.nfu.oldwork.model.TurnPicModel;
@@ -115,6 +116,7 @@ public class NormaLoginFragment extends BaseFragment {
                     if(iResult.equals("800")){
                         //=登录成功
                         //TODO 处理返回结果  保存信息到sp中跳转到 头像页面
+                        NfuResource.isLoginSuccess = true;
                         ToastUtil.showShortToast(getActivity(),"登录成功");
                         SharedPreferencesManager.putUser("userinfo","UserInfo",userInfo);
                         UserInfo user = SharedPreferencesManager.getUser("userinfo", "UserInfo", "");
@@ -122,10 +124,11 @@ public class NormaLoginFragment extends BaseFragment {
 //                        SharedPreferencesManager.putUser("logininfo","LoginInfo",loginInfo);
                         //    getFragmentManager().popBackStack();
                         MineFragment mineFragment = new MineFragment();
-                        Bundle bundle = new Bundle();
+
+                     /*   Bundle bundle = new Bundle();
                          isLoginSuccess = true;
                         bundle.putBoolean("isLoginSuccess",isLoginSuccess);
-                        mineFragment.setArguments(bundle);
+                        mineFragment.setArguments(bundle);*/
                         gotoFragment(mineFragment);
 
                     }else if (iResult .equals( "100")) {

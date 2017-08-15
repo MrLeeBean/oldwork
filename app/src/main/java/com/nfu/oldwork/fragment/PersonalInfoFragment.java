@@ -46,7 +46,7 @@ public class PersonalInfoFragment extends BaseFragment {
     @Override
     protected void initView() {
 
-        tv_title.setText(R.string.bottom_bar_person_str);
+        tv_title.setText(R.string.top_bar_person_str);
 
         btnBack.setOnClickListener(new ButtonExtendM.OnClickListener() {
             @Override

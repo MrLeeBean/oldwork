@@ -16,6 +16,7 @@ public class NfuResource {
     private static SharedPreferences.Editor editor;
     private final static String LIVE_SP = "nfu_live_sp";
     private final static String USE_4G = "USE_4G";
+    public  static boolean isLoginSuccess = false;
     private Context context;
 
     private static class LazyHolder {
@@ -45,4 +46,5 @@ public class NfuResource {
             return !isUse4G();
         }
     }
+
 }

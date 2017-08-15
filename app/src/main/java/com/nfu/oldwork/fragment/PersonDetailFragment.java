@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nfu.oldwork.R;
+import com.nfu.oldwork.view.ButtonExtendM;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +29,10 @@ public class PersonDetailFragment extends BaseFragment{
     CardView card_view1;
     @BindView(R.id.card_view3)
     CardView card_view3;
+    @BindView(R.id.btn_back)
+    ButtonExtendM btnBack;
+    @BindView(R.id.top_title)
+    TextView tv_title;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,6 +50,14 @@ public class PersonDetailFragment extends BaseFragment{
 
     @Override
     protected void initView() {
+        tv_title.setText(R.string.top_bar_persondetail_str);
+
+        btnBack.setOnClickListener(new ButtonExtendM.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
         card_view1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
