@@ -109,9 +109,10 @@ public class NormaLoginFragment extends BaseFragment {
                     UserInfo userInfo = new Gson().fromJson(response, UserInfo.class);
                     userInfo.setLoginInfo(loginInfo);
                     String iResult = userInfo.getIResult();
-//                    LogUtil.i("NormaLoginFragment--->postCheckLogin--->onResponse--->userInfo ::" + userInfo.toString());
+                      LogUtil.i("NormaLoginFragment--->postCheckLogin--->onResponse--->userInfo ::" + userInfo.toString());
+                      LogUtil.i("NormaLoginFragment--->postCheckLogin--->onResponse--->iResult ::" + iResult);
          //           SharedPreferencesManager.putUser("userinfo","UserInfo",userInfo);
-                    if(iResult == "800"){
+                    if(iResult.equals("800")){
                         //=登录成功
                         //TODO 处理返回结果  保存信息到sp中跳转到 头像页面
                         ToastUtil.showShortToast(getActivity(),"登录成功");
@@ -127,9 +128,9 @@ public class NormaLoginFragment extends BaseFragment {
                         mineFragment.setArguments(bundle);
                         gotoFragment(mineFragment);
 
-                    }else if (iResult == "100") {
+                    }else if (iResult .equals( "100")) {
                         ToastUtil.showShortToast(getActivity(),"登录失败，没有该用户");
-                    }else if(iResult == "103"){
+                    }else if(iResult .equals( "103")){
                         ToastUtil.showShortToast(getActivity(),"登录失败，密码错误");
                     }
                 }

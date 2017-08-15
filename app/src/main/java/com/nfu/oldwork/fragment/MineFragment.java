@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nfu.oldwork.R;
+import com.nfu.oldwork.model.NewsModel;
+import com.nfu.oldwork.utils.SharedPreferencesManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +32,7 @@ public class MineFragment extends BaseFragment{
     CardView card_view4;
     @BindView(R.id.login_tv)
     TextView loginTv;
-
+    boolean isLoginSuccess = false;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,13 +44,30 @@ public class MineFragment extends BaseFragment{
 
         return rootView;
     }
+
     @Override
     protected void loadData() {
 
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            isLoginSuccess = bundle.getBoolean("isLoginSuccess");
+        }
     }
 
     @Override
     protected void initView() {
+        if(isLoginSuccess){
+            card_view4.setVisibility(View.VISIBLE);
+            card_view4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PersonDetailFragment personDetailFragment = new PersonDetailFragment();
+                    gotoFragment(personDetailFragment);
+                }
+            });
+            loginTv.setText(SharedPreferencesManager.getUser("userinfo","UserInfo","").getUserName());
+
+        }
         card_view2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,13 +82,8 @@ public class MineFragment extends BaseFragment{
                 gotoFragment(updateFragment);
             }
         });
-        card_view4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PersonDetailFragment personDetailFragment = new PersonDetailFragment();
-                gotoFragment(personDetailFragment);
-            }
-        });
+
+
         loginTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
