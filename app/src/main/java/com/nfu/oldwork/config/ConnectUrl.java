@@ -36,6 +36,6 @@ public interface ConnectUrl {
     String GetLoginAppUser = baseUrl + "\n" + "/bjllapp/bjllUserManage/bjllUserManageAction.do?method=GetLoginAppUser";  //登录
     String GetUpdateAppUserPassword = baseUrl + "\n" + "/bjllapp/bjllUserManage/bjllUserManageAction.do?method=GetUpdateAppUserPassword";  //修改密码
     String getCommunicationDetail = baseUrl + "/bjllapp/appUserCommunication/appUserCommunicationAction.do?method=GetCommunicationDetail";  //获取交流详情
-    String GetAppUserRespond = baseUrl + "http://17103938iy.iask.in/bjllapp/appUserCommunication/appUserCommunicationAction.do?method=GetAppUserRespond"; //回复交流详情
+    String GetAppUserRespond = baseUrl + "/bjllapp/appUserCommunication/appUserCommunicationAction.do?method=GetAppUserRespond"; //回复交流详情
     String GetLoginAppYlUser = baseUrl + "/bjllapp/bjllUserManage/bjllUserManageAction.do?method=GetLoginAppYlUser";  //现有登录
 }

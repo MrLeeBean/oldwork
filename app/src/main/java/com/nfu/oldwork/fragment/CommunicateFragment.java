@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.baoyz.actionsheet.ActionSheet;
 import com.google.gson.Gson;
@@ -25,6 +26,7 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.nfu.oldwork.R;
 import com.nfu.oldwork.adapter.CommunicationListAdapter;
 import com.nfu.oldwork.config.ApiConfig;
+import com.nfu.oldwork.config.NfuResource;
 import com.nfu.oldwork.manager.ApiManager;
 import com.nfu.oldwork.model.CommunicationInfo;
 import com.nfu.oldwork.model.CommunicationList;
@@ -33,6 +35,7 @@ import com.nfu.oldwork.model.NewsList;
 import com.nfu.oldwork.model.NewsListModel;
 import com.nfu.oldwork.model.NewsModel;
 import com.nfu.oldwork.utils.LogUtil;
+import com.nfu.oldwork.utils.ToastUtil;
 import com.nfu.oldwork.view.ActionSheetWindow;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -149,8 +152,13 @@ public class CommunicateFragment extends BaseFragment{
                    commitWindow.dismiss();
                    switch (v.getId()) {
                        case R.id.takePhotoBtn://
-                           CommQuestionFragment questionFragment = new CommQuestionFragment();
-                           gotoDetailFragment(questionFragment);
+                           if(NfuResource.isLoginSuccess){
+                               CommQuestionFragment questionFragment = new CommQuestionFragment();
+                               gotoDetailFragment(questionFragment);
+                           }else {
+                               ToastUtil.showShortToast(getContext(),"您还未登录，不能进行提问！");
+                           }
+
                            break;
                        case R.id.cancelBtn:// 取消
                            break;

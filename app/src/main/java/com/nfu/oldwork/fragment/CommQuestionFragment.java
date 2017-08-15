@@ -53,6 +53,8 @@ public class CommQuestionFragment extends BaseFragment {
     Spinner sp_condition;
     @BindView(R.id.et_question)
     EditText ed_question;
+    @BindView(R.id.et_title)
+    EditText et_title;
     @BindView(R.id.btn_upload1)
     ButtonExtendM btn_upload1;
     @BindView(R.id.iv_upload_im1)
@@ -132,7 +134,7 @@ public class CommQuestionFragment extends BaseFragment {
             public void onClick(View v) {
 
 
-                if (TextUtils.isEmpty(ed_question.getText())) {
+                if (TextUtils.isEmpty(ed_question.getText())||TextUtils.isEmpty(et_title.getText())) {
                     ToastUtil.showShortToast(getContext(), R.string.feedback_str);
                 } else {
                     tv_release.setClickable(false);
@@ -141,7 +143,7 @@ public class CommQuestionFragment extends BaseFragment {
                     questionModel.setSignKey(ApiConfig.signKey);
                     questionModel.setId(0);
                     questionModel.setReleasePeopleId(SharedPreferencesManager.getUser("userinfo","UserInfo",null).getUserId());
-                    questionModel.setTitle(titles[index]);
+                    questionModel.setTitle(et_title.getText().toString());
                     questionModel.setReleasePeople(SharedPreferencesManager.getUser("userinfo","UserInfo",null).getUserName());
                     questionModel.setContent(ed_question.getText().toString());
                     questionModel.setCommunicationType(arrIds[index]);
