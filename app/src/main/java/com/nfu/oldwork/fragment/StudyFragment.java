@@ -271,7 +271,7 @@ public class StudyFragment extends BaseFragment{
         });
     }
     private void getPolicyList(int currentPage, int iRecordCount, final int type) {
-        ApiManager.getInstance().getNewsList("1002",PAGESIZE, currentPage, iRecordCount, "createdate", "desc", new StringCallback() {
+        ApiManager.getInstance().getNewsList("1019",PAGESIZE, currentPage, iRecordCount, "createdate", "desc", new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->onError::" + e);

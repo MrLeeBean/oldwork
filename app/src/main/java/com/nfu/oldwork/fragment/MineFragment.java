@@ -37,8 +37,9 @@ public class MineFragment extends BaseFragment{
         Log.e("HomeFragment", "HomeFragment **** onCreateView...");
         View rootView = inflater.inflate(R.layout.mine_fragment, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-        initView();
         loadData();
+        initView();
+
         return rootView;
     }
     @Override

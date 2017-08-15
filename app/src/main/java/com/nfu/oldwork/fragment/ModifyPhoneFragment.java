@@ -29,7 +29,7 @@ import okhttp3.Call;
  * Created by user on 2017/8/13.
  */
 
-public class ChangePwdFragment extends BaseFragment {
+public class ModifyPhoneFragment extends BaseFragment {
     @BindView(R.id.reset_pwd_et)
     EditText reset_pwd_et;
     @BindView(R.id.confirm_pwd_et)
@@ -46,7 +46,6 @@ public class ChangePwdFragment extends BaseFragment {
         Log.e("HomeFragment", "HomeFragment **** onCreateView...");
         View rootView = inflater.inflate(R.layout.changepwd_fragment, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-
         return rootView;
     }
     @Override

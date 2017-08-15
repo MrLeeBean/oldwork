@@ -1,6 +1,11 @@
 package com.nfu.oldwork.utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.nfu.oldwork.model.UserInfo;
+
+import java.io.IOException;
 
 /**
  * sharedprefrences 封装工具类 
@@ -12,6 +17,8 @@ import android.content.Context;
 public class SharedPreferencesManager {
 	private static Context sContext;
 	public static SharedPreferencesManager sInstance  = null;
+	private static UserInfo userInfo;
+
 	public static void createInstance(Context context) {
 		if(sInstance == null ){
 			sInstance = new SharedPreferencesManager(context);
@@ -21,7 +28,7 @@ public class SharedPreferencesManager {
 	private SharedPreferencesManager(Context context) {
 		sContext = context;
 	}
-	
+
 	public static String getString(String name ,String key ,String defValue){
 		if(sInstance != null && sContext != null){
 			return  sContext.getSharedPreferences(name, Context.MODE_PRIVATE).getString(key, defValue);
@@ -58,6 +65,39 @@ public class SharedPreferencesManager {
 			return  sContext.getSharedPreferences(name, Context.MODE_PRIVATE).edit().putBoolean(key, value).commit();
 		}
 		return false;
+	}
+	//下边是对实体类和集合转换为字符串的存储和读取操作
+	public  static  synchronized void putUser(String name,String key,UserInfo userInfo){
+
+		String str="";
+		try {
+			str=SerializableUtil.objToStr(userInfo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(sInstance != null && sContext != null){
+			  sContext.getSharedPreferences(name, Context.MODE_PRIVATE).edit().putString(key, str).commit();
+		}
+
+
+	}
+	public  static synchronized UserInfo getUser(String name ,String key ,String defValue){
+		if (userInfo==null){
+			userInfo=new UserInfo();
+			String str ="";
+			if(sInstance != null && sContext != null){
+				 str =	sContext.getSharedPreferences(name, Context.MODE_PRIVATE).getString(key,defValue);
+			}
+			try {
+				Object object=SerializableUtil.strToObj(str);
+				if (object!=null){
+					userInfo= (UserInfo) object;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return userInfo;
 	}
 	
 }
