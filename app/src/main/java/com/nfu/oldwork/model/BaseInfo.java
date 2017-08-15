@@ -1,10 +1,12 @@
 package com.nfu.oldwork.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2017-7-25.
  */
 
-public class BaseInfo {
+public class BaseInfo implements Serializable{
 
     /**
      * iResult : 状态代码800=保存成功|100=保存失败|101=参数错误|102系统异常
@@ -28,5 +30,13 @@ public class BaseInfo {
 
     public void setStrError(String strError) {
         this.strError = strError;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseInfo{" +
+                "iResult='" + iResult + '\'' +
+                ", strError='" + strError + '\'' +
+                '}';
     }
 }
