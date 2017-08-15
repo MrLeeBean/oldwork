@@ -56,6 +56,7 @@
         android:layout_height="@dimen/magin_48"
         android:layout_marginTop="@dimen/magin_8"
         android:clickable="true"
+        android:visibility="gone"
         android:foreground="?android:attr/selectableItemBackground">
 
         <RelativeLayout

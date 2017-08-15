@@ -74,8 +74,8 @@ public class MineFragment extends BaseFragment{
             card_view4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PersonDetailFragment personDetailFragment = new PersonDetailFragment();
-                    gotoFragment(personDetailFragment);
+                    PersonalInfoFragment personalInfoFragment = new PersonalInfoFragment();
+                    gotoFragment(personalInfoFragment);
                 }
             });
             loginTv.setVisibility(View.GONE);
@@ -116,8 +116,5 @@ public class MineFragment extends BaseFragment{
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
+
 }
