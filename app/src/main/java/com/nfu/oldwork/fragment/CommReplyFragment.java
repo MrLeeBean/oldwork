@@ -30,6 +30,7 @@ import com.nfu.oldwork.model.ReplyInfo;
 import com.nfu.oldwork.model.ReplyModel;
 import com.nfu.oldwork.utils.ImageUtils;
 import com.nfu.oldwork.utils.LogUtil;
+import com.nfu.oldwork.utils.SharedPreferencesManager;
 import com.nfu.oldwork.utils.ToastUtil;
 import com.nfu.oldwork.view.ButtonExtendM;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -79,6 +80,7 @@ public class CommReplyFragment extends BaseFragment {
     int index = 0;
     private int[] arrIds = null;
     private String[] titles = null;
+    private String id = null;
 
     @Nullable
     @Override
@@ -92,6 +94,8 @@ public class CommReplyFragment extends BaseFragment {
 
     @Override
     protected void loadData() {
+        Bundle bundle = getArguments();
+        id = bundle.getString("id");
         arrIds = getResources().getIntArray(R.array.comtype_arr_id);
         titles = getResources().getStringArray(R.array.comtype_arr);
     }
@@ -127,10 +131,10 @@ public class CommReplyFragment extends BaseFragment {
                     tv_release.setText("发布中...");
                     ReplyModel replyModel = new ReplyModel();
                     replyModel.setSignKey(ApiConfig.signKey);
-                    replyModel.setId(0);
+                    replyModel.setId(id);
                     replyModel.setContent(ed_question.getText().toString());
-                    replyModel.setRespondPeople("aa");
-                    replyModel.setRespondPeopleId("1224");
+                    replyModel.setRespondPeople(SharedPreferencesManager.getUser("userinfo","UserInfo",null).getUserName());
+                    replyModel.setRespondPeopleId(SharedPreferencesManager.getUser("userinfo","UserInfo",null).getUserId());
                     replyModel.setStrBase64(getImageCode(path1));
                     String str = new Gson().toJson(replyModel);
                     ApiManager.getInstance().postCommResponse(str, new StringCallback() {

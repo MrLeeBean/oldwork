@@ -6,7 +6,7 @@ package com.nfu.oldwork.model;
 
 public class ReplyModel {
     private int signKey;
-    private int id;
+    private String id;
     private String title;
     private String content;
     private String respondPeople;
@@ -21,11 +21,11 @@ public class ReplyModel {
         this.signKey = signKey;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
