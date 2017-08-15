@@ -15,6 +15,7 @@ import com.nfu.oldwork.R;
 import com.nfu.oldwork.config.NfuResource;
 import com.nfu.oldwork.model.CommunicationInfo;
 import com.nfu.oldwork.model.NewsModel;
+import com.nfu.oldwork.utils.AppUtils;
 import com.nfu.oldwork.utils.DensityUtil;
 
 import java.util.List;
@@ -67,8 +68,8 @@ public class CommunicationListAdapter extends RecyclerView.Adapter {
             }
             holder1.title.setText(newsModel.getTitle());
             holder1.name.setText(newsModel.getReleasePeople());
-            holder1.tv_eye.setText(newsModel.getViewCount());
-            holder1.tv_reply.setText(newsModel.getRespondCount());
+            holder1.tv_eye.setText(AppUtils.str2Num(newsModel.getViewCount()));
+            holder1.tv_reply.setText(AppUtils.str2Num(newsModel.getRespondCount()));
             holder1.tv_time.setText(newsModel.getCreatedate());
         }
 

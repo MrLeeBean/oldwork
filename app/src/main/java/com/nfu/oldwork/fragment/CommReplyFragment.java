@@ -26,6 +26,8 @@ import com.nfu.oldwork.activity.HomeActivity;
 import com.nfu.oldwork.config.ApiConfig;
 import com.nfu.oldwork.manager.ApiManager;
 import com.nfu.oldwork.model.QuestionModel;
+import com.nfu.oldwork.model.ReplyInfo;
+import com.nfu.oldwork.model.ReplyModel;
 import com.nfu.oldwork.utils.ImageUtils;
 import com.nfu.oldwork.utils.LogUtil;
 import com.nfu.oldwork.utils.ToastUtil;
@@ -46,10 +48,10 @@ import okhttp3.Call;
  * Created by Administrator on 2017/8/11.
  */
 
-public class CommQuestionFragment extends BaseFragment {
+public class CommReplyFragment extends BaseFragment {
 
-    @BindView(R.id.sp_conditon)
-    Spinner sp_condition;
+    @BindView(R.id.tv_title)
+    Spinner tv_title;
     @BindView(R.id.et_question)
     EditText ed_question;
     @BindView(R.id.btn_upload1)
@@ -72,8 +74,6 @@ public class CommQuestionFragment extends BaseFragment {
      */
     public String imagePath;
     private String path1 = null;
-    private String path2 = null;
-    private String path3 = null;
 
 
     int index = 0;
@@ -99,18 +99,7 @@ public class CommQuestionFragment extends BaseFragment {
     @Override
     protected void initView() {
         ((HomeActivity) getActivity()).setOnFragmentResult(onFragmentResult);
-        sp_condition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                index = position;
-                LogUtil.i("CommunicateFragment--->setOnItemSelectedListener--->index" + index);
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         tv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,21 +125,18 @@ public class CommQuestionFragment extends BaseFragment {
                 } else {
                     tv_release.setClickable(false);
                     tv_release.setText("发布中...");
-                    QuestionModel questionModel = new QuestionModel();
-                    questionModel.setSignKey(ApiConfig.signKey);
-                    questionModel.setId(0);
-                    questionModel.setReleasePeopleId("111212");
-                    questionModel.setTitle(titles[index]);
-                    questionModel.setReleasePeople("张三" + ((int) (Math.random() * 10)));
-                    questionModel.setContent(ed_question.getText().toString());
-                    questionModel.setCommunicationType(arrIds[index]);
-                    questionModel.setOperType(1);
-                    questionModel.setStrBase64(getImageCode(path1));
-                    String str = new Gson().toJson(questionModel);
-                    ApiManager.getInstance().postCommQuestion(str, new StringCallback() {
+                    ReplyModel replyModel = new ReplyModel();
+                    replyModel.setSignKey(ApiConfig.signKey);
+                    replyModel.setId(0);
+                    replyModel.setContent(ed_question.getText().toString());
+                    replyModel.setRespondPeople("aa");
+                    replyModel.setRespondPeopleId("1224");
+                    replyModel.setStrBase64(getImageCode(path1));
+                    String str = new Gson().toJson(replyModel);
+                    ApiManager.getInstance().postCommResponse(str, new StringCallback() {
                         @Override
                         public void onError(Call call, Exception e, int id) {
-                            LogUtil.i("CommQuestionFragment--->postOpinionFeedBack--->onError--->" + e);
+                            LogUtil.i("CommReplyFragment--->postCommResponse--->onError--->" + e);
                             ToastUtil.showShortToast(getContext(), R.string.question_str_error);
                             tv_release.setText("发布");
                             tv_release.setClickable(true);
@@ -158,7 +144,7 @@ public class CommQuestionFragment extends BaseFragment {
 
                         @Override
                         public void onResponse(String response, int id) {
-                            LogUtil.i("CommQuestionFragment--->postOpinionFeedBack--->onResponse--->" + response);
+                            LogUtil.i("CommReplyFragment--->postCommResponse--->onResponse--->" + response);
                             //ToastUtil.showShortToast(getContext(),R.string.feedback_str_ok);
                             tv_release.setClickable(true);
                             tv_release.setText("发布");

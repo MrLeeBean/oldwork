@@ -4,15 +4,13 @@ package com.nfu.oldwork.model;
  * Created by Administrator on 2017-8-14.
  */
 
-public class QuestionModel {
+public class ReplyModel {
     private int signKey;
     private int id;
     private String title;
     private String content;
-    private String releasePeople;
-    private String releasePeopleId;
-    private int communicationType;
-    private int operType;
+    private String respondPeople;
+    private String respondPeopleId;
     private String strBase64;
 
     public int getSignKey() {
@@ -47,28 +45,20 @@ public class QuestionModel {
         this.content = content;
     }
 
-    public String getReleasePeople() {
-        return releasePeople;
+    public String getRespondPeople() {
+        return respondPeople;
     }
 
-    public void setReleasePeople(String releasePeople) {
-        this.releasePeople = releasePeople;
+    public void setRespondPeople(String respondPeople) {
+        this.respondPeople = respondPeople;
     }
 
-    public int getCommunicationType() {
-        return communicationType;
+    public String getRespondPeopleId() {
+        return respondPeopleId;
     }
 
-    public void setCommunicationType(int communicationType) {
-        this.communicationType = communicationType;
-    }
-
-    public int getOperType() {
-        return operType;
-    }
-
-    public void setOperType(int operType) {
-        this.operType = operType;
+    public void setRespondPeopleId(String respondPeopleId) {
+        this.respondPeopleId = respondPeopleId;
     }
 
     public String getStrBase64() {
@@ -77,13 +67,5 @@ public class QuestionModel {
 
     public void setStrBase64(String strBase64) {
         this.strBase64 = strBase64;
-    }
-
-    public String getReleasePeopleId() {
-        return releasePeopleId;
-    }
-
-    public void setReleasePeopleId(String releasePeopleId) {
-        this.releasePeopleId = releasePeopleId;
     }
 }
