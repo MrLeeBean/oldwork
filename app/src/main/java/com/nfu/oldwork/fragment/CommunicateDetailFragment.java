@@ -1,14 +1,12 @@
 package com.nfu.oldwork.fragment;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,21 +15,24 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
-import com.baoyz.actionsheet.ActionSheet;
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.nfu.oldwork.R;
+import com.nfu.oldwork.adapter.CommunicationDetailListAdapter;
 import com.nfu.oldwork.adapter.CommunicationListAdapter;
 import com.nfu.oldwork.config.ApiConfig;
 import com.nfu.oldwork.manager.ApiManager;
+import com.nfu.oldwork.model.CommDetail;
 import com.nfu.oldwork.model.CommunicationInfo;
 import com.nfu.oldwork.model.CommunicationList;
 import com.nfu.oldwork.model.CommunicationModel;
-import com.nfu.oldwork.model.NewsList;
 import com.nfu.oldwork.model.NewsListModel;
-import com.nfu.oldwork.model.NewsModel;
+import com.nfu.oldwork.model.QueryModel;
+import com.nfu.oldwork.model.ReplyInfo;
+import com.nfu.oldwork.utils.AppUtils;
 import com.nfu.oldwork.utils.LogUtil;
 import com.nfu.oldwork.view.ActionSheetWindow;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -39,21 +40,26 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.Call;
-import okhttp3.Headers;
 
 /**
  * Created by Administrator on 2017/8/11.
  */
 
-public class CommunicateFragment extends BaseFragment{
-    @BindView(R.id.iv_publish)
-    ImageView iv_publish;
-    @BindView(R.id.sp_conditon)
-    Spinner sp_condition;
+public class CommunicateDetailFragment extends BaseFragment{
+    @BindView(R.id.iv_back)
+    ImageView iv_back;
+
     @BindView(R.id.communicationList)
     XRecyclerView communicationlist;
+    @BindView(R.id.tv_title)
+    TextView tv_tile;
+    @BindView(R.id.tv_eye)
+    TextView tv_eye;
+    @BindView(R.id.tv_reply)
+    TextView tv_reply;
+    @BindView(R.id.card_view)
+    CardView cardView;
     //@BindView(R.id.iv_nodata)
     //ImageView iv_nodata;
 
@@ -62,8 +68,9 @@ public class CommunicateFragment extends BaseFragment{
     private int c_recordCount = 0;
     private final static int REFRESH_TYPE = 1001;
     private final static int LOADMORE_TYPE = 1002;
-    private CommunicationListAdapter communicationListAdapter;
+    private CommunicationDetailListAdapter detailListAdapter;
     private ActionSheetWindow commitWindow;
+    private String id = null;
 
     int index = 0;
     private int[] arrIds = new int[]{8007,8008,8009,8010,8011,8012};
@@ -71,55 +78,40 @@ public class CommunicateFragment extends BaseFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.e("HomeFragment", "CommunicateFragment **** onCreateView...");
-        bindView(inflater,R.layout.communicate_fragment,container);
+        bindView(inflater,R.layout.communicate_detail_fragment,container);
         initView();
         loadData();
         return rootView;
     }
     @Override
     protected void loadData() {
-        //getNormalList(0,0,REFRESH_TYPE);
+        Bundle bundle = getArguments();
+        id = bundle.getString("id");
+        //jsonStr = "{\"signKey\":" + ApiConfig.signKey + ",\"id\":\"" + id + "\"}";
+        getNormalList(0,0,REFRESH_TYPE);
     }
 
     @Override
     protected void initView() {
-        sp_condition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                index = position;
-                LogUtil.i("CommunicateFragment--->setOnItemSelectedListener--->index"+index);
-                getNormalList(0,0,REFRESH_TYPE);
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
-
-        iv_publish.setOnClickListener(new View.OnClickListener() {
+        iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showInform();
-                /*CommQuestionFragment commQuestionFragment = new CommQuestionFragment();
-                gotoDetailFragment(commQuestionFragment);*/
+                getFragmentManager().popBackStack();
             }
         });
 
-        communicationListAdapter = new CommunicationListAdapter(getContext(), new CommunicationListAdapter.IOnDetailListener() {
+        detailListAdapter = new CommunicationDetailListAdapter(getContext(), new CommunicationDetailListAdapter.IOnDetailListener() {
             @Override
-            public void onDetailListener(CommunicationInfo model) {
-                CommunicateDetailFragment communicateDetailFragment = new CommunicateDetailFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("id",model.getId());
-                communicateDetailFragment.setArguments(bundle);
-                gotoDetailFragment(communicateDetailFragment);
+            public void onDetailListener(ReplyInfo model) {
+
             }
         });
         communicationlist.setLayoutManager(new LinearLayoutManager(getContext()));
         communicationlist.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         communicationlist.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-        communicationlist.setAdapter(communicationListAdapter);
+        communicationlist.setAdapter(detailListAdapter);
         // policy_recyclerview.addItemDecoration(new MyItemDecoration(getContext(),MyItemDecoration.VERTICAL_LIST));
         communicationlist.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
@@ -136,10 +128,14 @@ public class CommunicateFragment extends BaseFragment{
             }
         });
 
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInform();
+            }
+        });
     }
 
-    private String[] informs = new String[]{"我要提问"};
-    private int gotoIndex = -1;
     private void showInform(){
        if (commitWindow==null){
            commitWindow = new ActionSheetWindow(getContext(), new View.OnClickListener() {
@@ -158,20 +154,21 @@ public class CommunicateFragment extends BaseFragment{
                            break;
                    }
                }
-           }).setText("我要提问");
+           }).setText("回复");
        }
        commitWindow.showAtLocation(rootView, Gravity.BOTTOM| Gravity.CENTER_HORIZONTAL, 0, 0);
     }
 
     private void getNormalList(final int currentPage, int iRecordCount, final int type) {
-        final CommunicationModel communicationModel = new CommunicationModel();
-        communicationModel.setSignKey(ApiConfig.signKey);
-        communicationModel.setTypeId(arrIds[index]);
-        communicationModel.setiPageSize(pageSize);
-        communicationModel.setiCurrentPage(currentPage);
-        communicationModel.setiRecordCount(iRecordCount);
-        String str = new Gson().toJson(communicationModel);
-        ApiManager.getInstance().getCommunicationList(str, new StringCallback() {
+        QueryModel queryModel = new QueryModel();
+        queryModel.setId(id);
+        queryModel.setSignKey(ApiConfig.signKey);
+        queryModel.setiPageSize(pageSize);
+        queryModel.setiCurrentPage(c_currentPage);
+        queryModel.setiRecordCount(c_recordCount);
+        String jsonStr = new Gson().toJson(queryModel);
+
+        ApiManager.getInstance().getCommunicationDetail(jsonStr, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 LogUtil.i("CommunicateFragment--->getNormalList--->onError::" + e);
@@ -188,33 +185,33 @@ public class CommunicateFragment extends BaseFragment{
                 LogUtil.i("CommunicateFragment--->getNormalList--->onResponse::" + response);
                 NewsListModel models = new Gson().fromJson(response,NewsListModel.class);
                 LogUtil.i("CommunicateFragment--->getNormalList--->NewsListModel::" + models);
-                CommunicationList communicationList = new Gson().fromJson(models.getStrResult(),CommunicationList.class);
-                LogUtil.i("CommunicateFragment--->getNormalList--->communicationList::" + communicationList);
+                CommDetail details = new Gson().fromJson(models.getStrResult(),CommDetail.class);
+                LogUtil.i("CommunicateFragment--->getNormalList--->CommDetail::" + details);
                 if (REFRESH_TYPE==type){
                     communicationlist.refreshComplete();
-                    List<CommunicationInfo> commList = communicationList.getData();
-                    if (commList!=null&&commList.size()>0){
+                    if (details!=null){
                        // communicationlist.setVisibility(View.VISIBLE);
                        // iv_nodata.setVisibility(View.INVISIBLE);
-                        c_currentPage = communicationList.getCurrentPage();
+                        c_currentPage = details.getCurrentPage();
                         c_currentPage++;
-                        c_recordCount = communicationList.getRecordCount();
-
-
+                        c_recordCount = details.getRecordCount();
+                        tv_tile.setText(details.getTitle());
+                        tv_eye.setText(AppUtils.str2Num(details.getViewCount()));
+                        tv_reply.setText(AppUtils.str2Num(details.getRespondCount()));
                     }
-                    communicationListAdapter.setNewsData(commList);
+                    detailListAdapter.setNewsData(details);
                 }else {
                     communicationlist.loadMoreComplete();
-                    List<CommunicationInfo> commList = communicationList.getData();
-                    if (commList!=null&&commList.size()>0){
-                        if (c_currentPage<=communicationList.getCurrentPage()){
-                            c_currentPage = communicationList.getCurrentPage();
+                    if (details!=null){
+                        if (c_currentPage <= details.getCurrentPage()){
+                            c_currentPage = details.getCurrentPage();
                             c_currentPage++;
-                            c_recordCount = communicationList.getRecordCount();
-                            communicationListAdapter.addNewsData(commList);
+                            c_recordCount = details.getRecordCount();
+                            detailListAdapter.addNewsData(details);
                         }
-
-
+                        tv_tile.setText(details.getTitle());
+                        tv_eye.setText(AppUtils.str2Num(details.getViewCount()));
+                        tv_reply.setText(AppUtils.str2Num(details.getRespondCount()));
                     }
                 }
             }
@@ -222,7 +219,7 @@ public class CommunicateFragment extends BaseFragment{
     }
 
     private void gotoDetailFragment(Fragment fragment){
-        FragmentManager fragmentManager = CommunicateFragment.this.getFragmentManager();
+        FragmentManager fragmentManager = CommunicateDetailFragment.this.getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         //fragmentTransaction.hide(CommunicateFragment.this);
         fragmentTransaction.replace(R.id.activity_main_content_frameLayout , fragment);

@@ -3,6 +3,7 @@
     <string name="top_bar_home_title">北京老龄工作平台</string>
     <string name="top_bar_study_title">政策和文件</string>
     <string name="top_bar_commu_title">交流列表</string>
+    <string name="top_bar_commu_detail_title">帖子详情</string>
     <string name="top_bar_mine_title">个人</string>
     <string name="top_bar_person_title">个人详情</string>
     <string name="top_bar_personInfo_title">个人资料</string>

@@ -196,4 +196,14 @@ public class ApiManager {
         LogUtil.i("ApiManager--->postCommQuestion--->url::"+url + ",jsonStr::"+jsonStr);
         NetUtil.doPost(url,jsonStr,callback);
     }
+    public void getCommunicationDetail(String jsonStr,StringCallback callback){
+        String url = ConnectUrl.getCommunicationDetail;
+        LogUtil.i("ApiManager--->getCommunicationDetail--->url::"+url + ",jsonStr::"+jsonStr);
+        NetUtil.doPost(url,jsonStr,callback);
+    }
+    public void postCommResponse(String jsonStr,StringCallback callback){
+        String url = ConnectUrl.GetAppUserRespond;
+        LogUtil.i("ApiManager--->postCommResponse--->url::"+url + ",jsonStr::"+jsonStr);
+        NetUtil.doPost(url,jsonStr,callback);
+    }
 }
