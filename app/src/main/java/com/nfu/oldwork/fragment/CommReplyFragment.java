@@ -12,7 +12,6 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -25,8 +24,6 @@ import com.nfu.oldwork.R;
 import com.nfu.oldwork.activity.HomeActivity;
 import com.nfu.oldwork.config.ApiConfig;
 import com.nfu.oldwork.manager.ApiManager;
-import com.nfu.oldwork.model.QuestionModel;
-import com.nfu.oldwork.model.ReplyInfo;
 import com.nfu.oldwork.model.ReplyModel;
 import com.nfu.oldwork.utils.ImageUtils;
 import com.nfu.oldwork.utils.LogUtil;
@@ -52,7 +49,7 @@ import okhttp3.Call;
 public class CommReplyFragment extends BaseFragment {
 
     @BindView(R.id.tv_title)
-    Spinner tv_title;
+    TextView tv_title;
     @BindView(R.id.et_question)
     EditText ed_question;
     @BindView(R.id.btn_upload1)
@@ -81,12 +78,13 @@ public class CommReplyFragment extends BaseFragment {
     private int[] arrIds = null;
     private String[] titles = null;
     private String id = null;
+    private String title = null;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         LogUtil.i("CommQuestionFragment **** onCreateView...");
-        bindView(inflater, R.layout.communicate_question_fragment, container);
+        bindView(inflater, R.layout.communicate_reply_fragment, container);
         initView();
         loadData();
         return rootView;
@@ -96,6 +94,8 @@ public class CommReplyFragment extends BaseFragment {
     protected void loadData() {
         Bundle bundle = getArguments();
         id = bundle.getString("id");
+        title = bundle.getString("title");
+        tv_title.setText(title);
         arrIds = getResources().getIntArray(R.array.comtype_arr_id);
         titles = getResources().getStringArray(R.array.comtype_arr);
     }

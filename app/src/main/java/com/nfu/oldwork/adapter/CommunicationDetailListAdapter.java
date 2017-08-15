@@ -79,6 +79,7 @@ public class CommunicationDetailListAdapter extends RecyclerView.Adapter {
             }
             detailViewHolder.tv_content.setText(replyInfo.getRespondContent());
             detailViewHolder.tv_time.setText(replyInfo.getRespondDate());
+            detailViewHolder.name.setText(replyInfo.getRespondPeople());
             if (position == 0){
                 replyInfo.setSquence("楼主");
             }else if (position == 1){
@@ -88,6 +89,7 @@ public class CommunicationDetailListAdapter extends RecyclerView.Adapter {
             }else {
                 replyInfo.setSquence((position+1)+"楼");
             }
+            detailViewHolder.tv_sequence.setText(replyInfo.getSquence());
         }
 
     }

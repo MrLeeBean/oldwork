@@ -24,6 +24,7 @@ import com.nfu.oldwork.R;
 import com.nfu.oldwork.adapter.CommunicationDetailListAdapter;
 import com.nfu.oldwork.adapter.CommunicationListAdapter;
 import com.nfu.oldwork.config.ApiConfig;
+import com.nfu.oldwork.config.NfuResource;
 import com.nfu.oldwork.manager.ApiManager;
 import com.nfu.oldwork.model.CommDetail;
 import com.nfu.oldwork.model.CommunicationInfo;
@@ -34,6 +35,7 @@ import com.nfu.oldwork.model.QueryModel;
 import com.nfu.oldwork.model.ReplyInfo;
 import com.nfu.oldwork.utils.AppUtils;
 import com.nfu.oldwork.utils.LogUtil;
+import com.nfu.oldwork.utils.ToastUtil;
 import com.nfu.oldwork.view.ActionSheetWindow;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -71,6 +73,7 @@ public class CommunicateDetailFragment extends BaseFragment{
     private CommunicationDetailListAdapter detailListAdapter;
     private ActionSheetWindow commitWindow;
     private String id = null;
+    private String title = null;
 
     int index = 0;
     private int[] arrIds = new int[]{8007,8008,8009,8010,8011,8012};
@@ -145,8 +148,18 @@ public class CommunicateDetailFragment extends BaseFragment{
                    commitWindow.dismiss();
                    switch (v.getId()) {
                        case R.id.takePhotoBtn://
-                           CommQuestionFragment questionFragment = new CommQuestionFragment();
-                           gotoDetailFragment(questionFragment);
+
+                           if(NfuResource.isLoginSuccess){
+                               CommReplyFragment questionFragment = new CommReplyFragment();
+                               Bundle bundle = new Bundle();
+                               bundle.putString("id",id);
+                               bundle.putString("title",title);
+                               questionFragment.setArguments(bundle);
+                               gotoDetailFragment(questionFragment);
+                           }else {
+                               ToastUtil.showShortToast(getContext(),"您还未登录，不能进行回复！");
+                           }
+
                            break;
                        case R.id.cancelBtn:// 取消
                            break;
@@ -192,6 +205,7 @@ public class CommunicateDetailFragment extends BaseFragment{
                     if (details!=null){
                        // communicationlist.setVisibility(View.VISIBLE);
                        // iv_nodata.setVisibility(View.INVISIBLE);
+                        title = details.getTitle();
                         c_currentPage = details.getCurrentPage();
                         c_currentPage++;
                         c_recordCount = details.getRecordCount();
@@ -203,6 +217,7 @@ public class CommunicateDetailFragment extends BaseFragment{
                 }else {
                     communicationlist.loadMoreComplete();
                     if (details!=null){
+                        title = details.getTitle();
                         if (c_currentPage <= details.getCurrentPage()){
                             c_currentPage = details.getCurrentPage();
                             c_currentPage++;

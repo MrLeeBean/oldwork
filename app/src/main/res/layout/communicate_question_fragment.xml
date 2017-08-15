@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="发表回复"
+            android:text="提问"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_18" />
         <TextView
@@ -43,26 +43,29 @@
             android:textSize="@dimen/text_size_18" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingLeft="@dimen/magin_15"
-        android:paddingTop="@dimen/magin_10"
-        android:text="发表回复"
-        android:background="@color/white"
-        android:textColor="@color/base_red_color"
-        android:textSize="@dimen/text_size_18" />
+        android:layout_height="wrap_content"
+        android:background="@color/white_color">
+        <Spinner
+            android:id="@+id/sp_conditon"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="@dimen/magin_15"
+            android:paddingRight="@dimen/magin_15"
+            android:entries="@array/comtype_arr"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/fl_content"
+        android:layout_marginTop="@dimen/magin_5"
         android:background="@color/white_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <EditText
-            android:id="@+id/et_question"
+            android:id="@+id/et_title"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="60dp"
             android:layout_marginTop="@dimen/magin_10"
             android:layout_marginLeft="@dimen/magin_15"
             android:layout_marginRight="@dimen/magin_15"
@@ -70,6 +73,23 @@
             android:textSize="@dimen/text_size_16"
             android:textColor="@color/color_666"
             android:padding="5dp"
+            android:maxLength="200"
+            android:hint="请输入相关标题信息"
+            android:background="@drawable/nfu_news_bg"/>
+        <EditText
+            android:id="@+id/et_question"
+            android:layout_below="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="@dimen/magin_10"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:layout_marginRight="@dimen/magin_15"
+            android:gravity="start"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/color_666"
+            android:padding="5dp"
+            android:maxLength="500"
+            android:hint="请输入相关内容信息"
             android:background="@drawable/nfu_news_bg"/>
         <FrameLayout
             android:id="@+id/fl_img1"
