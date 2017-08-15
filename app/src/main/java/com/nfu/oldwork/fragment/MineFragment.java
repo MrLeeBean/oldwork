@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nfu.oldwork.R;
+import com.nfu.oldwork.config.NfuResource;
 import com.nfu.oldwork.model.NewsModel;
+import com.nfu.oldwork.model.UserInfo;
 import com.nfu.oldwork.utils.SharedPreferencesManager;
 
 import butterknife.BindView;
@@ -32,6 +35,8 @@ public class MineFragment extends BaseFragment{
     CardView card_view4;
     @BindView(R.id.login_tv)
     TextView loginTv;
+    @BindView(R.id.name_tv)
+    TextView name_tv;
     boolean isLoginSuccess = false;
     @Nullable
     @Override
@@ -48,15 +53,23 @@ public class MineFragment extends BaseFragment{
     @Override
     protected void loadData() {
 
-        Bundle bundle = getArguments();
+       /* Bundle bundle = getArguments();
         if(bundle != null){
             isLoginSuccess = bundle.getBoolean("isLoginSuccess");
-        }
+
+        }*/
+
+
+     /*   UserInfo userInfo = SharedPreferencesManager.getUser("userinfo", "UserInfo", "");
+        if(userInfo!=null){
+            isLoginSuccess =true;
+            loginTv.setClickable(false);
+        }*/
     }
 
     @Override
     protected void initView() {
-        if(isLoginSuccess){
+        if(NfuResource.isLoginSuccess){
             card_view4.setVisibility(View.VISIBLE);
             card_view4.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -65,7 +78,8 @@ public class MineFragment extends BaseFragment{
                     gotoFragment(personDetailFragment);
                 }
             });
-            loginTv.setText(SharedPreferencesManager.getUser("userinfo","UserInfo","").getUserName());
+            loginTv.setVisibility(View.GONE);
+            name_tv.setText(SharedPreferencesManager.getUser("userinfo","UserInfo","").getUserName());
 
         }
         card_view2.setOnClickListener(new View.OnClickListener() {
