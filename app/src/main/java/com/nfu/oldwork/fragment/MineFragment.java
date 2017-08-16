@@ -27,6 +27,8 @@ import butterknife.ButterKnife;
  */
 
 public class MineFragment extends BaseFragment{
+    @BindView(R.id.card_view1)
+    CardView card_view1;
     @BindView(R.id.card_view2)
     CardView card_view2;
     @BindView(R.id.card_view3)
@@ -87,6 +89,13 @@ public class MineFragment extends BaseFragment{
             public void onClick(View v) {
                 SettingFragment settingFragment = new SettingFragment();
                 gotoFragment(settingFragment);
+            }
+        });
+        card_view1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SafeguardDetailFragment safeguardDetailFragment = new SafeguardDetailFragment();
+                gotoFragment(safeguardDetailFragment);
             }
         });
         card_view3.setOnClickListener(new View.OnClickListener() {

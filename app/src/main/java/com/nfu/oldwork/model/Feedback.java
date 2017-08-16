@@ -10,6 +10,9 @@ public class Feedback {
     private String contacterName;
     private String contacterMobile;
     private int opinionType;
+    private String imgStrFirst;
+    private String imgStrSecond;
+    private String imgStrThird;
 
     public int getSignKey() {
         return signKey;
@@ -49,5 +52,29 @@ public class Feedback {
 
     public void setOpinionType(int opinionType) {
         this.opinionType = opinionType;
+    }
+
+    public String getImgStrFirst() {
+        return imgStrFirst;
+    }
+
+    public void setImgStrFirst(String imgStrFirst) {
+        this.imgStrFirst = imgStrFirst;
+    }
+
+    public String getImgStrSecond() {
+        return imgStrSecond;
+    }
+
+    public void setImgStrSecond(String imgStrSecond) {
+        this.imgStrSecond = imgStrSecond;
+    }
+
+    public String getImgStrThird() {
+        return imgStrThird;
+    }
+
+    public void setImgStrThird(String imgStrThird) {
+        this.imgStrThird = imgStrThird;
     }
 }

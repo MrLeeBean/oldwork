@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:nfu="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/fragment_title_bar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/tv_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的问题"
+            android:textSize="@dimen/text_size_18"
+            android:textColor="@color/base_red_color"
+            android:layout_marginTop="@dimen/magin_15"
+            />
+        <EditText
+            android:id="@+id/et_question"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/magin_10"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:layout_marginRight="@dimen/magin_15"
+            android:gravity="start"
+            android:textSize="@dimen/text_size_16"
+            android:hint="@string/right_str1"
+            android:textColor="@color/color_666"
+            android:padding="5dp"
+            android:background="@drawable/nfu_news_bg"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/magin_100"
+            android:layout_marginTop="@dimen/magin_10"
+            android:layout_marginLeft="@dimen/magin_15"
+            android:layout_marginRight="@dimen/magin_15">
+            <!--<ImageView
+                android:id="@+id/iv_img1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/def_turn"
+                android:layout_marginRight="1dp"/>-->
+            <FrameLayout
+                android:id="@+id/fl_img1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/def_turn"
+                android:layout_marginRight="1dp">
+                <ImageView
+                    android:id="@+id/iv_upload_im1"
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <com.nfu.oldwork.view.ButtonExtendM
+                    android:id="@+id/btn_upload1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    nfu:buttonType="check"
+                    nfu:drec="iconUp"
+                    nfu:iconDrawable="@drawable/btn_auth_upload"
+                    nfu:nfuTextColor="@color/color_666"
+                    nfu:nfuTextSize="15.8sp"
+                    nfu:scType="CENTER"
+                    nfu:spacing="15.5dp"
+                    nfu:text="点击上传照片" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_img2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/def_turn"
+                android:layout_marginRight="1dp">
+                <ImageView
+                    android:id="@+id/iv_upload_im2"
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <com.nfu.oldwork.view.ButtonExtendM
+                    android:id="@+id/btn_upload2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    nfu:buttonType="check"
+                    nfu:drec="iconUp"
+                    nfu:iconDrawable="@drawable/btn_auth_upload"
+                    nfu:nfuTextColor="@color/color_666"
+                    nfu:nfuTextSize="15.8sp"
+                    nfu:scType="CENTER"
+                    nfu:spacing="15.5dp"
+                    nfu:text="点击上传照片" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_img3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/def_turn">
+                <ImageView
+                    android:id="@+id/iv_upload_im3"
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <com.nfu.oldwork.view.ButtonExtendM
+                    android:id="@+id/btn_upload3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    nfu:buttonType="check"
+                    nfu:drec="iconUp"
+                    nfu:iconDrawable="@drawable/btn_auth_upload"
+                    nfu:nfuTextColor="@color/color_666"
+                    nfu:nfuTextSize="15.8sp"
+                    nfu:scType="CENTER"
+                    nfu:spacing="15.5dp"
+                    nfu:text="点击上传照片" />
+
+            </FrameLayout>
+           <!-- <ImageView
+                android:id="@+id/iv_img2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/def_turn"
+                android:layout_marginRight="1dp"/>
+            <ImageView
+                android:id="@+id/iv_img3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/def_turn"
+                android:layout_weight="1" />-->
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/live_setting_groupname_ll"
+            android:layout_marginTop="@dimen/magin_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/live_setting_groupname_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/magin_60"
+                android:text="联系人姓名"
+                android:textColor="@color/base_red_color"
+                android:textSize="@dimen/text_size_18" />
+
+            <EditText
+                android:id="@+id/constacts_msg_name_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/magin_5"
+                android:layout_marginRight="@dimen/magin_60"
+                android:textColor="@color/color_999"
+                android:ems="15"
+                android:textSize="@dimen/text_size_15" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/live_setting_notice_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/magin_15">
+
+            <TextView
+                android:id="@+id/live_setting_noticeinfo_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/magin_60"
+                android:text="联系号码    "
+                android:textColor="@color/base_red_color"
+                android:textSize="@dimen/text_size_18" />
+
+            <EditText
+                android:id="@+id/constacts_msg_number_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="@dimen/magin_60"
+                android:ems="16"
+                android:inputType="number"
+                android:textColor="@color/color_999"
+                android:textSize="@dimen/text_size_15" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/base_red_color"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_addr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/magin_20"
+        android:layout_marginRight="@dimen/magin_15"
+        android:layout_marginLeft="@dimen/magin_15"
+        android:text="地址：北京丰台区丰台路口东里198号致诚公益律师楼"
+        android:textColor="@color/base_red_color"
+        android:textSize="@dimen/text_size_15" />
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/magin_10"
+        android:layout_marginRight="@dimen/magin_15"
+        android:layout_marginLeft="@dimen/magin_15"
+        android:text="老年维权免费咨询专线：社区服务热线96156或010-83811699"
+        android:textColor="@color/base_red_color"
+        android:textSize="@dimen/text_size_15" />
+</LinearLayout>

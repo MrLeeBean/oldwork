@@ -28,7 +28,8 @@
     <string name="home_fragment_modify_call_cacle">取消</string>
     <string name="home_fragment_modify_call_title">确定拨打</string>
 
-
+    <string name="right_str1">若您发现有涉嫌侵害老年人权益的人、事件或涉嫌欺诈等虚假信息，请及时举报，共同为老年人筑起安全防线！</string>
+    <string name="right_str2">若您的合法权益受到侵害，可向政府老年维权服务工作站寻求法律帮助！</string>
 
 
     <string name="home_fragment_old_consult_str">养老资讯</string>
