@@ -22,7 +22,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/btn_schedule"
+        android:id="@+id/btn_queryfealty"
         android:layout_marginRight="@dimen/magin_15"
         android:layout_marginLeft="@dimen/magin_15"
         android:layout_marginTop="@dimen/magin_80"
@@ -34,7 +34,7 @@
         android:layout_height="@dimen/magin_48" />
 
     <Button
-        android:id="@+id/btn_balance"
+        android:id="@+id/btn_querycard"
         android:layout_marginRight="@dimen/magin_15"
         android:layout_marginLeft="@dimen/magin_15"
         android:layout_marginTop="@dimen/magin_40"

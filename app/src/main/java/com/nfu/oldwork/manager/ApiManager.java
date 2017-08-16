@@ -206,4 +206,10 @@ public class ApiManager {
         LogUtil.i("ApiManager--->postCommResponse--->url::"+url + ",jsonStr::"+jsonStr);
         NetUtil.doPost(url,jsonStr,callback);
     }
+
+    public void getFilialStar(String jsonStr,StringCallback callback){
+        String url = ConnectUrl.GetFilialStar;
+        LogUtil.i("ApiManager--->getFilialStar--->url::"+url + ",jsonStr::"+jsonStr);
+        NetUtil.doPost(url,jsonStr,callback);
+    }
 }

@@ -49,4 +49,5 @@ dependencies {
     compile 'com.kyleduo.switchbutton:library:1.4.6'
     compile 'com.baoyz.actionsheet:library:1.1.7'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.contrarywind:Android-PickerView:3.2.5'
 }

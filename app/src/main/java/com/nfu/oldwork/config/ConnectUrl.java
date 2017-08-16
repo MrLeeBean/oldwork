@@ -38,4 +38,5 @@ public interface ConnectUrl {
     String getCommunicationDetail = baseUrl + "/bjllapp/appUserCommunication/appUserCommunicationAction.do?method=GetCommunicationDetail";  //获取交流详情
     String GetAppUserRespond = baseUrl + "/bjllapp/appUserCommunication/appUserCommunicationAction.do?method=GetAppUserRespond"; //回复交流详情
     String GetLoginAppYlUser = baseUrl + "/bjllapp/bjllUserManage/bjllUserManageAction.do?method=GetLoginAppYlUser";  //现有登录
+    String GetFilialStar = baseUrl + "/bjllapp/bjllFwManage/bjllFwManageAction.do?method=GetFilialStar";  //获取孝星信息
 }

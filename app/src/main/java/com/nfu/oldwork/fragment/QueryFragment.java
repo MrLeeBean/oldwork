@@ -31,6 +31,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import butterknife.BindView;
 import okhttp3.Call;
 
+import static com.nfu.oldwork.R.id.btn_querycard;
 import static com.nfu.oldwork.R.id.tv_title;
 
 /**
@@ -38,8 +39,10 @@ import static com.nfu.oldwork.R.id.tv_title;
  */
 
 public class QueryFragment extends BaseFragment {
-
-
+    @BindView(R.id.btn_queryfealty)
+    Button btn_queryfealty;
+    @BindView(R.id.btn_querycard)
+    Button btn_querycard;
 
     @Nullable
     @Override
@@ -57,7 +60,19 @@ public class QueryFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        btn_queryfealty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                QueryFealtyFragment queryFealtyFragment = new QueryFealtyFragment();
+                gotoDetailFragment(queryFealtyFragment);
+            }
+        });
+        btn_querycard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 
     }
 
