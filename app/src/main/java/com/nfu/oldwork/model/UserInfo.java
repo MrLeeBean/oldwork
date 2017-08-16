@@ -14,22 +14,85 @@ public class UserInfo extends BaseInfo implements Serializable {
      "userId":"用户ID",
      "userName":"用户名称",
      "cityId":"所在市级ID",
-     "countryId":"所在区县ID",
-     "streetId":"所在街道ID,
-     "communityId":"所在社区ID",
+     "cityName":"所属市级名称,
+     "countryId":"所属区县ID",
+     "countryName":"所属区县名称",
+     "streetId":"所属街道ID",
+     "streetName":"所属街道名称",
+     "communityId":"所属社区ID",
+     "communityName":"所属社区名称",
+     "deptName":"所属部门名称",
      "levelId":"用户级别",
-     "strError":"错误信息"
+     "strError":"错误信息
      */
+
 
     private String loginId;
     private String userId;
     private String userName;
     private String cityId;
-    private String countryId;
-    private String streetId;
     private String communityId;
+    private String countryId;
+    private String cityName;
+    private String countryName;
+    private String streetName;
+    private String communityName;
+    private String deptName;
+    private String streetId;
+
     private String levelId;
     private LoginInfo loginInfo;
+    private boolean isLoginSuccess;
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public String getCommunityName() {
+        return communityName;
+    }
+
+    public void setCommunityName(String communityName) {
+        this.communityName = communityName;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+
+    public boolean isLoginSuccess() {
+        return isLoginSuccess;
+    }
+
+    public void setLoginSuccess(boolean loginSuccess) {
+        isLoginSuccess = loginSuccess;
+    }
+
+
 
     public LoginInfo getLoginInfo() {
         return loginInfo;
@@ -108,7 +171,6 @@ public class UserInfo extends BaseInfo implements Serializable {
         this.levelId = levelId;
     }
 
-
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -116,11 +178,17 @@ public class UserInfo extends BaseInfo implements Serializable {
                 ", userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +
                 ", cityId='" + cityId + '\'' +
-                ", countryId='" + countryId + '\'' +
-                ", streetId='" + streetId + '\'' +
                 ", communityId='" + communityId + '\'' +
+                ", countryId='" + countryId + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", countryName='" + countryName + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", communityName='" + communityName + '\'' +
+                ", deptName='" + deptName + '\'' +
+                ", streetId='" + streetId + '\'' +
                 ", levelId='" + levelId + '\'' +
-                ", loginInfo=" + loginInfo.toString() +
+                ", loginInfo=" + loginInfo +
+                ", isLoginSuccess=" + isLoginSuccess +
                 '}';
     }
 }

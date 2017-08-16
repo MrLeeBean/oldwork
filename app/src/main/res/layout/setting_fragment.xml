@@ -98,44 +98,32 @@
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
+
+
     <android.support.v7.widget.CardView
-        android:id="@+id/card_view3"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/magin_40"
-        android:layout_marginTop="@dimen/magin_5"
-        android:background="@color/list_tiem_bg"
-        android:clickable="true"
         android:visibility="gone"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:id="@+id/logout_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/magin_15"
+        android:layout_marginRight="@dimen/magin_15"
+        android:layout_marginTop="@dimen/magin_32"
+        android:clickable="true"
+        app:cardBackgroundColor="@color/base_red_color"
+        app:cardCornerRadius="@dimen/magin_5"
+        app:contentPaddingLeft="@dimen/magin_15"
+        app:contentPaddingTop="@dimen/padding_top_2">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="@dimen/magin_15"
-            android:paddingRight="@dimen/magin_15">
-            <ImageView
-                android:id="@+id/right_arrow3"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="4dp"
-                android:src="@drawable/right_arrow"
-                android:scaleType="fitXY"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_title3"
-                android:textSize="@dimen/text_size_15"
-                android:textColor="@color/base_red_color"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@id/right_arrow3"
-                android:layout_marginRight="@dimen/magin_10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="负责声明"/>
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/nfu_activity_query_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/magin_125"
+            android:layout_marginTop="@dimen/magin_5"
+            android:text="退出登录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_20" />
     </android.support.v7.widget.CardView>
-
     <android.support.v7.widget.CardView
         android:id="@+id/card_view4"
         android:layout_width="match_parent"

@@ -118,9 +118,10 @@ public class NormaLoginFragment extends BaseFragment {
                         //TODO 处理返回结果  保存信息到sp中跳转到 头像页面
                         NfuResource.isLoginSuccess = true;
                         ToastUtil.showShortToast(getActivity(),"登录成功");
+                        userInfo.setLoginSuccess(true);
                         SharedPreferencesManager.putUser("userinfo","UserInfo",userInfo);
-                        UserInfo user = SharedPreferencesManager.getUser("userinfo", "UserInfo", "");
-                        LogUtil.i("NormaLoginFragment--->postCheckLogin--->getuserInfoFromSp-->userInfo ::" + userInfo.toString());
+                       // UserInfo user = SharedPreferencesManager.getUser("userinfo", "UserInfo", "");
+                        //LogUtil.i("NormaLoginFragment--->postCheckLogin--->getuserInfoFromSp-->userInfo ::" + userInfo.toString());
 //                        SharedPreferencesManager.putUser("logininfo","LoginInfo",loginInfo);
                         //    getFragmentManager().popBackStack();
                         MineFragment mineFragment = new MineFragment();

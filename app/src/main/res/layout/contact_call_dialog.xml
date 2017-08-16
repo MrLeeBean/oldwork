@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="500dp"
+    android:layout_height="240dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/call_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/home_fragment_modify_call_title"
+            android:textColor="@color/base_red_color"
+            android:textSize="@dimen/text_size_30" />
+
+        <TextView
+            android:id="@+id/call_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/magin_40"
+            android:gravity="center"
+            android:text="138888889"
+            android:textColor="@color/base_red_color"
+            android:textSize="@dimen/text_size_24" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <View
+            android:id="@+id/dialog_center_view"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true" />
+
+        <Button
+            android:id="@+id/negativeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:ems="6"
+            android:gravity="center"
+            android:text="@string/home_fragment_modify_call_cacle"
+            android:textColor="@drawable/contact_dialog_text_selector"
+            android:textSize="@dimen/text_size_24"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/dialog_center_view"
+            android:layout_toStartOf="@+id/dialog_center_view" />
+
+        <Button
+            android:id="@+id/positiveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:ems="6"
+            android:gravity="center"
+            android:text="@string/home_fragment_modify_call_commit"
+            android:textColor="@drawable/contact_dialog_text_selector"
+            android:textSize="@dimen/text_size_24"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</LinearLayout>

@@ -6,6 +6,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
 
+import com.nfu.oldwork.config.NfuResource;
+import com.nfu.oldwork.model.UserInfo;
 import com.nfu.oldwork.utils.SharedPreferencesManager;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -38,7 +40,12 @@ public class NfuApplication extends Application {
         OkHttpUtils.initClient(okHttpClient);
 
         SharedPreferencesManager.createInstance(this);
-
+        UserInfo user = SharedPreferencesManager.getUser("userinfo", "UserInfo", "");
+        if( user.isLoginSuccess()){
+            NfuResource.isLoginSuccess = true;
+        }else {
+            NfuResource.isLoginSuccess = false;
+        }
 
     }
 }

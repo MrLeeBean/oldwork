@@ -19,7 +19,7 @@ import java.io.IOException;
 public class SharedPreferencesManager {
     private static Context sContext;
     public static SharedPreferencesManager sInstance = null;
-    private static UserInfo userInfo;
+//    private static UserInfo userInfo;
     private static LocalInfo localInfo;
 
 
@@ -93,8 +93,8 @@ public class SharedPreferencesManager {
     }
 
     public static synchronized UserInfo getUser(String name, String key, String defValue) {
-        if (userInfo == null) {
-            userInfo = new UserInfo();
+     //   if (userInfo == null) {
+        UserInfo userInfo = new UserInfo();
             String str = "";
             if (sInstance != null && sContext != null) {
                 str = sContext.getSharedPreferences(name, Context.MODE_PRIVATE).getString(key, defValue);
@@ -107,7 +107,7 @@ public class SharedPreferencesManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+      //  }
         return userInfo;
     }
 

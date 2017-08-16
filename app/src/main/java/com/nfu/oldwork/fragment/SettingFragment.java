@@ -19,6 +19,7 @@ import com.kyleduo.switchbutton.SwitchButton;
 import com.nfu.oldwork.R;
 import com.nfu.oldwork.config.NfuResource;
 import com.nfu.oldwork.model.NewsModel;
+import com.nfu.oldwork.utils.SharedPreferencesManager;
 import com.nfu.oldwork.utils.ToastUtil;
 import com.nfu.oldwork.view.ButtonExtendM;
 
@@ -43,8 +44,8 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     CardView cardView1;
     @BindView(R.id.card_view2)
     CardView cardView2;
-    @BindView(R.id.card_view3)
-    CardView cardView3;
+    @BindView(R.id.logout_cardview)
+    CardView logout_cardview;
     @BindView(R.id.card_view4)
     CardView cardView4;
 
@@ -78,10 +79,13 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         if (NfuResource.getInstance().isUse4G()){
             switchbutton.setChecked(true);
         }
+        if(NfuResource.isLoginSuccess){
+            logout_cardview.setVisibility(View.VISIBLE);
+        }
         tv_title.setText(R.string.setting_str);
 
         cardView1.setOnClickListener(this);
-        cardView3.setOnClickListener(this);
+        logout_cardview.setOnClickListener(this);
         cardView4.setOnClickListener(this);
 
 
@@ -128,7 +132,12 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                     }
                 }).start();
                 break;
-            case R.id.card_view3:
+            case R.id.logout_cardview:
+                //TODO 退出登录
+                SharedPreferencesManager.putUser("userinfo","UserInfo",null);
+                NfuResource.isLoginSuccess = false;
+                MineFragment mineFragment = new MineFragment();
+                gotoFragment(mineFragment);
                 break;
             case R.id.card_view4:
                 break;
@@ -138,11 +147,12 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     private void gotoFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.hide(this);
-        fragmentTransaction.add(R.id.activity_main_content_frameLayout , fragment);
-//        fragmentTransaction.replace(R.id.activity_main_content_frameLayout, fragment);
+//        fragmentTransaction.hide(this);
+//        fragmentTransaction.add(R.id.activity_main_content_frameLayout , fragment);
+        fragmentTransaction.replace(R.id.activity_main_content_frameLayout, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+        ToastUtil.showShortToast(getContext(),"您已退出！");
     }
 
     /**

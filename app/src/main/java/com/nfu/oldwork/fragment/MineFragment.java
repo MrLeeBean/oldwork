@@ -22,6 +22,8 @@ import com.nfu.oldwork.utils.SharedPreferencesManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.nfu.oldwork.utils.SharedPreferencesManager.getUser;
+
 /**
  * Created by Administrator on 2017/8/11.
  */
@@ -76,12 +78,13 @@ public class MineFragment extends BaseFragment{
             card_view4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PersonalInfoFragment personalInfoFragment = new PersonalInfoFragment();
-                    gotoFragment(personalInfoFragment);
+                    UserInfolFragment userInfolFragment = new UserInfolFragment();
+                    gotoFragment(userInfolFragment);
                 }
             });
             loginTv.setVisibility(View.GONE);
-            name_tv.setText(SharedPreferencesManager.getUser("userinfo","UserInfo","").getUserName());
+            String name = SharedPreferencesManager.getUser("userinfo","UserInfo","").getUserName();
+            name_tv.setText(name);
 
         }
         card_view2.setOnClickListener(new View.OnClickListener() {

@@ -27,6 +27,7 @@ import com.nfu.oldwork.R;
 import com.nfu.oldwork.fragment.CommunicateFragment;
 import com.nfu.oldwork.fragment.HomeFragment;
 import com.nfu.oldwork.fragment.MineFragment;
+import com.nfu.oldwork.fragment.QueryFragment;
 import com.nfu.oldwork.fragment.StudyFragment;
 import com.nfu.oldwork.utils.ImageUtils;
 import com.nfu.oldwork.utils.LogUtil;
@@ -54,6 +55,8 @@ public class HomeActivity extends AppCompatActivity {
     ButtonExtendM btnHome;
     @BindView(R.id.btn_study)
     ButtonExtendM btnStudy;
+    @BindView(R.id.btn_query)
+    ButtonExtendM btnQuery;
     @BindView(R.id.btn_communicate)
     ButtonExtendM btnCommunicate;
     @BindView(R.id.btn_mine)
@@ -84,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         unbinder = ButterKnife.bind(this);
-        if(savedInstanceState ==null){
+        if (savedInstanceState == null) {
             setHomeFragment();
         }
         initView();
@@ -118,7 +121,7 @@ public class HomeActivity extends AppCompatActivity {
                 clearSelected();
                 btnHome.setNfuSeleted(true);
                 Fragment fragment = getVisibleFragment();
-                if (fragment==null||!(fragment instanceof HomeFragment)){
+                if (fragment == null || !(fragment instanceof HomeFragment)) {
                     setHomeFragment();
                 }
 
@@ -133,8 +136,19 @@ public class HomeActivity extends AppCompatActivity {
                 clearSelected();
                 btnStudy.setNfuSeleted(true);
                 Fragment fragment = getVisibleFragment();
-                if (fragment==null||!(fragment instanceof StudyFragment)){
+                if (fragment == null || !(fragment instanceof StudyFragment)) {
                     setStudyFragment();
+                }
+            }
+        });
+        btnQuery.setOnClickListener(new ButtonExtendM.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearSelected();
+                btnQuery.setNfuSeleted(true);
+                Fragment fragment = getVisibleFragment();
+                if (fragment == null || !(fragment instanceof QueryFragment)) {
+                    setQueryFragment();
                 }
             }
         });
@@ -148,7 +162,7 @@ public class HomeActivity extends AppCompatActivity {
                 clearSelected();
                 btnCommunicate.setNfuSeleted(true);
                 Fragment fragment = getVisibleFragment();
-                if (fragment==null||!(fragment instanceof CommunicateFragment)){
+                if (fragment == null || !(fragment instanceof CommunicateFragment)) {
                     setCommunicateFragment();
                 }
             }
@@ -162,18 +176,18 @@ public class HomeActivity extends AppCompatActivity {
                 clearSelected();
                 btnMine.setNfuSeleted(true);
                 Fragment fragment = getVisibleFragment();
-                if (fragment==null||!(fragment instanceof MineFragment)){
+                if (fragment == null || !(fragment instanceof MineFragment)) {
                     setMineFragment();
                 }
             }
         });
     }
 
-    private Fragment getVisibleFragment(){
+    private Fragment getVisibleFragment() {
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
-        for (Fragment f:fragments){
-            if (f!=null && f.isVisible()){
-               return f;
+        for (Fragment f : fragments) {
+            if (f != null && f.isVisible()) {
+                return f;
             }
         }
         return null;
@@ -195,10 +209,18 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.activity_main_content_frameLayout, fragment);
         fragmentTransaction.commit();
     }
-  private void setMineFragment() {
+    private void setQueryFragment() {
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-         MineFragment mineFragment = new MineFragment();
+        QueryFragment queryFragment = new QueryFragment();
+        fragmentTransaction.replace(R.id.activity_main_content_frameLayout, queryFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void setMineFragment() {
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        MineFragment mineFragment = new MineFragment();
         fragmentTransaction.replace(R.id.activity_main_content_frameLayout, mineFragment);
         fragmentTransaction.commit();
     }
@@ -207,6 +229,7 @@ public class HomeActivity extends AppCompatActivity {
     private void clearSelected() {
         btnHome.setNfuSeleted(false);
         btnStudy.setNfuSeleted(false);
+        btnQuery.setNfuSeleted(false);
         btnCommunicate.setNfuSeleted(false);
         btnMine.setNfuSeleted(false);
 //        isClick = false;
@@ -224,27 +247,27 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        LogUtil.i("MainActivity--->onActivityResult--->requestCode:"+requestCode+",resultCode:"+resultCode);
+        LogUtil.i("MainActivity--->onActivityResult--->requestCode:" + requestCode + ",resultCode:" + resultCode);
         String imagePath = "";
-        if((requestCode == SELECT_IMAGE_RESULT_CODE1||requestCode == SELECT_IMAGE_RESULT_CODE2||
-                requestCode == SELECT_IMAGE_RESULT_CODE3) && resultCode== RESULT_OK){
-            if(data != null && data.getData() != null){//有数据返回直接使用返回的图片地址
+        if ((requestCode == SELECT_IMAGE_RESULT_CODE1 || requestCode == SELECT_IMAGE_RESULT_CODE2 ||
+                requestCode == SELECT_IMAGE_RESULT_CODE3) && resultCode == RESULT_OK) {
+            if (data != null && data.getData() != null) {//有数据返回直接使用返回的图片地址
                 Uri uri = data.getData();
-                if(uri.getScheme().equals("content")) {//判断uri地址是以什么开头的
+                if (uri.getScheme().equals("content")) {//判断uri地址是以什么开头的
                     imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
-                }else{
+                } else {
                     imagePath = ImageUtils.getFilePathByFileUri(this, getFileUri(uri));
                 }
                /* Uri newUri = Uri.parse(PhotoUtils.getPath(this, data.getData()));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
                     newUri = FileProvider.getUriForFile(this, "com.zz.fileprovider", new File(newUri.getPath()));*/
-                if (mOnFragmentResult!=null){
-                    mOnFragmentResult.onResult(imagePath,requestCode);
+                if (mOnFragmentResult != null) {
+                    mOnFragmentResult.onResult(imagePath, requestCode);
                 }
 
-            }else if (IMAGEPATH!=null){
-                if (mOnFragmentResult!=null){
-                    mOnFragmentResult.onResult(IMAGEPATH,requestCode);
+            } else if (IMAGEPATH != null) {
+                if (mOnFragmentResult != null) {
+                    mOnFragmentResult.onResult(IMAGEPATH, requestCode);
                 }
             }
 
@@ -257,18 +280,18 @@ public class HomeActivity extends AppCompatActivity {
      */
     public OnFragmentResult mOnFragmentResult;
 
-    public void setOnFragmentResult(OnFragmentResult onFragmentResult){
+    public void setOnFragmentResult(OnFragmentResult onFragmentResult) {
         mOnFragmentResult = onFragmentResult;
     }
 
     /**
      * 回调数据给Fragment的接口
      */
-    public interface OnFragmentResult{
-        void onResult(String mImagePath,int requestCode);
+    public interface OnFragmentResult {
+        void onResult(String mImagePath, int requestCode);
     }
 
-    public Uri getFileUri(Uri uri){
+    public Uri getFileUri(Uri uri) {
         if (uri.getScheme().equals("file")) {
             String path = uri.getEncodedPath();
             LogUtil.i("path1 is " + path);
@@ -284,7 +307,7 @@ public class HomeActivity extends AppCompatActivity {
                         .append(")");
                 Cursor cur = cr.query(
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                        new String[] { MediaStore.Images.ImageColumns._ID },
+                        new String[]{MediaStore.Images.ImageColumns._ID},
                         buff.toString(), null, null);
                 int index = 0;
                 for (cur.moveToFirst(); !cur.isAfterLast(); cur
@@ -312,6 +335,7 @@ public class HomeActivity extends AppCompatActivity {
     private Uri imageUri;
     private Uri cropImageUri;
     private String IMAGEPATH;
+
     /**
      * 自动获取相机权限
      */
@@ -326,7 +350,7 @@ public class HomeActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, CAMERA_PERMISSIONS_REQUEST_CODE);
         } else {//有权限直接调用系统相机拍照
             if (hasSdcard()) {
-                File fileUri  =  getFileUrl();
+                File fileUri = getFileUrl();
                 IMAGEPATH = fileUri.getAbsolutePath();
                 imageUri = Uri.fromFile(fileUri);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
@@ -338,7 +362,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private File getFileUrl(){
+    private File getFileUrl() {
         //获取与应用相关联的路径
         String imageFilePath = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
@@ -371,7 +395,7 @@ public class HomeActivity extends AppCompatActivity {
             case CAMERA_PERMISSIONS_REQUEST_CODE: {//调用系统相机申请拍照权限回调
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (hasSdcard()) {
-                        File fileUri  =  getFileUrl();
+                        File fileUri = getFileUrl();
                         imageUri = Uri.fromFile(fileUri);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
                             imageUri = FileProvider.getUriForFile(this, "com.zz.fileprovider", fileUri);//通过FileProvider创建一个content类型的Uri

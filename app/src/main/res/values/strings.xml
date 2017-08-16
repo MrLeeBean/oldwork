@@ -5,6 +5,7 @@
     <string name="top_bar_commu_title">交流列表</string>
     <string name="top_bar_commu_detail_title">帖子详情</string>
     <string name="top_bar_mine_title">个人</string>
+    <string name="top_bar_query_title">查询</string>
     <string name="top_bar_person_title">个人详情</string>
     <string name="top_bar_personInfo_title">个人资料</string>
     <string name="bottom_bar_home_str">首页</string>
@@ -17,7 +18,7 @@
     <string name="bottom_bar_service_str">服务</string>
     <string name="home_fragment_policy_str">政策解读</string>
     <string name="home_fragment_query_str">办理查询</string>
-    <string name="home_fragment_maintain_str">权益保护</string>
+    <string name="home_fragment_maintain_str">意见反馈</string>
     <string name="home_fragment_notice_str">通知公告</string>
     <string name="home_fragment_oldservice_str">为老服务</string>
     <string name="home_fragment_modify_call_msg">修改紧急呼救电话</string>
