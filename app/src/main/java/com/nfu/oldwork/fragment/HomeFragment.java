@@ -176,7 +176,8 @@ public class HomeFragment extends BaseFragment {
                             public void viewPagerItemOnClickListener(int position) {
                                 LogUtil.d("viewPagerItemOnClickListener:position:" + position);
                                 TurnPicModel.StrResultBean model = pics.get(position);
-                                gotoDetailFragment(model.getId());
+
+                                gotoDetailFragment(model.getId(),0);
                             }
                         });
 
@@ -207,7 +208,7 @@ public class HomeFragment extends BaseFragment {
 
 
     }
-    private void gotoDetailFragment(String id){
+    private void gotoDetailFragment(String id, final int titleType){
         ApiManager.getInstance().getNewsDetail(id, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -221,16 +222,16 @@ public class HomeFragment extends BaseFragment {
                 LogUtil.i("PolicyFragment--->initView--->getNewsDetail--->NewsListModel::"+listModel);
                 NewsModel model1 = new Gson().fromJson(listModel.getStrResult(),NewsModel.class);
                 LogUtil.i("PolicyFragment--->initView--->getNewsDetail--->NewsModel::"+model1);
-                gotoDetailFragment(model1);
+                gotoDetailFragment(model1,titleType);
             }
         });
     }
-    private void gotoDetailFragment(NewsModel newsModel){
+    private void gotoDetailFragment(NewsModel newsModel,int titleType){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("title","媒体报道");
+        bundle.putInt("title",titleType);
         bundle.putSerializable("news",newsModel);
         newsDetailFragment.setArguments(bundle);
         fragmentTransaction.hide(this);
@@ -250,7 +251,7 @@ public class HomeFragment extends BaseFragment {
         newsListAdapter = new NewsListAdapter(getContext(), null,0, new NewsListAdapter.IOnDetailListener() {
             @Override
             public void onDetailListener(NewsModel model) {
-                gotoDetailFragment(model.getId());
+                gotoDetailFragment(model.getId(),1);
             }
 
         });
@@ -278,7 +279,7 @@ public class HomeFragment extends BaseFragment {
         announcementlistAdapter = new NewsListAdapter(getContext(), null, 1,new NewsListAdapter.IOnDetailListener() {
             @Override
             public void onDetailListener(NewsModel model) {
-                gotoDetailFragment(model.getId());
+                gotoDetailFragment(model.getId(),2);
             }
         });
         announcementRecyclerView.setAdapter(announcementlistAdapter);
@@ -308,7 +309,7 @@ public class HomeFragment extends BaseFragment {
         policylistAdapter = new NewsListAdapter(getContext(), null, 2, new NewsListAdapter.IOnDetailListener() {
             @Override
             public void onDetailListener(NewsModel model) {
-                gotoDetailFragment(model.getId());
+                gotoDetailFragment(model.getId(),3);
             }
             }
         );

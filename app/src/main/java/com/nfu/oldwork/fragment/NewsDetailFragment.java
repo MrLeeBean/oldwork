@@ -34,7 +34,8 @@ public class NewsDetailFragment extends BaseFragment {
     WebView wv_content;
 
     private NewsModel newsModel = null;
-    private String title = "媒体报道";
+    int titleType ;
+    String[] titles ={"图片新闻","新闻","通知","政策","政策及解读","数据资料","通知公告"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,10 +50,10 @@ public class NewsDetailFragment extends BaseFragment {
         Bundle bundle = getArguments();
         if(bundle != null){
             newsModel = (NewsModel) bundle.getSerializable("news");
-            title = bundle.getString("title");
+            titleType = bundle.getInt("title");
         }
 
-        top_title.setText(title);
+        top_title.setText(titles[titleType]);
         if (newsModel!=null){
             tv_title.setText(newsModel.getTitle());
             tv_title.setMovementMethod(ScrollingMovementMethod.getInstance());
