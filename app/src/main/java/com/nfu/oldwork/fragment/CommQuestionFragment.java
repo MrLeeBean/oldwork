@@ -191,9 +191,11 @@ public class CommQuestionFragment extends BaseFragment {
                     public void onOtherButtonClick(ActionSheet actionSheet, int index) {
                         LogUtil.i("CommunicateFragment--->showInform--->index::" + index);
                         if (index == 0) {
-                            takePhoto();
+                           // takePhoto();
+                            ((HomeActivity)getActivity()).autoObtainCameraPermission(curretnRequestCode);
                         } else if (index == 1) {
-                            pickPhoto();
+                            //pickPhoto();
+                            ((HomeActivity)getActivity()).autoObtainStoragePermission(curretnRequestCode);
                         }
 
                     }

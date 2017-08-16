@@ -236,10 +236,12 @@ public class SafeguardDetailFragment extends BaseFragment{
                     menuWindow.dismiss();
                     switch (v.getId()) {
                         case R.id.takePhotoBtn:// 拍照
-                            takePhoto();
+                            //takePhoto();
+                            ((HomeActivity)getActivity()).autoObtainCameraPermission(curretnRequestCode);
                             break;
                         case R.id.pickPhotoBtn:// 相册选择图片
-                            pickPhoto();
+                            //pickPhoto();
+                            ((HomeActivity)getActivity()).autoObtainStoragePermission(curretnRequestCode);
                             break;
                         case R.id.cancelBtn:// 取消
                             break;
