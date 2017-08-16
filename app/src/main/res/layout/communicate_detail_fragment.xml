@@ -53,7 +53,7 @@
                 android:textSize="@dimen/text_size_18"
                 android:layout_marginTop="@dimen/magin_5"
                 android:textColor="@color/base_red_color"
-                android:text="未解决横刀立马"/>
+                android:text=""/>
             <RelativeLayout
                 android:id="@+id/rl_bottom"
                 android:layout_below="@id/tv_title"
@@ -73,7 +73,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/iv_eye"
                     android:layout_marginLeft="@dimen/magin_10"
-                    android:text="100"
+                    android:text=""
                     android:textSize="@dimen/text_size_14"
                     android:textColor="@color/color_666"
                     />
@@ -93,7 +93,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/iv_reply"
                     android:layout_marginLeft="@dimen/magin_10"
-                    android:text="100"
+                    android:text=""
                     android:textSize="@dimen/text_size_14"
                     android:textColor="@color/color_666"
                     />
