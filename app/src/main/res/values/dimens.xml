@@ -23,6 +23,10 @@
     <dimen name="magin_90">90dp</dimen>
     <dimen name="magin_99">99dp</dimen>
     <dimen name="magin_100">100dp</dimen>
+    <dimen name="magin_109">109dp</dimen>
+    <dimen name="magin_110">110dp</dimen>
+    <dimen name="magin_119">119dp</dimen>
+    <dimen name="magin_120">120dp</dimen>
     <dimen name="magin_125">125dp</dimen>
     <dimen name="padding_top_2">2dp</dimen>
     <dimen name="titile_bar_height">40dp</dimen>

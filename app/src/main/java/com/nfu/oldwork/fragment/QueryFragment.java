@@ -19,11 +19,13 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import com.nfu.oldwork.R;
+import com.nfu.oldwork.config.NfuResource;
 import com.nfu.oldwork.manager.ApiManager;
 import com.nfu.oldwork.model.NewsListModel;
 import com.nfu.oldwork.model.Transaction;
 import com.nfu.oldwork.utils.DensityUtil;
 import com.nfu.oldwork.utils.LogUtil;
+import com.nfu.oldwork.utils.ToastUtil;
 import com.nfu.oldwork.view.ButtonExtendM;
 import com.nfu.oldwork.view.NfuCustomDialog;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -63,8 +65,12 @@ public class QueryFragment extends BaseFragment {
         btn_queryfealty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                QueryFealtyFragment queryFealtyFragment = new QueryFealtyFragment();
-                gotoDetailFragment(queryFealtyFragment);
+                if(NfuResource.isLoginSuccess){
+                    QueryFealtyFragment queryFealtyFragment = new QueryFealtyFragment();
+                    gotoDetailFragment(queryFealtyFragment);
+                }else {
+                    ToastUtil.showShortToast(getContext(),"您还未登录，不能进行查询！");
+                }
             }
         });
         btn_querycard.setOnClickListener(new View.OnClickListener() {

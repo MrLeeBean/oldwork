@@ -135,7 +135,7 @@ public class CommunicateFragment extends BaseFragment{
             @Override
             public void onLoadMore() {
                 LogUtil.i("communicationlist--->onRefresh");
-                getNormalList(c_currentPage,c_recordCount,REFRESH_TYPE);
+                getNormalList(c_currentPage,c_recordCount,LOADMORE_TYPE);
             }
         });
 

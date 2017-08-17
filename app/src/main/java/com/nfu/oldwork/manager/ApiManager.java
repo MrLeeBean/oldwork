@@ -212,4 +212,10 @@ public class ApiManager {
         LogUtil.i("ApiManager--->getFilialStar--->url::"+url + ",jsonStr::"+jsonStr);
         NetUtil.doPost(url,jsonStr,callback);
     }
+
+    public void getFilialStarDetail(String jsonStr,StringCallback callback){
+        String url = ConnectUrl.GetFilialStarDetail;
+        LogUtil.i("ApiManager--->getFilialStarDetail--->url::"+url + ",jsonStr::"+jsonStr);
+        NetUtil.doPost(url,jsonStr,callback);
+    }
 }
