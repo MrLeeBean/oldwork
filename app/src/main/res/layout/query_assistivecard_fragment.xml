@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_999"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_title_bar_height"
+        android:background="@color/base_red_color"
+        android:gravity="center_vertical">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:src="@drawable/fanhui"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:layout_width="40dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/activity_main_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="养老助残卡查询"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white_color"
+        android:paddingLeft="@dimen/magin_15"
+        android:paddingRight="@dimen/magin_15">
+        <TextView
+            android:id="@+id/tv_cardnum"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/text_size_18"
+            android:textColor="@color/base_red_color"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="身份证号："/>
+
+        <EditText
+            android:id="@+id/et_cardnum"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/tv_cardnum"
+            android:gravity="center_vertical"
+            android:text=""
+            android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:maxLength="18"
+            android:textColor="@color/base_red_color"
+            android:textSize="@dimen/text_size_18"/>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white_color"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/magin_15"
+        android:paddingRight="@dimen/magin_15">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/text_size_18"
+            android:textColor="@color/base_red_color"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="姓        名："/>
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@id/tv_name"
+            android:layout_toRightOf="@id/tv_name"
+            android:maxLines="1"
+            android:maxLength="15"
+            android:gravity="center_vertical"
+            android:textColor="@color/base_red_color"
+            android:textSize="@dimen/text_size_18"/>
+        <Button
+            android:id="@+id/btn_query"
+            android:layout_width="@dimen/magin_70"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/magin_5"
+            android:background="@color/base_red_color"
+            android:textSize="@dimen/text_size_18"
+            android:textColor="@color/white_color"
+            android:layout_alignParentRight="true"
+            android:text="@string/query_btn"/>
+
+    </RelativeLayout>
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/card_xrecyclerView"
+        android:background="@color/white_color"
+        android:layout_marginTop="@dimen/magin_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

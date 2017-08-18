@@ -19,6 +19,7 @@ import com.nfu.oldwork.model.FilialStarDetail;
 import com.nfu.oldwork.model.NewsListModel;
 import com.nfu.oldwork.model.QuerySimpleModel;
 import com.nfu.oldwork.utils.LogUtil;
+import com.nfu.oldwork.utils.ToastUtil;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.w3c.dom.Text;
@@ -158,32 +159,37 @@ public class QueryFealtyDetailFragment extends BaseFragment {
                     LogUtil.i("QueryFealtyDetailFragment--->getNormalList--->NewsListModel::" + models);
                     FilialStarDetail filialStarDetail = new Gson().fromJson(models.getStrResult(),FilialStarDetail.class);
                     LogUtil.i("QueryFealtyDetailFragment--->getNormalList--->FilialStarDetail::" + filialStarDetail);
-                    tv_name.setText(filialStarDetail.getOldName());
-                    tv_sex.setText(filialStarDetail.getSex());
-                    tv__starnum.setText(filialStarDetail.getStarNumber());
-                    tv_nation.setText(filialStarDetail.getNation());
-                    tv__birthday.setText(filialStarDetail.getBirthdate());
-                    tv_polity.setText(filialStarDetail.getPolity());
-                    tv_telephone.setText(filialStarDetail.getLinkTelephone());
-                    tv__mobiephone.setText(filialStarDetail.getLinkPhone());
-                    tv__cultureType.setText(filialStarDetail.getCultureType());
-                    tv_postalParcel.setText(filialStarDetail.getPostalParcel());
-                    tv__cardnum.setText(filialStarDetail.getCertificatesNumber());
-                    tv__job.setText(filialStarDetail.getJobType());
-                    tv__workunit.setText(filialStarDetail.getWorkUnit());
-                    tv__address.setText(filialStarDetail.getAddress());
-                    tv__applyway.setText(filialStarDetail.getApplyway());
-                    tv__storyType.setText(filialStarDetail.getStoryType());
-                    tv__baRemarks.setText(filialStarDetail.getBaRemarks());
-                    tv__countiesIdea.setText(filialStarDetail.getCountiesIdea());
-                    tv__cityIdea.setText(filialStarDetail.getCityIdea());
-                    tv__recommendUser1.setText(filialStarDetail.getRecommendUser());
-                    tv_recommendUserPhone1.setText(filialStarDetail.getRecommendUserPhone());
-                    tv__recommendUser2.setText(filialStarDetail.getRecommendUser1());
-                    tv_recommendUserPhone2.setText(filialStarDetail.getRecommendUserPhone1());
-                    tv__recommendUser3.setText(filialStarDetail.getRecommendUser2());
-                    tv_recommendUserPhone3.setText(filialStarDetail.getRecommendUserPhone2());
-                    tv_selfStory.setText(filialStarDetail.getSelfStory());
+                    if (filialStarDetail!=null){
+                        tv_name.setText(filialStarDetail.getOldName());
+                        tv_sex.setText(filialStarDetail.getSex());
+                        tv__starnum.setText(filialStarDetail.getStarNumber());
+                        tv_nation.setText(filialStarDetail.getNation());
+                        tv__birthday.setText(filialStarDetail.getBirthdate());
+                        tv_polity.setText(filialStarDetail.getPolity());
+                        tv_telephone.setText(filialStarDetail.getLinkTelephone());
+                        tv__mobiephone.setText(filialStarDetail.getLinkPhone());
+                        tv__cultureType.setText(filialStarDetail.getCultureType());
+                        tv_postalParcel.setText(filialStarDetail.getPostalParcel());
+                        tv__cardnum.setText(filialStarDetail.getCertificatesNumber());
+                        tv__job.setText(filialStarDetail.getJobType());
+                        tv__workunit.setText(filialStarDetail.getWorkUnit());
+                        tv__address.setText(filialStarDetail.getAddress());
+                        tv__applyway.setText(filialStarDetail.getApplyway());
+                        tv__storyType.setText(filialStarDetail.getStoryType());
+                        tv__baRemarks.setText(filialStarDetail.getBaRemarks());
+                        tv__countiesIdea.setText(filialStarDetail.getCountiesIdea());
+                        tv__cityIdea.setText(filialStarDetail.getCityIdea());
+                        tv__recommendUser1.setText(filialStarDetail.getRecommendUser());
+                        tv_recommendUserPhone1.setText(filialStarDetail.getRecommendUserPhone());
+                        tv__recommendUser2.setText(filialStarDetail.getRecommendUser1());
+                        tv_recommendUserPhone2.setText(filialStarDetail.getRecommendUserPhone1());
+                        tv__recommendUser3.setText(filialStarDetail.getRecommendUser2());
+                        tv_recommendUserPhone3.setText(filialStarDetail.getRecommendUserPhone2());
+                        tv_selfStory.setText(filialStarDetail.getSelfStory());
+                    }else {
+                        ToastUtil.showShortToast(getContext(),models.getStrError());
+                    }
+
                 }
 
             }

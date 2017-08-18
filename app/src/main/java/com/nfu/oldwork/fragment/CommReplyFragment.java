@@ -25,6 +25,7 @@ import com.nfu.oldwork.activity.HomeActivity;
 import com.nfu.oldwork.config.ApiConfig;
 import com.nfu.oldwork.manager.ApiManager;
 import com.nfu.oldwork.model.ReplyModel;
+import com.nfu.oldwork.utils.BitmapAndStringUtils;
 import com.nfu.oldwork.utils.ImageUtils;
 import com.nfu.oldwork.utils.LogUtil;
 import com.nfu.oldwork.utils.SharedPreferencesManager;
@@ -135,7 +136,7 @@ public class CommReplyFragment extends BaseFragment {
                     replyModel.setContent(ed_question.getText().toString());
                     replyModel.setRespondPeople(SharedPreferencesManager.getUser("userinfo","UserInfo",null).getUserName());
                     replyModel.setRespondPeopleId(SharedPreferencesManager.getUser("userinfo","UserInfo",null).getUserId());
-                    replyModel.setStrBase64(getImageCode(path1));
+                    replyModel.setStrBase64(BitmapAndStringUtils.convertIconToString(path1));
                     String str = new Gson().toJson(replyModel);
                     ApiManager.getInstance().postCommResponse(str, new StringCallback() {
                         @Override
@@ -252,7 +253,7 @@ public class CommReplyFragment extends BaseFragment {
 
     };
 
-    private String getImageCode(String path) {
+ /*   private String getImageCode(String path) {
         String code = "";
         if (!TextUtils.isEmpty(path)) {
             byte[] data = null;
@@ -268,6 +269,6 @@ public class CommReplyFragment extends BaseFragment {
         }
 
         return code;
-    }
+    }*/
 
 }

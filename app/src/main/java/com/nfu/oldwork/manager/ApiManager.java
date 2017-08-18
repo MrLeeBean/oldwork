@@ -218,4 +218,16 @@ public class ApiManager {
         LogUtil.i("ApiManager--->getFilialStarDetail--->url::"+url + ",jsonStr::"+jsonStr);
         NetUtil.doPost(url,jsonStr,callback);
     }
+
+    public void getAssistiveCard(String jsonStr,StringCallback callback){
+        String url = ConnectUrl.GetAssistiveCard;
+        LogUtil.i("ApiManager--->getAssistiveCard--->url::"+url + ",jsonStr::"+jsonStr);
+        NetUtil.doPost(url,jsonStr,callback);
+    }
+
+    public void getAssistiveCardDetail(String jsonStr,StringCallback callback){
+        String url = ConnectUrl.GetAssistiveCardDetail;
+        LogUtil.i("ApiManager--->getAssistiveCardDetail--->url::"+url + ",jsonStr::"+jsonStr);
+        NetUtil.doPost(url,jsonStr,callback);
+    }
 }

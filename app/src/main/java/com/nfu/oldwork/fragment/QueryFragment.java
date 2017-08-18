@@ -76,7 +76,12 @@ public class QueryFragment extends BaseFragment {
         btn_querycard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(NfuResource.isLoginSuccess){
+                    QueryAssistiveCardFragment assistiveCardFragment = new QueryAssistiveCardFragment();
+                    gotoDetailFragment(assistiveCardFragment);
+                }else {
+                    ToastUtil.showShortToast(getContext(),"您还未登录，不能进行查询！");
+                }
             }
         });
 

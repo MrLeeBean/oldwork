@@ -40,4 +40,6 @@ public interface ConnectUrl {
     String GetLoginAppYlUser = baseUrl + "/bjllapp/bjllUserManage/bjllUserManageAction.do?method=GetLoginAppYlUser";  //现有登录
     String GetFilialStar = baseUrl + "/bjllapp/bjllFwManage/bjllFwManageAction.do?method=GetFilialStar";  //获取孝星信息
     String GetFilialStarDetail = baseUrl + "/bjllapp/bjllFwManage/bjllFwManageAction.do?method=GetFilialStarDetail";  //获取孝星详情信息
+    String GetAssistiveCard = baseUrl + "/bjllapp/bjllFwManage/bjllFwManageAction.do?method=GetAssistiveCard";  //获取养老助残卡信息
+    String GetAssistiveCardDetail = baseUrl + "/bjllapp/bjllFwManage/bjllFwManageAction.do?method=GetAssistiveCardDetail";  //获取养老助残卡详情信息
 }

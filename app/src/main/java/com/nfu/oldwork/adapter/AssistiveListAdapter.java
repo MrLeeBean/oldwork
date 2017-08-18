@@ -1,7 +1,6 @@
 package com.nfu.oldwork.adapter;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,33 +8,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.nfu.oldwork.R;
-import com.nfu.oldwork.config.NfuResource;
-import com.nfu.oldwork.model.CommunicationInfo;
+import com.nfu.oldwork.model.AssistiveCard;
 import com.nfu.oldwork.model.FilialStar;
-import com.nfu.oldwork.utils.AppUtils;
 import com.nfu.oldwork.utils.DensityUtil;
 
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Administrator on 2017-7-26.
  */
 
-public class FilialListAdapter extends RecyclerView.Adapter {
+public class AssistiveListAdapter extends RecyclerView.Adapter {
     private Context mContext;
-    private List<FilialStar> newsModelList;
+    private List<AssistiveCard> newsModelList;
     private IOnDetailListener iOnDetailListener;
 
     private int ACTION_NONE_TYPE = 0;
     private int ACTION_ITEM_TYPE = 1;
     private int HOUSE_ITEM_TYPE = 2;
 
-    public FilialListAdapter(Context mContext, IOnDetailListener iOnDetailListener) {
+    public AssistiveListAdapter(Context mContext, IOnDetailListener iOnDetailListener) {
         this.mContext = mContext;
         this.iOnDetailListener = iOnDetailListener;
     }
@@ -44,12 +38,12 @@ public class FilialListAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ACTION_NONE_TYPE){
             View view = LayoutInflater.from(mContext).inflate(R.layout.nonedata_view,parent,false);
-            return new NodataViewHolder(view);
-        } else if (viewType == ACTION_ITEM_TYPE){
+            return new NonedataViewHolder(view);
+        }else if (viewType == ACTION_ITEM_TYPE){
             View view = LayoutInflater.from(mContext).inflate(R.layout.nodata_view,parent,false);
             return new NodataViewHolder(view);
         }else {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.filialstar_item,parent,false);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.assistive_item,parent,false);
             return new MyViewHolder(view);
         }
 
@@ -61,15 +55,14 @@ public class FilialListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyViewHolder){
-            FilialStar newsModel = newsModelList.get(position);
+            AssistiveCard newsModel = newsModelList.get(position);
             MyViewHolder holder1 = (MyViewHolder) holder;
 
-            holder1.tv_name.setText(newsModel.getOldName());
+            holder1.tv_name.setText(newsModel.getName());
             holder1.tv__cardnum.setText(newsModel.getCertificatesNumber());
             holder1.tv_sex.setText(newsModel.getSex());
-            holder1.tv_nation.setText(newsModel.getNation());
-            holder1.tv__starnum.setText(newsModel.getStarNumber());
-            holder1.tv__state.setText(newsModel.getWorkState());
+            holder1.tv__makeCardSuccess.setText(newsModel.getMakeCardSuccess());
+            holder1.tv__householdCounty.setText(newsModel.getHouseholdCounty());
         }
 
     }
@@ -94,17 +87,16 @@ public class FilialListAdapter extends RecyclerView.Adapter {
     }
 
     private class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tv_name,tv_sex,tv_nation,tv__cardnum,tv__starnum,tv__state;
+        TextView tv_name,tv_sex,tv__cardnum,tv__makeCardSuccess,tv__householdCounty;
         CardView card_view;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tv_name = (TextView) itemView.findViewById(R.id.tv_name);
             tv_sex = (TextView) itemView.findViewById(R.id.tv_sex);
-            tv_nation = (TextView) itemView.findViewById(R.id.tv_nation);
             tv__cardnum = (TextView) itemView.findViewById(R.id.tv__cardnum);
-            tv__starnum = (TextView) itemView.findViewById(R.id.tv__starnum);
-            tv__state = (TextView) itemView.findViewById(R.id.tv__state);
+            tv__makeCardSuccess = (TextView) itemView.findViewById(R.id.tv__makeCardSuccess);
+            tv__householdCounty = (TextView) itemView.findViewById(R.id.tv__householdCounty);
 
             card_view = (CardView) itemView.findViewById(R.id.card_view);
 
@@ -119,15 +111,6 @@ public class FilialListAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private class NonedataViewHolder extends RecyclerView.ViewHolder{
-
-
-        public NonedataViewHolder(View itemView) {
-            super(itemView);
-
-        }
-    }
-
     private class NodataViewHolder extends RecyclerView.ViewHolder{
 
 
@@ -137,12 +120,21 @@ public class FilialListAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void setNewsData(List<FilialStar> newsData){
+    private class NonedataViewHolder extends RecyclerView.ViewHolder{
+
+
+        public NonedataViewHolder(View itemView) {
+            super(itemView);
+
+        }
+    }
+
+    public void setNewsData(List<AssistiveCard> newsData){
         newsModelList = newsData;
         notifyDataSetChanged();
     }
 
-    public void addNewsData(List<FilialStar> newsData){
+    public void addNewsData(List<AssistiveCard> newsData){
         if (newsModelList!=null){
             newsModelList.addAll(newsData);
         }else {
@@ -153,6 +145,6 @@ public class FilialListAdapter extends RecyclerView.Adapter {
     }
 
     public interface IOnDetailListener{
-        void onDetailListener(FilialStar model);
+        void onDetailListener(AssistiveCard model);
     }
 }

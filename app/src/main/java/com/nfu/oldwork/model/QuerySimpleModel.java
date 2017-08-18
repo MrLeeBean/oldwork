@@ -7,6 +7,7 @@ package com.nfu.oldwork.model;
 public class QuerySimpleModel {
     private int signKey;
     private String starId;
+    private String oldId;
 
     public int getSignKey() {
         return signKey;
@@ -22,5 +23,13 @@ public class QuerySimpleModel {
 
     public void setStarId(String starId) {
         this.starId = starId;
+    }
+
+    public String getOldId() {
+        return oldId;
+    }
+
+    public void setOldId(String oldId) {
+        this.oldId = oldId;
     }
 }

@@ -26,6 +26,7 @@ import com.nfu.oldwork.activity.HomeActivity;
 import com.nfu.oldwork.config.ApiConfig;
 import com.nfu.oldwork.manager.ApiManager;
 import com.nfu.oldwork.model.QuestionModel;
+import com.nfu.oldwork.utils.BitmapAndStringUtils;
 import com.nfu.oldwork.utils.ImageUtils;
 import com.nfu.oldwork.utils.LogUtil;
 import com.nfu.oldwork.utils.SharedPreferencesManager;
@@ -75,8 +76,6 @@ public class CommQuestionFragment extends BaseFragment {
      */
     public String imagePath;
     private String path1 = null;
-    private String path2 = null;
-    private String path3 = null;
 
 
     int index = 0;
@@ -148,7 +147,7 @@ public class CommQuestionFragment extends BaseFragment {
                     questionModel.setContent(ed_question.getText().toString());
                     questionModel.setCommunicationType(arrIds[index]);
                     questionModel.setOperType(1);
-                    questionModel.setStrBase64(getImageCode(path1));
+                    questionModel.setStrBase64(BitmapAndStringUtils.convertIconToString(path1));
                     String str = new Gson().toJson(questionModel);
                     ApiManager.getInstance().postCommQuestion(str, new StringCallback() {
                         @Override
