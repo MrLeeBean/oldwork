@@ -79,7 +79,7 @@ public class QueryFealtyDetailFragment extends BaseFragment {
     TextView tv__countiesIdea;
     @BindView(R.id.tv__cityIdea)
     TextView tv__cityIdea;
-    @BindView(R.id.tv__recommendUser1)
+   /* @BindView(R.id.tv__recommendUser1)
     TextView tv__recommendUser1;
     @BindView(R.id.tv__recommendUser2)
     TextView tv__recommendUser2;
@@ -90,7 +90,7 @@ public class QueryFealtyDetailFragment extends BaseFragment {
     @BindView(R.id.tv_recommendUserPhone2)
     TextView tv_recommendUserPhone2;
     @BindView(R.id.tv_recommendUserPhone3)
-    TextView tv_recommendUserPhone3;
+    TextView tv_recommendUserPhone3;*/
     @BindView(R.id.tv_selfStory)
     TextView tv_selfStory;
 
@@ -179,12 +179,12 @@ public class QueryFealtyDetailFragment extends BaseFragment {
                         tv__baRemarks.setText(filialStarDetail.getBaRemarks());
                         tv__countiesIdea.setText(filialStarDetail.getCountiesIdea());
                         tv__cityIdea.setText(filialStarDetail.getCityIdea());
-                        tv__recommendUser1.setText(filialStarDetail.getRecommendUser());
+                      /*  tv__recommendUser1.setText(filialStarDetail.getRecommendUser());
                         tv_recommendUserPhone1.setText(filialStarDetail.getRecommendUserPhone());
                         tv__recommendUser2.setText(filialStarDetail.getRecommendUser1());
                         tv_recommendUserPhone2.setText(filialStarDetail.getRecommendUserPhone1());
                         tv__recommendUser3.setText(filialStarDetail.getRecommendUser2());
-                        tv_recommendUserPhone3.setText(filialStarDetail.getRecommendUserPhone2());
+                        tv_recommendUserPhone3.setText(filialStarDetail.getRecommendUserPhone2());*/
                         tv_selfStory.setText(filialStarDetail.getSelfStory());
                     }else {
                         ToastUtil.showShortToast(getContext(),models.getStrError());

@@ -42,9 +42,15 @@ public class PhotoUtils {
      * @param requestCode 打开相册的请求码
      */
     public static void openPic(Activity activity, int requestCode) {
-        Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        photoPickerIntent.setType("image/*");
-        activity.startActivityForResult(photoPickerIntent, requestCode);
+       /* Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        photoPickerIntent.setType("image*//*");
+        activity.startActivityForResult(photoPickerIntent, requestCode);*/
+
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        //intent.setType("image/*");
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                "image/*");
+        activity.startActivityForResult(intent, requestCode);
     }
 
     /**
