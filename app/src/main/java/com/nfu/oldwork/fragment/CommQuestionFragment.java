@@ -75,7 +75,7 @@ public class CommQuestionFragment extends BaseFragment {
      * 当前选择的图片的路径
      */
     public String imagePath;
-    private String path1 = null;
+    private Bitmap path1 = null;
 
 
     int index = 0;
@@ -238,14 +238,14 @@ public class CommQuestionFragment extends BaseFragment {
 
     private HomeActivity.OnFragmentResult onFragmentResult = new HomeActivity.OnFragmentResult() {
         @Override
-        public void onResult(String mImagePath, int requestCode) {
-            if (!TextUtils.isEmpty(mImagePath)) {
+        public void onResult(Bitmap mImagePath, int requestCode) {
+           /* if (!TextUtils.isEmpty(mImagePath)) {
                 imagePath = mImagePath;
-            }
+            }*/
             //获取图片缩略图，避免OOM
-            Bitmap bitmap = ImageUtils.getImageThumbnail(imagePath, ImageUtils.getWidth(getContext()) / 3 - 5, ImageUtils.getWidth(getContext()) / 3 - 5);
-            path1 = imagePath;
-            iv_upload.setImageBitmap(bitmap);
+            //Bitmap bitmap = ImageUtils.getImageThumbnail(imagePath, ImageUtils.getWidth(getContext()) / 3 - 5, ImageUtils.getWidth(getContext()) / 3 - 5);
+            path1 = mImagePath;
+            iv_upload.setImageBitmap(mImagePath);
             /*switch (requestCode){
                 case SELECT_IMAGE_RESULT_CODE1:
                     imgUpload1.setImageBitmap(bitmap);

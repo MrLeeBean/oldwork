@@ -97,9 +97,9 @@ public class SafeguardDetailFragment extends BaseFragment{
      * 当前选择的图片的路径
      */
     public String imagePath;
-    private String path1 = null;
-    private String path2 = null;
-    private String path3 = null;
+    private Bitmap path1 = null;
+    private Bitmap path2 = null;
+    private Bitmap path3 = null;
 
     @Nullable
     @Override
@@ -292,24 +292,24 @@ public class SafeguardDetailFragment extends BaseFragment{
 
     private HomeActivity.OnFragmentResult onFragmentResult = new HomeActivity.OnFragmentResult() {
         @Override
-        public void onResult(String mImagePath, int requestCode) {
-            if (!TextUtils.isEmpty(mImagePath)){
+        public void onResult(Bitmap bitmap, int requestCode) {
+           /* if (!TextUtils.isEmpty(mImagePath)){
                 imagePath = mImagePath;
-            }
+            }*/
             //获取图片缩略图，避免OOM
-            Bitmap bitmap = ImageUtils.getImageThumbnail(imagePath, ImageUtils.getWidth(getContext()) / 3 - 5, ImageUtils.getWidth(getContext()) / 3 - 5);
+            //Bitmap bitmap = ImageUtils.getImageThumbnail(imagePath, ImageUtils.getWidth(getContext()) / 3 - 5, ImageUtils.getWidth(getContext()) / 3 - 5);
             switch (requestCode){
                 case SELECT_IMAGE_RESULT_CODE1:
                     imgUpload1.setImageBitmap(bitmap);
-                    path1 = imagePath;
+                    path1 = bitmap;
                     break;
                 case SELECT_IMAGE_RESULT_CODE2:
                     imgUpload2.setImageBitmap(bitmap);
-                    path2 = imagePath;
+                    path2 = bitmap;
                     break;
                 case SELECT_IMAGE_RESULT_CODE3:
                     imgUpload3.setImageBitmap(bitmap);
-                    path3 = imagePath;
+                    path3 = bitmap;
                     break;
             }
         }

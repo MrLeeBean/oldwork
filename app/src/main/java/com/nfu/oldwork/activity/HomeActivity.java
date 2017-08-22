@@ -29,6 +29,7 @@ import com.nfu.oldwork.fragment.HomeFragment;
 import com.nfu.oldwork.fragment.MineFragment;
 import com.nfu.oldwork.fragment.QueryFragment;
 import com.nfu.oldwork.fragment.StudyFragment;
+import com.nfu.oldwork.utils.BitmapAndStringUtils;
 import com.nfu.oldwork.utils.ImageUtils;
 import com.nfu.oldwork.utils.LogUtil;
 import com.nfu.oldwork.utils.PhotoUtils;
@@ -253,21 +254,20 @@ public class HomeActivity extends AppCompatActivity {
                 requestCode == SELECT_IMAGE_RESULT_CODE3) && resultCode == RESULT_OK) {
             if (data != null && data.getData() != null) {//有数据返回直接使用返回的图片地址
                 Uri uri = data.getData();
-                if (uri.getScheme().equals("content")) {//判断uri地址是以什么开头的
+                /*if (uri.getScheme().equals("content")) {//判断uri地址是以什么开头的
                     imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
                 } else {
                     imagePath = ImageUtils.getFilePathByFileUri(this, getFileUri(uri));
-                }
-               /* Uri newUri = Uri.parse(PhotoUtils.getPath(this, data.getData()));
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-                    newUri = FileProvider.getUriForFile(this, "com.zz.fileprovider", new File(newUri.getPath()));*/
+                }*/
+                Bitmap bitmap = PhotoUtils.getBitmapFromUri(uri,this);
                 if (mOnFragmentResult != null) {
-                    mOnFragmentResult.onResult(imagePath, requestCode);
+                    mOnFragmentResult.onResult(bitmap, requestCode);
                 }
 
             } else if (IMAGEPATH != null) {
                 if (mOnFragmentResult != null) {
-                    mOnFragmentResult.onResult(IMAGEPATH, requestCode);
+                    Bitmap bitmap = BitmapAndStringUtils.getimage(IMAGEPATH);
+                    mOnFragmentResult.onResult(bitmap, requestCode);
                 }
             }
 
@@ -288,7 +288,7 @@ public class HomeActivity extends AppCompatActivity {
      * 回调数据给Fragment的接口
      */
     public interface OnFragmentResult {
-        void onResult(String mImagePath, int requestCode);
+        void onResult(Bitmap bitmap, int requestCode);
     }
 
     public Uri getFileUri(Uri uri) {
@@ -315,10 +315,11 @@ public class HomeActivity extends AppCompatActivity {
                     index = cur.getColumnIndex(MediaStore.Images.ImageColumns._ID);
                     // set _id value
                     index = cur.getInt(index);
+                    LogUtil.i("getFileUri index is " + index);
                 }
-                if (index == 0) {
+                /*if (index == 0) {
                     //do nothing
-                } else {
+                } else {*/
                     Uri uri_temp = Uri
                             .parse("content://media/external/images/media/"
                                     + index);
@@ -326,7 +327,7 @@ public class HomeActivity extends AppCompatActivity {
                     if (uri_temp != null) {
                         uri = uri_temp;
                     }
-                }
+               // }
             }
         }
         return uri;
