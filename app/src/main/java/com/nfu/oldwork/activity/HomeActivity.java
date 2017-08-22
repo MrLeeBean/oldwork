@@ -291,7 +291,7 @@ public class HomeActivity extends AppCompatActivity {
         void onResult(Bitmap bitmap, int requestCode);
     }
 
-    public Uri getFileUri(Uri uri) {
+        public Uri getFileUri(Uri uri) {
         if (uri.getScheme().equals("file")) {
             String path = uri.getEncodedPath();
             LogUtil.i("path1 is " + path);
@@ -355,7 +355,7 @@ public class HomeActivity extends AppCompatActivity {
                 IMAGEPATH = fileUri.getAbsolutePath();
                 imageUri = Uri.fromFile(fileUri);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-                    imageUri = FileProvider.getUriForFile(this, "com.zz.fileprovider", fileUri);//通过FileProvider创建一个content类型的Uri
+                    imageUri = FileProvider.getUriForFile(this, "com.hh.fileprovider", fileUri);//通过FileProvider创建一个content类型的Uri
                 PhotoUtils.takePicture(this, imageUri, CODE_CAMERA_REQUEST);
             } else {
                 ToastUtil.showShortToast(this, "设备没有SD卡！");

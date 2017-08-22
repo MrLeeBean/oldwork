@@ -115,7 +115,7 @@ public class NormaLoginFragment extends BaseFragment {
          //           SharedPreferencesManager.putUser("userinfo","UserInfo",userInfo);
                     if(iResult.equals("800")){
                         //=登录成功
-                        //TODO 处理返回结果  保存信息到sp中跳转到 头像页面
+
                         NfuResource.isLoginSuccess = true;
                         ToastUtil.showShortToast(getActivity(),"登录成功");
                         userInfo.setLoginSuccess(true);
