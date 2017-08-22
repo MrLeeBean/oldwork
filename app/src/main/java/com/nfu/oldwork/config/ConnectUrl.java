@@ -7,7 +7,7 @@ package com.nfu.oldwork.config;
  * @date 2017/7/20
  */
 public interface ConnectUrl {
-    String baseUrl = "http://17103938iy.iask.in";
+    String baseUrl = "http://1r66c81104.51mypc.cn";
 
     String getNewsList = baseUrl + "/bjllapp/bjllXxfbQuery/bjllXxfbQueryAction.do?method=GetNewsList&signKey=" + ApiConfig.signKey;
     String getNewsDetail = baseUrl + "/bjllapp/bjllXxfbQuery/bjllXxfbQueryAction.do?method=GetNewsDetail&signKey=" + ApiConfig.signKey;
