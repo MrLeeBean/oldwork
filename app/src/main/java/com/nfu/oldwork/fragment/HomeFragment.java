@@ -32,6 +32,7 @@ import com.nfu.oldwork.model.NewsModel;
 import com.nfu.oldwork.model.NewsModels;
 import com.nfu.oldwork.model.TurnPicModel;
 import com.nfu.oldwork.utils.LogUtil;
+import com.nfu.oldwork.utils.ToastUtil;
 import com.nfu.oldwork.view.PagerIndicator;
 import com.nfu.oldwork.view.PointPagerIndicator;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -360,29 +361,33 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onResponse(String response, int id) {
                 LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->onResponse::" + response);
-                NewsListModel newsListModel = new Gson().fromJson(response, NewsListModel.class);
-                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->newsListModel::" + newsListModel);
-                NewsModels newsModels = new Gson().fromJson(newsListModel.getStrResult(), NewsModels.class);
-                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->NewsModels::" + newsModels);
-                if (type == REFRESH_TYPE) {
-                    if (newsListModel != null&&newsModels!=null) {
-                        n_currentPage = newsModels.getCurrentPage();
-                        n_currentPage++;
-                        n_iRecordCount = newsModels.getRecordCount();
-                    }
-                    newsListAdapter.setNewsData(newsModels.getData());
-                    newsRecyclerView.refreshComplete();
-                } else {
-
-                    if (newsListModel != null) {
-                        if (n_currentPage <= newsModels.getCurrentPage()) {
+                try {
+                    NewsListModel newsListModel = new Gson().fromJson(response, NewsListModel.class);
+                    LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->newsListModel::" + newsListModel);
+                    NewsModels newsModels = new Gson().fromJson(newsListModel.getStrResult(), NewsModels.class);
+                    LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->NewsModels::" + newsModels);
+                    if (type == REFRESH_TYPE) {
+                        if (newsListModel != null&&newsModels!=null) {
                             n_currentPage = newsModels.getCurrentPage();
                             n_currentPage++;
                             n_iRecordCount = newsModels.getRecordCount();
-                            newsListAdapter.addNewsData(newsModels.getData());
                         }
-                        newsRecyclerView.loadMoreComplete();
+                        newsListAdapter.setNewsData(newsModels.getData());
+                        newsRecyclerView.refreshComplete();
+                    } else {
+
+                        if (newsListModel != null) {
+                            if (n_currentPage <= newsModels.getCurrentPage()) {
+                                n_currentPage = newsModels.getCurrentPage();
+                                n_currentPage++;
+                                n_iRecordCount = newsModels.getRecordCount();
+                                newsListAdapter.addNewsData(newsModels.getData());
+                            }
+                            newsRecyclerView.loadMoreComplete();
+                        }
                     }
+                } catch (Exception e) {
+                    ToastUtil.showShortToast(getContext(),"获取新闻信息失败");
                 }
 
             }
@@ -452,29 +457,33 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onResponse(String response, int id) {
                 LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->onResponse::" + response);
-                NewsListModel newsListModel = new Gson().fromJson(response, NewsListModel.class);
-                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->newsListModel::" + newsListModel);
-                NewsModels newsModels = new Gson().fromJson(newsListModel.getStrResult(), NewsModels.class);
-                LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->NewsModels::" + newsModels);
-                if (type == REFRESH_TYPE) {
-                    if (newsListModel != null&&newsModels!=null) {
-                        p_currentPage = newsModels.getCurrentPage();
-                        p_currentPage++;
-                        p_iRecordCount = newsModels.getRecordCount();
-                    }
-                    policylistAdapter.setNewsData(newsModels.getData());
-                    policyrecyclerView.refreshComplete();
-                } else {
-
-                    if (newsListModel != null) {
-                        if (p_currentPage <= newsModels.getCurrentPage()) {
+                try {
+                    NewsListModel newsListModel = new Gson().fromJson(response, NewsListModel.class);
+                    LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->newsListModel::" + newsListModel);
+                    NewsModels newsModels = new Gson().fromJson(newsListModel.getStrResult(), NewsModels.class);
+                    LogUtil.i("AnnouncementFragment--->getNormalList--->getNewsList--->NewsModels::" + newsModels);
+                    if (type == REFRESH_TYPE) {
+                        if (newsListModel != null&&newsModels!=null) {
                             p_currentPage = newsModels.getCurrentPage();
                             p_currentPage++;
                             p_iRecordCount = newsModels.getRecordCount();
-                            policylistAdapter.addNewsData(newsModels.getData());
                         }
-                        policyrecyclerView.loadMoreComplete();
+                        policylistAdapter.setNewsData(newsModels.getData());
+                        policyrecyclerView.refreshComplete();
+                    } else {
+
+                        if (newsListModel != null) {
+                            if (p_currentPage <= newsModels.getCurrentPage()) {
+                                p_currentPage = newsModels.getCurrentPage();
+                                p_currentPage++;
+                                p_iRecordCount = newsModels.getRecordCount();
+                                policylistAdapter.addNewsData(newsModels.getData());
+                            }
+                            policyrecyclerView.loadMoreComplete();
+                        }
                     }
+                } catch (Exception e) {
+                    ToastUtil.showShortToast(getContext(),"获取新闻信息出错");
                 }
 
             }
