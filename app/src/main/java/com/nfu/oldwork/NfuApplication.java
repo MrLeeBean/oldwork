@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import com.nfu.oldwork.config.NfuResource;
 import com.nfu.oldwork.model.UserInfo;
 import com.nfu.oldwork.utils.SharedPreferencesManager;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -29,6 +30,7 @@ public class NfuApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
+        CrashReport.initCrashReport(getApplicationContext(), "64618000fa", true);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
 //                .addInterceptor(new LoggerInterceptor("TAG"))
                 .connectTimeout(20000L, TimeUnit.MILLISECONDS)
